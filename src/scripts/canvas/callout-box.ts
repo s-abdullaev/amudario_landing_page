@@ -89,7 +89,7 @@ export function drawCalloutBox(
     ctx.fillStyle = 'rgba(240,244,255,0.5)';
     ctx.fillText(item.label, ix, iy);
     
-    ctx.font = '700 15px Outfit';
+    ctx.font = '700 15px Montserrat';
     ctx.fillStyle = item.color || '#f0f4ff';
     ctx.fillText(item.value, ix, iy + 17);
     
