@@ -1,11 +1,35 @@
+---
+import type { Locale } from '../i18n/locales';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <nav class="product-nav at-top" id="productNav">
     <div class="nav-container">
-        <a class="nav-logo" href="/">
+        <a class="nav-logo" href={getLocalizedPath('/', lang)}>
             <img src="/images/logo/amudar-logo.png" alt="Amudar.io Logo" height="40" style="height: 40px; width: auto;">
         </a>
-        <a href="/#products" class="nav-back">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-            All Products
-        </a>
+        <div class="product-nav-right">
+            <a href={getLocalizedPath('/#products', lang)} class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                {t.nav.allProducts}
+            </a>
+            <LanguageSwitcher lang={lang} currentPath={Astro.url.pathname} />
+        </div>
     </div>
 </nav>
+
+<style>
+    .product-nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+</style>

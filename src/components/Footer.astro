@@ -1,3 +1,16 @@
+---
+import type { Locale } from '../i18n/locales';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -5,12 +18,12 @@
                 <img src="/images/logo/amudar-logo.png" alt="Amudar.io" height="28" style="height: 28px; width: auto;">
                 <span>AMUDAR.IO</span>
             </div>
-            <p class="footer-copy">&copy; {new Date().getFullYear()} Amudario Research LLC. Smart solutions for smart agriculture.</p>
+            <p class="footer-copy">&copy; {year} Amudario Research LLC. {t.footer.tagline}</p>
             <div class="footer-links">
-                <a href="/oxus-ws">OXUS WS</a>
-                <a href="/jayhun-trap">JAYHUN TRAP</a>
-                <a href="/oxus-airsense">AIRSENSE</a>
-                <a href="/gozanlink">GOZANLINK</a>
+                <a href={getLocalizedPath('/oxus-ws', lang)}>{t.nav.oxusWs}</a>
+                <a href={getLocalizedPath('/jayhun-trap', lang)}>{t.nav.jayhunTrap}</a>
+                <a href={getLocalizedPath('/oxus-airsense', lang)}>{t.nav.airsense}</a>
+                <a href={getLocalizedPath('/gozanlink', lang)}>{t.nav.gozanlink}</a>
             </div>
         </div>
     </div>

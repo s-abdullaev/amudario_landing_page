@@ -1,0 +1,174 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import { locales, type Locale } from '../../i18n/locales';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const p = t.oxusAirsense;
+---
+
+<ProductLayout title={p.meta.title} description={p.meta.description} lang={lang}>
+    <!-- HERO BANNER -->
+    <section class="product-hero">
+        <div class="product-hero-bg">
+            <img src="/images/oxus-airsense/banner.jpg" alt="OXUS AIRSENSE Air Quality Monitor">
+        </div>
+        <div class="product-hero-content">
+            <span class="section-tag">{p.hero.tag}</span>
+            <h1 class="section-title" set:html={p.hero.title} />
+            <p class="product-hero-subtitle">{p.hero.subtitle}</p>
+        </div>
+    </section>
+
+    <!-- PROBLEMS -->
+    <section class="product-problems">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.theChallenge}</span>
+                <h2 class="section-title reveal" set:html={p.problems.title} />
+                <p class="section-subtitle reveal">{p.problems.subtitle}</p>
+            </div>
+            <div class="product-problems-grid">
+                {p.problems.cards.map((card, i) => {
+                    const imgs = ['air-quality.jpg', 'traffic-exhaust.webp', 'health-impact.jpg'];
+                    return (
+                        <div class="product-problem-card reveal-up" style={`--delay:${i}`}>
+                            <div class="card-image"><img src={`/images/oxus-airsense/problems/${imgs[i]}`} alt={card.title}></div>
+                            <div class="card-body">
+                                <h4>{card.title}</h4>
+                                <p>{card.desc}</p>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="product-features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.features}</span>
+                <h2 class="section-title reveal" set:html={p.features.title} />
+                <p class="section-subtitle reveal">{p.features.subtitle}</p>
+            </div>
+            <div class="features-grid">
+                {p.features.cards.map((card, i) => {
+                    const iconPaths = [
+                        '/images/oxus-airsense/icons/pm-sensor.png',
+                        '/images/oxus-airsense/icons/pollution.png',
+                        '/images/oxus-airsense/icons/parameters.png',
+                        '/images/icons/earth.png',
+                        '/images/icons/cloud.png',
+                        '/images/icons/control.png',
+                    ];
+                    return (
+                        <div class="feature-card reveal-up" style={`--delay:${i}`}>
+                            <div class="feature-icon"><img src={iconPaths[i]} alt={card.title}></div>
+                            <h4>{card.title}</h4>
+                            <p>{card.desc}</p>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="product-how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.howItWorks}</span>
+                <h2 class="section-title reveal" set:html={p.howItWorks.title} />
+            </div>
+            <div class="how-content">
+                <div class="how-image reveal-up">
+                    <img src="/images/oxus-airsense/how-it-works.png" alt="OXUS AIRSENSE How It Works">
+                </div>
+                <div class="how-text reveal-up" style="--delay:1">
+                    <h3>{p.howItWorks.heading}</h3>
+                    <p>{p.howItWorks.text}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="product-gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.gallery}</span>
+                <h2 class="section-title reveal" set:html={p.gallery.title} />
+            </div>
+            <div class="gallery-grid reveal-up">
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-01.jpg" alt="AIRSENSE installation"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-02.jpg" alt="AIRSENSE unit"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-03.jpg" alt="AIRSENSE close-up"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-05.jpg" alt="AIRSENSE deployed"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/device-overview.png" alt="AIRSENSE overview"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="product-dashboard">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.dashboard}</span>
+                <h2 class="section-title reveal" set:html={p.dashboard.title} />
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-images reveal-up">
+                    <img src="/images/oxus-airsense/dashboard/overview.png" alt="AIRSENSE Dashboard">
+                </div>
+                <div class="dashboard-text reveal-up" style="--delay:1">
+                    <h3>{p.dashboard.heading}</h3>
+                    <p>{p.dashboard.text}</p>
+                    <ul>
+                        {p.dashboard.features.map((f) => <li>{f}</li>)}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HARDWARE -->
+    <section class="product-hardware">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.hardware}</span>
+                <h2 class="section-title reveal" set:html={p.hardware.title} />
+            </div>
+            <div class="hardware-content">
+                <div class="hardware-text reveal-up">
+                    <h3>{p.hardware.heading}</h3>
+                    <p>{p.hardware.text}</p>
+                </div>
+                <div class="hardware-image reveal-up" style="--delay:1">
+                    <img src="/images/oxus-airsense/hardware.png" alt="OXUS AIRSENSE Hardware Specifications">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="product-cta">
+        <div class="container">
+            <div class="cta-content">
+                <span class="section-tag reveal">{t.sectionTags.getStarted}</span>
+                <h2 class="section-title reveal" set:html={p.cta.title} />
+                <p class="reveal">{p.cta.text}</p>
+                <div class="cta-buttons reveal-up">
+                    <a href={getLocalizedPath('/#contact', lang)} class="btn btn-primary">{t.cta.contactUs}</a>
+                    <a href={getLocalizedPath('/#products', lang)} class="btn btn-outline">{t.cta.viewAllProducts}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</ProductLayout>

@@ -1,0 +1,320 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, type Locale } from '../../i18n/locales';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={t.home.meta.title}
+  description={t.home.meta.description}
+  lang={lang}
+>
+    <!-- THREE.JS BACKGROUND -->
+    <div id="three-bg"></div>
+
+    <!-- NAVIGATION -->
+    <Navbar lang={lang} />
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                <span class="badge-dot"></span>
+                {t.home.hero.badge}
+            </div>
+            <h1 class="hero-title">
+                <span class="reveal reveal-delay-1">{t.home.hero.title1}</span>
+                <span class="reveal reveal-delay-2">{t.home.hero.title2}</span>
+                <span class="reveal reveal-delay-3 gradient-text">{t.home.hero.title3}</span>
+            </h1>
+            <p class="hero-subtitle reveal reveal-delay-4">
+                {t.home.hero.subtitle}
+            </p>
+            <div class="hero-actions reveal reveal-delay-5">
+                <a href="#products" class="btn btn-primary">{t.cta.exploreProducts}</a>
+                <a href="#contact" class="btn btn-outline">{t.cta.getInTouch}</a>
+            </div>
+            <div class="hero-stats reveal reveal-delay-5">
+                <div class="stat">
+                    <span class="stat-number" data-count="110">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">{t.home.hero.statStations}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="30">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">{t.home.hero.statPestModels}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="20">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">{t.home.hero.statAgroIndicators}</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>{t.home.hero.scrollToExplore}</span>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section class="solutions-section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.ourSolutions}</span>
+                <h2 class="section-title reveal" set:html={t.home.solutions.title} />
+                <p class="section-subtitle reveal">{t.home.solutions.subtitle}</p>
+            </div>
+            <div class="solutions-grid">
+                <a href="#explode-section" class="solution-card reveal-up" style="--delay:0">
+                    <div class="solution-number">01</div>
+                    <h3>{t.home.solutions.oxusWs.name}</h3>
+                    <p>{t.home.solutions.oxusWs.desc}</p>
+                </a>
+                <a href="#jayhun-story" class="solution-card reveal-up" style="--delay:1">
+                    <div class="solution-number">02</div>
+                    <h3>{t.home.solutions.jayhunTrap.name}</h3>
+                    <p>{t.home.solutions.jayhunTrap.desc}</p>
+                </a>
+                <a href="#airsense-story" class="solution-card reveal-up" style="--delay:2">
+                    <div class="solution-number">03</div>
+                    <h3>{t.home.solutions.airsense.name}</h3>
+                    <p>{t.home.solutions.airsense.desc}</p>
+                </a>
+                <a href="#gozan-story" class="solution-card reveal-up" style="--delay:3">
+                    <div class="solution-number">04</div>
+                    <h3>{t.home.solutions.gozanlink.name}</h3>
+                    <p>{t.home.solutions.gozanlink.desc}</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT 1: OXUS WS — EXPLODE -->
+    <section class="story-section" id="explode-section">
+        <div class="story-sticky">
+            <canvas class="story-canvas" id="explodeCanvas"></canvas>
+            <div class="story-overlay">
+                <div class="story-header">
+                    <span class="section-tag">{t.home.oxusWsStory.tag}</span>
+                    <h2 class="section-title" set:html={t.home.oxusWsStory.title} />
+                </div>
+                <div class="story-facts" id="explodeFacts">
+                    {t.home.oxusWsStory.facts.map((fact, i) => (
+                        <div class="fact" data-appear={[0.08, 0.20, 0.35, 0.50, 0.65][i]}>{fact}</div>
+                    ))}
+                    <a href={getLocalizedPath('/oxus-ws', lang)} class="fact fact-link" data-appear="0.78">{t.cta.learnMore}</a>
+                </div>
+                <div class="story-progress"><div class="story-progress-fill" data-story="explode"></div></div>
+                <div class="story-caption" id="explodeCaption">{t.home.oxusWsStory.caption}</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT 2: JAYHUN TRAP — MOTH STORY -->
+    <section class="story-section" id="jayhun-story">
+        <div class="story-sticky">
+            <canvas class="story-canvas" id="jayhunCanvas"></canvas>
+            <div class="story-overlay">
+                <div class="story-header">
+                    <span class="section-tag">{t.home.jayhunStory.tag}</span>
+                    <h2 class="section-title" set:html={t.home.jayhunStory.title} />
+                </div>
+                <div class="story-facts" id="jayhunFacts">
+                    {t.home.jayhunStory.facts.map((fact, i) => (
+                        <div class="fact" data-appear={[0.08, 0.20, 0.35, 0.50, 0.65][i]}>{fact}</div>
+                    ))}
+                    <a href={getLocalizedPath('/jayhun-trap', lang)} class="fact fact-link" data-appear="0.78">{t.cta.learnMore}</a>
+                </div>
+                <div class="story-progress"><div class="story-progress-fill" data-story="jayhun"></div></div>
+                <div class="story-caption" id="jayhunCaption">{t.home.jayhunStory.caption}</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT 3: OXUS AIRSENSE — SMOKE STORY -->
+    <section class="story-section" id="airsense-story">
+        <div class="story-sticky">
+            <canvas class="story-canvas" id="airsenseCanvas"></canvas>
+            <div class="story-overlay">
+                <div class="story-header">
+                    <span class="section-tag">{t.home.airsenseStory.tag}</span>
+                    <h2 class="section-title" set:html={t.home.airsenseStory.title} />
+                </div>
+                <div class="story-facts" id="airsenseFacts">
+                    {t.home.airsenseStory.facts.map((fact, i) => (
+                        <div class="fact" data-appear={[0.08, 0.20, 0.35, 0.50, 0.65][i]}>{fact}</div>
+                    ))}
+                    <a href={getLocalizedPath('/oxus-airsense', lang)} class="fact fact-link" data-appear="0.78">{t.cta.learnMore}</a>
+                </div>
+                <div class="story-progress"><div class="story-progress-fill" data-story="airsense"></div></div>
+                <div class="story-caption" id="airsenseCaption">{t.home.airsenseStory.caption}</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT 4: GOZANLINK — GREENHOUSE STORY -->
+    <section class="story-section" id="gozan-story">
+        <div class="story-sticky">
+            <canvas class="story-canvas" id="gozanCanvas"></canvas>
+            <div class="story-overlay">
+                <div class="story-header">
+                    <span class="section-tag">{t.home.gozanStory.tag}</span>
+                    <h2 class="section-title" set:html={t.home.gozanStory.title} />
+                </div>
+                <div class="story-facts" id="gozanFacts">
+                    {t.home.gozanStory.facts.map((fact, i) => (
+                        <div class="fact" data-appear={[0.08, 0.20, 0.35, 0.50, 0.65][i]}>{fact}</div>
+                    ))}
+                    <a href={getLocalizedPath('/gozanlink', lang)} class="fact fact-link" data-appear="0.78">{t.cta.learnMore}</a>
+                </div>
+                <div class="story-progress"><div class="story-progress-fill" data-story="gozan"></div></div>
+                <div class="story-caption" id="gozanCaption">{t.home.gozanStory.caption}</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.howItWorks}</span>
+                <h2 class="section-title reveal" set:html={t.home.howItWorks.title} />
+            </div>
+            <div class="timeline">
+                {t.home.howItWorks.steps.map((step, i) => (
+                    <div class:list={['timeline-item', i % 2 === 0 ? 'reveal-left' : 'reveal-right']} style={`--delay:${i}`}>
+                        <div class="timeline-number">{String(i + 1).padStart(2, '0')}</div>
+                        <div class="timeline-content"><h3>{step.title}</h3><p>{step.desc}</p></div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.ourTeam}</span>
+                <h2 class="section-title reveal" set:html={t.home.team.title} />
+                <p class="section-subtitle reveal">{t.home.team.subtitle}</p>
+            </div>
+            <div class="team-grid">
+                {t.home.team.members.map((member, i) => (
+                    <div class="team-card reveal-up" style={`--delay:${i}`}>
+                        <div class="team-avatar"><img src={`/images/team/${['jasurbek-khodjaev', 'azizbek-marakhimov', 'sarvar-abdullaev'][i]}.jpg`} alt={member.name}></div>
+                        <h3>{member.name}</h3>
+                        <span class="team-role">{member.role}</span>
+                        <ul class="team-credentials">
+                            {member.credentials.map((c) => <li>{c}</li>)}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="partners-section" id="partners">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.ourPartners}</span>
+                <h2 class="section-title reveal" set:html={t.home.partners.title} />
+                <p class="section-subtitle reveal">{t.home.partners.subtitle}</p>
+            </div>
+            <div class="partners-grid reveal-up">
+                <div class="partner-logo-card"><img src="/images/partners/undp.jpg" alt="United Nations Development Programme"></div>
+                <div class="partner-logo-card"><img src="/images/partners/cgiar.png" alt="CGIAR"></div>
+                <div class="partner-logo-card"><img src="/images/partners/icarda.png" alt="ICARDA"></div>
+                <div class="partner-logo-card"><img src="/images/partners/ifad.jpg" alt="IFAD"></div>
+                <div class="partner-logo-card"><img src="/images/partners/iwmi.png" alt="IWMI"></div>
+                <div class="partner-logo-card"><img src="/images/partners/ifas.png" alt="IFAS"></div>
+                <div class="partner-logo-card"><img src="/images/partners/inha-university.jpg" alt="Inha University in Tashkent"></div>
+                <div class="partner-logo-card"><img src="/images/partners/new-uzbekistan-university.png" alt="New Uzbekistan University"></div>
+                <div class="partner-logo-card"><img src="/images/partners/national-research-center.png" alt="National Research Center"></div>
+                <div class="partner-logo-card"><img src="/images/partners/fanlar-akademiyasi.png" alt="Fanlar Akademiyasi"></div>
+                <div class="partner-logo-card"><img src="/images/partners/uzhydromet.jpg" alt="Uzhydromet"></div>
+                <div class="partner-logo-card"><img src="/images/partners/karantin-inspeksiya.jpg" alt="Karantin Inspeksiya"></div>
+                <div class="partner-logo-card"><img src="/images/partners/chamber-of-commerce.jpg" alt="Chamber of Commerce and Industry"></div>
+                <div class="partner-logo-card"><img src="/images/partners/tashkent-city.jpg" alt="Tashkent City"></div>
+                <div class="partner-logo-card"><img src="/images/partners/suvchilar-maktabi.png" alt="Suvchilar Maktabi"></div>
+                <div class="partner-logo-card"><img src="/images/partners/samarkand-marathon.png" alt="Samarkand Marathon"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESS -->
+    <section class="press-section" id="press">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.inThePress}</span>
+                <h2 class="section-title reveal" set:html={t.home.press.title} />
+            </div>
+            <div class="press-marquee">
+                <div class="marquee-track">
+                    {[...t.home.press.articles, ...t.home.press.articles].map((article, i) => {
+                        const urls = [
+                            'https://spot.uz/ru/2017/10/30/smart-farm/',
+                            'http://www.uz.undp.org/content/uzbekistan/en/home/presscenter/articles/2019/02/13/undp-promotes-modern-eco-friendly-techniques-of-pest-and-disease.html',
+                            'https://www.spot.uz/ru/2019/03/15/meteo/',
+                            'https://www.gazeta.uz/ru/2019/02/13/ferlov/',
+                            'https://inha.uz/general/amudario-research-llc-wins-first-place-in-cgiar-acceleration-program/',
+                            'https://inha.uz/professors/professors-of-inha-university-in-tashkent-presented-smart-agrometeorological-stations/',
+                        ];
+                        return (
+                            <a href={urls[i % 6]} target="_blank" class="press-card">
+                                <span class="press-source">{article.source}</span>
+                                <p>{article.text}</p>
+                            </a>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-text">
+                    <span class="section-tag reveal">{t.sectionTags.getStarted}</span>
+                    <h2 class="section-title reveal" set:html={t.home.contact.title} />
+                    <p class="section-subtitle reveal">{t.home.contact.subtitle}</p>
+                </div>
+                <div class="contact-cards reveal-up">
+                    <a href="tel:+998900350225" class="contact-card">
+                        <div class="contact-card-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M6 6h6l3 8-4 3c2 4 5 7 9 9l3-4 8 3v6c0 1-1 2-2 2C14 32 0 18 1 8c0-1 1-2 2-2h3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                        <span class="contact-card-label">{t.home.contact.callUs}</span>
+                        <span class="contact-card-value">+998 90 035-02-25</span>
+                    </a>
+                    <a href="https://t.me/amudar_io" target="_blank" class="contact-card">
+                        <div class="contact-card-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M28 4L4 14l8 3 4 10 4-6 6 4L28 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 17l10-8" stroke="currentColor" stroke-width="1.5"/></svg></div>
+                        <span class="contact-card-label">{t.home.contact.telegram}</span>
+                        <span class="contact-card-value">@amudar_io</span>
+                    </a>
+                    <a href="mailto:info@amudar.io" class="contact-card">
+                        <div class="contact-card-icon"><svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 8l12 10L28 8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                        <span class="contact-card-label">{t.home.contact.email}</span>
+                        <span class="contact-card-value">info@amudar.io</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <Footer lang={lang} />
+
+    <script>
+        import '../../scripts/main';
+    </script>
+</BaseLayout>

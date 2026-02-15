@@ -1,0 +1,131 @@
+---
+import { locales, localeLabels, type Locale } from '../i18n/locales';
+
+interface Props {
+  lang: Locale;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+
+function switchLocalePath(targetLang: Locale): string {
+  const segments = currentPath.split('/').filter(Boolean);
+  if (locales.includes(segments[0] as Locale)) {
+    segments[0] = targetLang;
+  } else {
+    segments.unshift(targetLang);
+  }
+  return '/' + segments.join('/');
+}
+---
+
+<div class="lang-switcher">
+    <button class="lang-switcher-btn" aria-label="Switch language" type="button">
+        {localeLabels[lang]}
+        <svg class="lang-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+    </button>
+    <ul class="lang-dropdown">
+        {locales.map((loc) => (
+            <li>
+                <a
+                    href={switchLocalePath(loc)}
+                    class:list={['lang-option', { active: loc === lang }]}
+                    data-lang={loc}
+                >
+                    {localeLabels[loc]}
+                </a>
+            </li>
+        ))}
+    </ul>
+</div>
+
+<style>
+    .lang-switcher {
+        position: relative;
+        z-index: 100;
+    }
+
+    .lang-switcher-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+
+    .lang-switcher-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .lang-chevron {
+        width: 12px;
+        height: 12px;
+        transition: transform 0.2s;
+    }
+
+    .lang-switcher:hover .lang-chevron,
+    .lang-switcher.open .lang-chevron {
+        transform: rotate(180deg);
+    }
+
+    .lang-dropdown {
+        display: none;
+        position: absolute;
+        top: calc(100% + 0.35rem);
+        right: 0;
+        background: rgba(20, 20, 30, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        list-style: none;
+        padding: 0.3rem;
+        margin: 0;
+        min-width: 120px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .lang-switcher:hover .lang-dropdown,
+    .lang-switcher.open .lang-dropdown {
+        display: block;
+    }
+
+    .lang-option {
+        display: block;
+        padding: 0.45rem 0.75rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.8rem;
+        border-radius: 0.35rem;
+        transition: all 0.15s;
+    }
+
+    .lang-option:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+    }
+
+    .lang-option.active {
+        color: var(--accent, #00e5a0);
+        font-weight: 600;
+    }
+</style>
+
+<script>
+    const switcher = document.querySelector('.lang-switcher');
+    const btn = switcher?.querySelector('.lang-switcher-btn');
+    if (switcher && btn) {
+        btn.addEventListener('click', () => switcher.classList.toggle('open'));
+        document.addEventListener('click', (e) => {
+            if (!switcher.contains(e.target as Node)) switcher.classList.remove('open');
+        });
+    }
+</script>
