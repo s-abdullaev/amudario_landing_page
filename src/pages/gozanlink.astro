@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOZANLINK — Smart Greenhouse Management | Amudar.io</title>
-    <meta name="description" content="GOZANLINK is an IoT greenhouse management system tracking temperature, humidity, CO2, light, and soil — with automated ventilation and irrigation control.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="product-detail.css">
-</head>
-<body>
+---
+import ProductLayout from '../layouts/ProductLayout.astro';
+---
 
-    <!-- NAVIGATION -->
-    <nav class="product-nav at-top" id="productNav">
-        <div class="nav-container">
-            <a class="nav-logo" href="index.html">
-                <img src="images/logo/amudar-logo.png" alt="Amudar.io Logo" height="40" style="height: 40px; width: auto;">
-            </a>
-            <a href="index.html#products" class="nav-back">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-                All Products
-            </a>
-        </div>
-    </nav>
-
+<ProductLayout
+  title="GOZANLINK — Smart Greenhouse Management | Amudar.io"
+  description="GOZANLINK is an IoT greenhouse management system tracking temperature, humidity, CO2, light, and soil — with automated ventilation and irrigation control."
+>
     <!-- HERO BANNER -->
     <section class="product-hero">
         <div class="product-hero-bg">
-            <img src="images/gozanlink/banner.jpg" alt="GOZANLINK Greenhouse Management">
+            <img src="/images/gozanlink/banner.jpg" alt="GOZANLINK Greenhouse Management">
         </div>
         <div class="product-hero-content">
             <span class="section-tag">04 — Greenhouse</span>
@@ -50,27 +30,21 @@
             </div>
             <div class="product-problems-grid">
                 <div class="product-problem-card reveal-up" style="--delay:0">
-                    <div class="card-image">
-                        <img src="images/gozanlink/problems/frozen-plant.jpg" alt="Frozen greenhouse plants">
-                    </div>
+                    <div class="card-image"><img src="/images/gozanlink/problems/frozen-plant.jpg" alt="Frozen greenhouse plants"></div>
                     <div class="card-body">
                         <h4>Temperature Extremes</h4>
                         <p>Without monitoring, greenhouses can overheat or freeze — causing immediate plant damage and crop loss.</p>
                     </div>
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:1">
-                    <div class="card-image">
-                        <img src="images/gozanlink/problems/dry-soil.jpg" alt="Dry greenhouse soil">
-                    </div>
+                    <div class="card-image"><img src="/images/gozanlink/problems/dry-soil.jpg" alt="Dry greenhouse soil"></div>
                     <div class="card-body">
                         <h4>Irrigation Waste</h4>
                         <p>Manual watering without soil moisture data leads to over or under-watering, reducing yields and wasting resources.</p>
                     </div>
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:2">
-                    <div class="card-image">
-                        <img src="images/gozanlink/problems/rotten-tomato.jpg" alt="Rotten greenhouse tomatoes">
-                    </div>
+                    <div class="card-image"><img src="/images/gozanlink/problems/rotten-tomato.jpg" alt="Rotten greenhouse tomatoes"></div>
                     <div class="card-body">
                         <h4>Disease & Rot</h4>
                         <p>High humidity and poor ventilation create breeding grounds for fungal diseases and fruit rot.</p>
@@ -90,44 +64,32 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card reveal-up" style="--delay:0">
-                    <div class="feature-icon">
-                        <img src="images/gozanlink/icons/temperature.png" alt="Temperature">
-                    </div>
+                    <div class="feature-icon"><img src="/images/gozanlink/icons/temperature.png" alt="Temperature"></div>
                     <h4>Temperature Control</h4>
                     <p>Precise monitoring of air and soil temperature with automated heating and cooling response.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:1">
-                    <div class="feature-icon">
-                        <img src="images/gozanlink/icons/humidity.png" alt="Humidity">
-                    </div>
+                    <div class="feature-icon"><img src="/images/gozanlink/icons/humidity.png" alt="Humidity"></div>
                     <h4>Humidity Management</h4>
                     <p>Real-time humidity tracking with automated ventilation to prevent mold and disease.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:2">
-                    <div class="feature-icon">
-                        <img src="images/gozanlink/icons/co2.png" alt="CO2 monitoring">
-                    </div>
+                    <div class="feature-icon"><img src="/images/gozanlink/icons/co2.png" alt="CO2 monitoring"></div>
                     <h4>CO&#8322; Enrichment</h4>
                     <p>Monitor CO&#8322; levels to optimize photosynthesis and accelerate plant growth.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:3">
-                    <div class="feature-icon">
-                        <img src="images/gozanlink/icons/soil-moisture.png" alt="Soil monitoring">
-                    </div>
+                    <div class="feature-icon"><img src="/images/gozanlink/icons/soil-moisture.png" alt="Soil monitoring"></div>
                     <h4>Soil Moisture</h4>
                     <p>Continuous soil moisture tracking with automated drip irrigation control.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:4">
-                    <div class="feature-icon">
-                        <img src="images/gozanlink/icons/pump.png" alt="Irrigation">
-                    </div>
+                    <div class="feature-icon"><img src="/images/gozanlink/icons/pump.png" alt="Irrigation"></div>
                     <h4>Automated Irrigation</h4>
                     <p>Smart water management with pump control based on soil moisture and crop needs.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:5">
-                    <div class="feature-icon">
-                        <img src="images/icons/control.png" alt="Remote control">
-                    </div>
+                    <div class="feature-icon"><img src="/images/icons/control.png" alt="Remote control"></div>
                     <h4>Remote Control</h4>
                     <p>Manage your greenhouse from anywhere via the mobile app — fans, vents, pumps, and lights.</p>
                 </div>
@@ -144,7 +106,7 @@
             </div>
             <div class="how-content">
                 <div class="how-image reveal-up">
-                    <img src="images/gozanlink/how-it-works.jpg" alt="GOZANLINK Greenhouse System">
+                    <img src="/images/gozanlink/how-it-works.jpg" alt="GOZANLINK Greenhouse System">
                 </div>
                 <div class="how-text reveal-up" style="--delay:1">
                     <h3>Intelligent Climate Management</h3>
@@ -164,30 +126,14 @@
                 <h2 class="section-title reveal">GOZANLINK <span class="gradient-text">installations</span></h2>
             </div>
             <div class="gallery-grid reveal-up">
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-01.jpg" alt="GOZANLINK greenhouse">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-02.jpg" alt="GOZANLINK sensors">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-03.jpg" alt="GOZANLINK installation">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-04.jpg" alt="GOZANLINK in greenhouse">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-05.jpg" alt="Greenhouse monitoring">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-06.jpg" alt="GOZANLINK overview">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-07.jpg" alt="GOZANLINK device">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gozanlink/gallery/greenhouse-08.jpg" alt="Greenhouse crops">
-                </div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-01.jpg" alt="GOZANLINK greenhouse"></div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-02.jpg" alt="GOZANLINK sensors"></div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-03.jpg" alt="GOZANLINK installation"></div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-04.jpg" alt="GOZANLINK in greenhouse"></div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-05.jpg" alt="Greenhouse monitoring"></div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-06.jpg" alt="GOZANLINK overview"></div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-07.jpg" alt="GOZANLINK device"></div>
+                <div class="gallery-item"><img src="/images/gozanlink/gallery/greenhouse-08.jpg" alt="Greenhouse crops"></div>
             </div>
         </div>
     </section>
@@ -201,8 +147,8 @@
             </div>
             <div class="dashboard-content">
                 <div class="dashboard-images reveal-up">
-                    <img src="images/gozanlink/dashboard/overview.jpg" alt="GOZANLINK Dashboard">
-                    <img src="images/gozanlink/dashboard/controls.jpg" alt="GOZANLINK Dashboard controls">
+                    <img src="/images/gozanlink/dashboard/overview.jpg" alt="GOZANLINK Dashboard">
+                    <img src="/images/gozanlink/dashboard/controls.jpg" alt="GOZANLINK Dashboard controls">
                 </div>
                 <div class="dashboard-text reveal-up" style="--delay:1">
                     <h3>Complete Greenhouse Command</h3>
@@ -235,7 +181,7 @@
                     </p>
                 </div>
                 <div class="hardware-image reveal-up" style="--delay:1">
-                    <img src="images/gozanlink/hardware.png" alt="GOZANLINK Hardware Specifications">
+                    <img src="/images/gozanlink/hardware.png" alt="GOZANLINK Hardware Specifications">
                 </div>
             </div>
         </div>
@@ -249,51 +195,10 @@
                 <h2 class="section-title reveal">Optimize your <span class="gradient-text">greenhouse</span></h2>
                 <p class="reveal">Contact us to learn how GOZANLINK can automate your greenhouse management and boost yields.</p>
                 <div class="cta-buttons reveal-up">
-                    <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
-                    <a href="index.html#products" class="btn btn-outline">View All Products</a>
+                    <a href="/#contact" class="btn btn-primary">Contact Us</a>
+                    <a href="/#products" class="btn btn-outline">View All Products</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="images/logo/amudar-logo.png" alt="Amudar.io" height="28" style="height: 28px; width: auto;">
-                    <span>AMUDAR.IO</span>
-                </div>
-                <p class="footer-copy">&copy; 2026 Amudario Research LLC. Smart solutions for smart agriculture.</p>
-                <div class="footer-links">
-                    <a href="oxus-ws.html">OXUS WS</a>
-                    <a href="jayhun-trap.html">JAYHUN TRAP</a>
-                    <a href="oxus-airsense.html">AIRSENSE</a>
-                    <a href="gozanlink.html">GOZANLINK</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const nav = document.getElementById('productNav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.remove('at-top');
-            } else {
-                nav.classList.add('at-top');
-            }
-        });
-
-        const reveals = document.querySelectorAll('.reveal, .reveal-up, .reveal-left, .reveal-right');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.15 });
-        reveals.forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+</ProductLayout>

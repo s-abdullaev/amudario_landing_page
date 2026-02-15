@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OXUS WS — Smart Agrometeostation | Amudar.io</title>
-    <meta name="description" content="OXUS WS is a smart agrometeostation with 30+ sensor parameters for precision weather monitoring, solar-powered, with real-time data via 4G/LoRa.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="product-detail.css">
-</head>
-<body>
+---
+import ProductLayout from '../layouts/ProductLayout.astro';
+---
 
-    <!-- NAVIGATION -->
-    <nav class="product-nav at-top" id="productNav">
-        <div class="nav-container">
-            <a class="nav-logo" href="index.html">
-                <img src="images/logo/amudar-logo.png" alt="Amudar.io Logo" height="40" style="height: 40px; width: auto;">
-            </a>
-            <a href="index.html#products" class="nav-back">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-                All Products
-            </a>
-        </div>
-    </nav>
-
+<ProductLayout
+  title="OXUS WS — Smart Agrometeostation | Amudar.io"
+  description="OXUS WS is a smart agrometeostation with 30+ sensor parameters for precision weather monitoring, solar-powered, with real-time data via 4G/LoRa."
+>
     <!-- HERO BANNER -->
     <section class="product-hero">
         <div class="product-hero-bg">
-            <img src="images/oxus-ws/banner.jpg" alt="OXUS WS Agrometeostation">
+            <img src="/images/oxus-ws/banner.jpg" alt="OXUS WS Agrometeostation">
         </div>
         <div class="product-hero-content">
             <span class="section-tag">01 — Agrometeostation</span>
@@ -51,7 +31,7 @@
             <div class="product-problems-grid">
                 <div class="product-problem-card reveal-up" style="--delay:0">
                     <div class="card-image">
-                        <img src="images/oxus-ws/problems/dead-crop.jpg" alt="Dead crops from frost">
+                        <img src="/images/oxus-ws/problems/dead-crop.jpg" alt="Dead crops from frost">
                     </div>
                     <div class="card-body">
                         <h4>Unexpected Frost</h4>
@@ -60,7 +40,7 @@
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:1">
                     <div class="card-image">
-                        <img src="images/oxus-ws/problems/flooded.jpg" alt="Flooded field">
+                        <img src="/images/oxus-ws/problems/flooded.jpg" alt="Flooded field">
                     </div>
                     <div class="card-body">
                         <h4>Flood & Overwatering</h4>
@@ -69,7 +49,7 @@
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:2">
                     <div class="card-image">
-                        <img src="images/oxus-ws/problems/dried-up-crop.jpg" alt="Dried up crops">
+                        <img src="/images/oxus-ws/problems/dried-up-crop.jpg" alt="Dried up crops">
                     </div>
                     <div class="card-body">
                         <h4>Drought & Heat Stress</h4>
@@ -90,44 +70,32 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card reveal-up" style="--delay:0">
-                    <div class="feature-icon">
-                        <img src="images/oxus-ws/icons/wind.png" alt="Wind monitoring">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-ws/icons/wind.png" alt="Wind monitoring"></div>
                     <h4>Wind Monitoring</h4>
                     <p>Measure wind speed and direction for crop protection and spray planning.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:1">
-                    <div class="feature-icon">
-                        <img src="images/oxus-ws/icons/rain.png" alt="Rainfall data">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-ws/icons/rain.png" alt="Rainfall data"></div>
                     <h4>Rainfall Measurement</h4>
                     <p>Track precipitation in real time to optimize irrigation schedules and water usage.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:2">
-                    <div class="feature-icon">
-                        <img src="images/oxus-ws/icons/soil.png" alt="Soil monitoring">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-ws/icons/soil.png" alt="Soil monitoring"></div>
                     <h4>Soil Analysis</h4>
                     <p>Monitor soil moisture, temperature, and salinity to optimize crop health.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:3">
-                    <div class="feature-icon">
-                        <img src="images/oxus-ws/icons/dew-point.png" alt="Dew point">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-ws/icons/dew-point.png" alt="Dew point"></div>
                     <h4>Dew Point & Humidity</h4>
                     <p>Track atmospheric humidity for disease prediction and frost risk assessment.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:4">
-                    <div class="feature-icon">
-                        <img src="images/oxus-ws/icons/analytics.png" alt="Data analytics">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-ws/icons/analytics.png" alt="Data analytics"></div>
                     <h4>Data Analytics</h4>
                     <p>AI-powered insights turn raw sensor data into actionable farming recommendations.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:5">
-                    <div class="feature-icon">
-                        <img src="images/oxus-ws/icons/windsock.png" alt="Weather forecasting">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-ws/icons/windsock.png" alt="Weather forecasting"></div>
                     <h4>Microclimate Forecasting</h4>
                     <p>Hyper-local weather predictions specific to your field, not the nearest city.</p>
                 </div>
@@ -144,7 +112,7 @@
             </div>
             <div class="how-content">
                 <div class="how-image reveal-up">
-                    <img src="images/oxus-ws/how-it-works.png" alt="OXUS WS How It Works diagram">
+                    <img src="/images/oxus-ws/how-it-works.png" alt="OXUS WS How It Works diagram">
                 </div>
                 <div class="how-text reveal-up" style="--delay:1">
                     <h3>Intelligent Data Pipeline</h3>
@@ -164,30 +132,14 @@
                 <h2 class="section-title reveal">OXUS WS <span class="gradient-text">in the field</span></h2>
             </div>
             <div class="gallery-grid reveal-up">
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/field-01.jpg" alt="OXUS WS installation">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/field-02.jpg" alt="OXUS WS in cotton field">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/field-03.jpg" alt="OXUS WS sensors">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/field-04.jpg" alt="OXUS WS in farm">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/field-05.jpg" alt="OXUS WS close-up">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/field-06.jpg" alt="OXUS WS deployed">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/team-01.jpg" alt="OXUS WS team">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-ws/gallery/team-02.jpg" alt="OXUS WS assembly">
-                </div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/field-01.jpg" alt="OXUS WS installation"></div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/field-02.jpg" alt="OXUS WS in cotton field"></div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/field-03.jpg" alt="OXUS WS sensors"></div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/field-04.jpg" alt="OXUS WS in farm"></div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/field-05.jpg" alt="OXUS WS close-up"></div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/field-06.jpg" alt="OXUS WS deployed"></div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/team-01.jpg" alt="OXUS WS team"></div>
+                <div class="gallery-item"><img src="/images/oxus-ws/gallery/team-02.jpg" alt="OXUS WS assembly"></div>
             </div>
         </div>
     </section>
@@ -201,8 +153,8 @@
             </div>
             <div class="dashboard-content">
                 <div class="dashboard-images reveal-up">
-                    <img src="images/oxus-ws/dashboard/overview.png" alt="OXUS WS Dashboard overview">
-                    <img src="images/oxus-ws/dashboard/analytics.png" alt="OXUS WS Dashboard analytics">
+                    <img src="/images/oxus-ws/dashboard/overview.png" alt="OXUS WS Dashboard overview">
+                    <img src="/images/oxus-ws/dashboard/analytics.png" alt="OXUS WS Dashboard analytics">
                 </div>
                 <div class="dashboard-text reveal-up" style="--delay:1">
                     <h3>Intuitive Data Visualization</h3>
@@ -235,7 +187,7 @@
                     </p>
                 </div>
                 <div class="hardware-image reveal-up" style="--delay:1">
-                    <img src="images/oxus-ws/hardware.png" alt="OXUS WS Hardware Specifications">
+                    <img src="/images/oxus-ws/hardware.png" alt="OXUS WS Hardware Specifications">
                 </div>
             </div>
         </div>
@@ -249,53 +201,10 @@
                 <h2 class="section-title reveal">Ready to monitor <span class="gradient-text">your fields?</span></h2>
                 <p class="reveal">Contact us to learn how OXUS WS can transform your farming with precision weather data.</p>
                 <div class="cta-buttons reveal-up">
-                    <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
-                    <a href="index.html#products" class="btn btn-outline">View All Products</a>
+                    <a href="/#contact" class="btn btn-primary">Contact Us</a>
+                    <a href="/#products" class="btn btn-outline">View All Products</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="images/logo/amudar-logo.png" alt="Amudar.io" height="28" style="height: 28px; width: auto;">
-                    <span>AMUDAR.IO</span>
-                </div>
-                <p class="footer-copy">&copy; 2026 Amudario Research LLC. Smart solutions for smart agriculture.</p>
-                <div class="footer-links">
-                    <a href="oxus-ws.html">OXUS WS</a>
-                    <a href="jayhun-trap.html">JAYHUN TRAP</a>
-                    <a href="oxus-airsense.html">AIRSENSE</a>
-                    <a href="gozanlink.html">GOZANLINK</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Navbar scroll effect
-        const nav = document.getElementById('productNav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.remove('at-top');
-            } else {
-                nav.classList.add('at-top');
-            }
-        });
-
-        // Scroll reveal
-        const reveals = document.querySelectorAll('.reveal, .reveal-up, .reveal-left, .reveal-right');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.15 });
-        reveals.forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+</ProductLayout>

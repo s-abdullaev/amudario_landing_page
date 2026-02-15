@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OXUS AIRSENSE — Air Quality Monitor | Amudar.io</title>
-    <meta name="description" content="OXUS AIRSENSE is a smart air quality monitoring station with PM2.5, PM10, CO2, SO2, and VOC sensors for urban and agricultural environments.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="product-detail.css">
-</head>
-<body>
+---
+import ProductLayout from '../layouts/ProductLayout.astro';
+---
 
-    <!-- NAVIGATION -->
-    <nav class="product-nav at-top" id="productNav">
-        <div class="nav-container">
-            <a class="nav-logo" href="index.html">
-                <img src="images/logo/amudar-logo.png" alt="Amudar.io Logo" height="40" style="height: 40px; width: auto;">
-            </a>
-            <a href="index.html#products" class="nav-back">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-                All Products
-            </a>
-        </div>
-    </nav>
-
+<ProductLayout
+  title="OXUS AIRSENSE — Air Quality Monitor | Amudar.io"
+  description="OXUS AIRSENSE is a smart air quality monitoring station with PM2.5, PM10, CO2, SO2, and VOC sensors for urban and agricultural environments."
+>
     <!-- HERO BANNER -->
     <section class="product-hero">
         <div class="product-hero-bg">
-            <img src="images/oxus-airsense/banner.jpg" alt="OXUS AIRSENSE Air Quality Monitor">
+            <img src="/images/oxus-airsense/banner.jpg" alt="OXUS AIRSENSE Air Quality Monitor">
         </div>
         <div class="product-hero-content">
             <span class="section-tag">03 — Air Quality</span>
@@ -50,27 +30,21 @@
             </div>
             <div class="product-problems-grid">
                 <div class="product-problem-card reveal-up" style="--delay:0">
-                    <div class="card-image">
-                        <img src="images/oxus-airsense/problems/air-quality.jpg" alt="Poor air quality">
-                    </div>
+                    <div class="card-image"><img src="/images/oxus-airsense/problems/air-quality.jpg" alt="Poor air quality"></div>
                     <div class="card-body">
                         <h4>Urban Pollution</h4>
                         <p>Cities in Central Asia face hazardous air quality levels, especially during winter heating season.</p>
                     </div>
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:1">
-                    <div class="card-image">
-                        <img src="images/oxus-airsense/problems/traffic-exhaust.webp" alt="Traffic exhaust">
-                    </div>
+                    <div class="card-image"><img src="/images/oxus-airsense/problems/traffic-exhaust.webp" alt="Traffic exhaust"></div>
                     <div class="card-body">
                         <h4>Traffic Emissions</h4>
                         <p>Vehicle exhaust is a major source of PM2.5 and NOx, impacting millions in urban corridors.</p>
                     </div>
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:2">
-                    <div class="card-image">
-                        <img src="images/oxus-airsense/problems/health-impact.jpg" alt="Health impact of air pollution">
-                    </div>
+                    <div class="card-image"><img src="/images/oxus-airsense/problems/health-impact.jpg" alt="Health impact of air pollution"></div>
                     <div class="card-body">
                         <h4>Health Impacts</h4>
                         <p>Without monitoring, citizens have no data to protect themselves from hazardous air quality days.</p>
@@ -90,44 +64,32 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card reveal-up" style="--delay:0">
-                    <div class="feature-icon">
-                        <img src="images/oxus-airsense/icons/pm-sensor.png" alt="PM monitoring">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-airsense/icons/pm-sensor.png" alt="PM monitoring"></div>
                     <h4>PM2.5 & PM10</h4>
                     <p>Laser-based particulate matter sensors for accurate real-time fine dust measurement.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:1">
-                    <div class="feature-icon">
-                        <img src="images/oxus-airsense/icons/pollution.png" alt="Gas detection">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-airsense/icons/pollution.png" alt="Gas detection"></div>
                     <h4>Gas Detection</h4>
                     <p>CO&#8322;, SO&#8322;, NO&#8322;, and VOC sensors for comprehensive atmospheric gas analysis.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:2">
-                    <div class="feature-icon">
-                        <img src="images/oxus-airsense/icons/parameters.png" alt="Environmental parameters">
-                    </div>
+                    <div class="feature-icon"><img src="/images/oxus-airsense/icons/parameters.png" alt="Environmental parameters"></div>
                     <h4>Environmental Parameters</h4>
                     <p>Temperature, humidity, and pressure sensors for complete meteorological context.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:3">
-                    <div class="feature-icon">
-                        <img src="images/icons/earth.png" alt="AQI calculation">
-                    </div>
+                    <div class="feature-icon"><img src="/images/icons/earth.png" alt="AQI calculation"></div>
                     <h4>Real-Time AQI</h4>
                     <p>Automatic Air Quality Index calculation following international standards (EPA, WHO).</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:4">
-                    <div class="feature-icon">
-                        <img src="images/icons/cloud.png" alt="Cloud connectivity">
-                    </div>
+                    <div class="feature-icon"><img src="/images/icons/cloud.png" alt="Cloud connectivity"></div>
                     <h4>Cloud Platform</h4>
                     <p>Real-time data synced to the cloud with historical analysis and trend visualization.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:5">
-                    <div class="feature-icon">
-                        <img src="images/icons/control.png" alt="Alert system">
-                    </div>
+                    <div class="feature-icon"><img src="/images/icons/control.png" alt="Alert system"></div>
                     <h4>Smart Alerts</h4>
                     <p>Automated notifications when pollutant levels exceed safe thresholds for public safety.</p>
                 </div>
@@ -144,7 +106,7 @@
             </div>
             <div class="how-content">
                 <div class="how-image reveal-up">
-                    <img src="images/oxus-airsense/how-it-works.png" alt="OXUS AIRSENSE How It Works">
+                    <img src="/images/oxus-airsense/how-it-works.png" alt="OXUS AIRSENSE How It Works">
                 </div>
                 <div class="how-text reveal-up" style="--delay:1">
                     <h3>Continuous Air Monitoring</h3>
@@ -164,21 +126,11 @@
                 <h2 class="section-title reveal">AIRSENSE <span class="gradient-text">deployments</span></h2>
             </div>
             <div class="gallery-grid reveal-up">
-                <div class="gallery-item">
-                    <img src="images/oxus-airsense/gallery/installation-01.jpg" alt="AIRSENSE installation">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-airsense/gallery/installation-02.jpg" alt="AIRSENSE unit">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-airsense/gallery/installation-03.jpg" alt="AIRSENSE close-up">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-airsense/gallery/installation-05.jpg" alt="AIRSENSE deployed">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/oxus-airsense/gallery/device-overview.png" alt="AIRSENSE overview">
-                </div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-01.jpg" alt="AIRSENSE installation"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-02.jpg" alt="AIRSENSE unit"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-03.jpg" alt="AIRSENSE close-up"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/installation-05.jpg" alt="AIRSENSE deployed"></div>
+                <div class="gallery-item"><img src="/images/oxus-airsense/gallery/device-overview.png" alt="AIRSENSE overview"></div>
             </div>
         </div>
     </section>
@@ -192,7 +144,7 @@
             </div>
             <div class="dashboard-content">
                 <div class="dashboard-images reveal-up">
-                    <img src="images/oxus-airsense/dashboard/overview.png" alt="AIRSENSE Dashboard">
+                    <img src="/images/oxus-airsense/dashboard/overview.png" alt="AIRSENSE Dashboard">
                 </div>
                 <div class="dashboard-text reveal-up" style="--delay:1">
                     <h3>Comprehensive AQI Platform</h3>
@@ -225,7 +177,7 @@
                     </p>
                 </div>
                 <div class="hardware-image reveal-up" style="--delay:1">
-                    <img src="images/oxus-airsense/hardware.png" alt="OXUS AIRSENSE Hardware Specifications">
+                    <img src="/images/oxus-airsense/hardware.png" alt="OXUS AIRSENSE Hardware Specifications">
                 </div>
             </div>
         </div>
@@ -239,51 +191,10 @@
                 <h2 class="section-title reveal">Monitor the air <span class="gradient-text">you breathe</span></h2>
                 <p class="reveal">Contact us to deploy OXUS AIRSENSE in your city, campus, or agricultural region.</p>
                 <div class="cta-buttons reveal-up">
-                    <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
-                    <a href="index.html#products" class="btn btn-outline">View All Products</a>
+                    <a href="/#contact" class="btn btn-primary">Contact Us</a>
+                    <a href="/#products" class="btn btn-outline">View All Products</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="images/logo/amudar-logo.png" alt="Amudar.io" height="28" style="height: 28px; width: auto;">
-                    <span>AMUDAR.IO</span>
-                </div>
-                <p class="footer-copy">&copy; 2026 Amudario Research LLC. Smart solutions for smart agriculture.</p>
-                <div class="footer-links">
-                    <a href="oxus-ws.html">OXUS WS</a>
-                    <a href="jayhun-trap.html">JAYHUN TRAP</a>
-                    <a href="oxus-airsense.html">AIRSENSE</a>
-                    <a href="gozanlink.html">GOZANLINK</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const nav = document.getElementById('productNav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.remove('at-top');
-            } else {
-                nav.classList.add('at-top');
-            }
-        });
-
-        const reveals = document.querySelectorAll('.reveal, .reveal-up, .reveal-left, .reveal-right');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.15 });
-        reveals.forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+</ProductLayout>

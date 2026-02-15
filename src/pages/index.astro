@@ -1,40 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amudar.io — Smart Solutions for Smart Agriculture</title>
-    <meta name="description" content="Amudar.io provides smart agrometeorological stations, pheromone traps, air quality monitoring devices, and greenhouse management systems for precision agriculture in Uzbekistan.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
 
+<BaseLayout
+  title="Amudar.io — Smart Solutions for Smart Agriculture"
+  description="Amudar.io provides smart agrometeorological stations, pheromone traps, air quality monitoring devices, and greenhouse management systems for precision agriculture in Uzbekistan."
+>
     <!-- THREE.JS BACKGROUND -->
     <div id="three-bg"></div>
 
     <!-- NAVIGATION -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a class="nav-logo" href="#hero">
-                <img src="images/logo/amudar-logo.png" alt="Amudar.io Logo" height="40" style="height: 40px; width: auto;">
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#products">Products</a></li>
-                <li><a href="#explode-section">OXUS WS</a></li>
-                <li><a href="#jayhun-story">JAYHUN TRAP</a></li>
-                <li><a href="#airsense-story">AIRSENSE</a></li>
-                <li><a href="#gozan-story">GOZANLINK</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
+    <Navbar />
 
     <!-- HERO -->
     <section class="hero" id="hero">
@@ -49,7 +27,7 @@
                 <span class="reveal reveal-delay-3 gradient-text">Agriculture</span>
             </h1>
             <p class="hero-subtitle reveal reveal-delay-4">
-                AI-powered agrometeorological stations, pest detection, air quality monitoring, 
+                AI-powered agrometeorological stations, pest detection, air quality monitoring,
                 and greenhouse management systems — transforming farming in Uzbekistan and beyond.
             </p>
             <div class="hero-actions reveal reveal-delay-5">
@@ -110,7 +88,7 @@
         </div>
     </section>
 
-    <!-- =============== PRODUCT 1: OXUS WS — EXPLODE =============== -->
+    <!-- PRODUCT 1: OXUS WS — EXPLODE -->
     <section class="story-section" id="explode-section">
         <div class="story-sticky">
             <canvas class="story-canvas" id="explodeCanvas"></canvas>
@@ -125,7 +103,7 @@
                     <div class="fact" data-appear="0.35">💧 Optimized watering schedule for cotton & wheat crops</div>
                     <div class="fact" data-appear="0.50">🦠 Predicts 10+ diseases & 20+ pest outbreak timings</div>
                     <div class="fact" data-appear="0.65">📊 Weekly agro-forecasts on real-time online dashboard</div>
-                    <a href="oxus-ws.html" class="fact fact-link" data-appear="0.78">Learn More</a>
+                    <a href="/oxus-ws" class="fact fact-link" data-appear="0.78">Learn More</a>
                 </div>
                 <div class="story-progress"><div class="story-progress-fill" data-story="explode"></div></div>
                 <div class="story-caption" id="explodeCaption">Helping cotton bolls ripen with precision data…</div>
@@ -133,7 +111,7 @@
         </div>
     </section>
 
-    <!-- =============== PRODUCT 2: JAYHUN TRAP — MOTH STORY =============== -->
+    <!-- PRODUCT 2: JAYHUN TRAP — MOTH STORY -->
     <section class="story-section" id="jayhun-story">
         <div class="story-sticky">
             <canvas class="story-canvas" id="jayhunCanvas"></canvas>
@@ -148,7 +126,7 @@
                     <div class="fact" data-appear="0.35">🧪 Species-specific pheromone bait for targeted trapping</div>
                     <div class="fact" data-appear="0.50">☀️ Fully autonomous — solar-powered with GSM communication</div>
                     <div class="fact" data-appear="0.65">📊 Insect hazard assessment with species & development stages</div>
-                    <a href="jayhun-trap.html" class="fact fact-link" data-appear="0.78">Learn More</a>
+                    <a href="/jayhun-trap" class="fact fact-link" data-appear="0.78">Learn More</a>
                 </div>
                 <div class="story-progress"><div class="story-progress-fill" data-story="jayhun"></div></div>
                 <div class="story-caption" id="jayhunCaption">Smart pheromone trap capturing moths…</div>
@@ -156,7 +134,7 @@
         </div>
     </section>
 
-    <!-- =============== PRODUCT 3: OXUS AIRSENSE — SMOKE STORY =============== -->
+    <!-- PRODUCT 3: OXUS AIRSENSE — SMOKE STORY -->
     <section class="story-section" id="airsense-story">
         <div class="story-sticky">
             <canvas class="story-canvas" id="airsenseCanvas"></canvas>
@@ -171,7 +149,7 @@
                     <div class="fact" data-appear="0.35">🌡️ Tracks temperature, humidity, pressure & wind speed</div>
                     <div class="fact" data-appear="0.50">📡 GPS positioning with GSM/GPRS data transmission</div>
                     <div class="fact" data-appear="0.65">📊 Real-time online dashboard for air quality monitoring</div>
-                    <a href="oxus-airsense.html" class="fact fact-link" data-appear="0.78">Learn More</a>
+                    <a href="/oxus-airsense" class="fact fact-link" data-appear="0.78">Learn More</a>
                 </div>
                 <div class="story-progress"><div class="story-progress-fill" data-story="airsense"></div></div>
                 <div class="story-caption" id="airsenseCaption">Analyzing urban air quality…</div>
@@ -179,7 +157,7 @@
         </div>
     </section>
 
-    <!-- =============== PRODUCT 4: GOZANLINK — GREENHOUSE STORY =============== -->
+    <!-- PRODUCT 4: GOZANLINK — GREENHOUSE STORY -->
     <section class="story-section" id="gozan-story">
         <div class="story-sticky">
             <canvas class="story-canvas" id="gozanCanvas"></canvas>
@@ -194,7 +172,7 @@
                     <div class="fact" data-appear="0.35">💨 Wind speed & direction monitoring outside</div>
                     <div class="fact" data-appear="0.50">⚡ Power outage detection & pump control sensor</div>
                     <div class="fact" data-appear="0.65">📱 Emergency alerts via phone call & SMS</div>
-                    <a href="gozanlink.html" class="fact fact-link" data-appear="0.78">Learn More</a>
+                    <a href="/gozanlink" class="fact fact-link" data-appear="0.78">Learn More</a>
                 </div>
                 <div class="story-progress"><div class="story-progress-fill" data-story="gozan"></div></div>
                 <div class="story-caption" id="gozanCaption">Monitoring greenhouse climate…</div>
@@ -240,19 +218,19 @@
             </div>
             <div class="team-grid">
                 <div class="team-card reveal-up" style="--delay:0">
-                    <div class="team-avatar"><img src="images/team/jasurbek-khodjaev.jpg" alt="Jasurbek Khodjaev"></div>
+                    <div class="team-avatar"><img src="/images/team/jasurbek-khodjaev.jpg" alt="Jasurbek Khodjaev"></div>
                     <h3>Jasurbek Khodjayev</h3>
                     <span class="team-role">Co-Founder</span>
                     <ul class="team-credentials"><li>Inha University Professor</li><li>PhD in ICT Engineering, South Korea</li><li>15+ years R&D across 5 countries</li></ul>
                 </div>
                 <div class="team-card reveal-up" style="--delay:1">
-                    <div class="team-avatar"><img src="images/team/azizbek-marakhimov.jpg" alt="Azizbek Marakhimov"></div>
+                    <div class="team-avatar"><img src="/images/team/azizbek-marakhimov.jpg" alt="Azizbek Marakhimov"></div>
                     <h3>Azizbek Marakhimov</h3>
                     <span class="team-role">Co-Founder</span>
                     <ul class="team-credentials"><li>New Uzbekistan University Professor</li><li>PhD in Industrial Management</li><li>10+ years managing international projects</li></ul>
                 </div>
                 <div class="team-card reveal-up" style="--delay:2">
-                    <div class="team-avatar"><img src="images/team/sarvar-abdullaev.jpg" alt="Sarvar Abdullaev"></div>
+                    <div class="team-avatar"><img src="/images/team/sarvar-abdullaev.jpg" alt="Sarvar Abdullaev"></div>
                     <h3>Sarvar Abdullayev</h3>
                     <span class="team-role">Co-Founder</span>
                     <ul class="team-credentials"><li>Inha University Professor</li><li>PhD in CS, King's College London</li><li>12+ years R&D across 5 countries</li></ul>
@@ -270,54 +248,22 @@
                 <p class="section-subtitle reveal">We collaborate with top institutions and international bodies to deliver impact at scale.</p>
             </div>
             <div class="partners-grid reveal-up">
-                <div class="partner-logo-card">
-                    <img src="images/partners/undp.jpg" alt="United Nations Development Programme">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/cgiar.png" alt="CGIAR">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/icarda.png" alt="ICARDA">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/ifad.jpg" alt="IFAD">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/iwmi.png" alt="IWMI">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/ifas.png" alt="IFAS">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/inha-university.jpg" alt="Inha University in Tashkent">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/new-uzbekistan-university.png" alt="New Uzbekistan University">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/national-research-center.png" alt="National Research Center">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/fanlar-akademiyasi.png" alt="Fanlar Akademiyasi">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/uzhydromet.jpg" alt="Uzhydromet">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/karantin-inspeksiya.jpg" alt="Karantin Inspeksiya">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/chamber-of-commerce.jpg" alt="Chamber of Commerce and Industry">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/tashkent-city.jpg" alt="Tashkent City">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/suvchilar-maktabi.png" alt="Suvchilar Maktabi">
-                </div>
-                <div class="partner-logo-card">
-                    <img src="images/partners/samarkand-marathon.png" alt="Samarkand Marathon">
-                </div>
+                <div class="partner-logo-card"><img src="/images/partners/undp.jpg" alt="United Nations Development Programme"></div>
+                <div class="partner-logo-card"><img src="/images/partners/cgiar.png" alt="CGIAR"></div>
+                <div class="partner-logo-card"><img src="/images/partners/icarda.png" alt="ICARDA"></div>
+                <div class="partner-logo-card"><img src="/images/partners/ifad.jpg" alt="IFAD"></div>
+                <div class="partner-logo-card"><img src="/images/partners/iwmi.png" alt="IWMI"></div>
+                <div class="partner-logo-card"><img src="/images/partners/ifas.png" alt="IFAS"></div>
+                <div class="partner-logo-card"><img src="/images/partners/inha-university.jpg" alt="Inha University in Tashkent"></div>
+                <div class="partner-logo-card"><img src="/images/partners/new-uzbekistan-university.png" alt="New Uzbekistan University"></div>
+                <div class="partner-logo-card"><img src="/images/partners/national-research-center.png" alt="National Research Center"></div>
+                <div class="partner-logo-card"><img src="/images/partners/fanlar-akademiyasi.png" alt="Fanlar Akademiyasi"></div>
+                <div class="partner-logo-card"><img src="/images/partners/uzhydromet.jpg" alt="Uzhydromet"></div>
+                <div class="partner-logo-card"><img src="/images/partners/karantin-inspeksiya.jpg" alt="Karantin Inspeksiya"></div>
+                <div class="partner-logo-card"><img src="/images/partners/chamber-of-commerce.jpg" alt="Chamber of Commerce and Industry"></div>
+                <div class="partner-logo-card"><img src="/images/partners/tashkent-city.jpg" alt="Tashkent City"></div>
+                <div class="partner-logo-card"><img src="/images/partners/suvchilar-maktabi.png" alt="Suvchilar Maktabi"></div>
+                <div class="partner-logo-card"><img src="/images/partners/samarkand-marathon.png" alt="Samarkand Marathon"></div>
             </div>
         </div>
     </section>
@@ -380,24 +326,9 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M10 22 L18 10 L26 22" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-                    <span>AMUDAR.IO</span>
-                </div>
-                <p class="footer-copy">&copy; 2026 Amudario Research LLC. Smart solutions for smart agriculture.</p>
-                <div class="footer-links">
-                    <a href="oxus-ws.html">OXUS WS</a>
-                    <a href="jayhun-trap.html">JAYHUN TRAP</a>
-                    <a href="oxus-airsense.html">AIRSENSE</a>
-                    <a href="gozanlink.html">GOZANLINK</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <Footer />
 
-    <script type="module" src="/src/main.ts"></script>
-</body>
-</html>
+    <script>
+        import '../scripts/main';
+    </script>
+</BaseLayout>

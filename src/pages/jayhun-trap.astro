@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAYHUN TRAP — AI Pheromone Trap | Amudar.io</title>
-    <meta name="description" content="JAYHUN TRAP is an AI-powered pheromone trap for automated pest detection, species classification, and counting with 95%+ accuracy.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="product-detail.css">
-</head>
-<body>
+---
+import ProductLayout from '../layouts/ProductLayout.astro';
+---
 
-    <!-- NAVIGATION -->
-    <nav class="product-nav at-top" id="productNav">
-        <div class="nav-container">
-            <a class="nav-logo" href="index.html">
-                <img src="images/logo/amudar-logo.png" alt="Amudar.io Logo" height="40" style="height: 40px; width: auto;">
-            </a>
-            <a href="index.html#products" class="nav-back">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-                All Products
-            </a>
-        </div>
-    </nav>
-
+<ProductLayout
+  title="JAYHUN TRAP — AI Pheromone Trap | Amudar.io"
+  description="JAYHUN TRAP is an AI-powered pheromone trap for automated pest detection, species classification, and counting with 95%+ accuracy."
+>
     <!-- HERO BANNER -->
     <section class="product-hero">
         <div class="product-hero-bg">
-            <img src="images/jayhun-trap/banner.jpg" alt="JAYHUN TRAP Pheromone Trap">
+            <img src="/images/jayhun-trap/banner.jpg" alt="JAYHUN TRAP Pheromone Trap">
         </div>
         <div class="product-hero-content">
             <span class="section-tag">02 — Pheromone Trap</span>
@@ -50,27 +30,21 @@
             </div>
             <div class="product-problems-grid">
                 <div class="product-problem-card reveal-up" style="--delay:0">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/problems/damaged-crop.jpg" alt="Damaged crop from pests">
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/problems/damaged-crop.jpg" alt="Damaged crop from pests"></div>
                     <div class="card-body">
                         <h4>Crop Damage</h4>
                         <p>Pest infestations discovered too late result in devastating crop losses — up to 40% in affected areas.</p>
                     </div>
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:1">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/problems/pest-population.jpg" alt="Pest population explosion">
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/problems/pest-population.jpg" alt="Pest population explosion"></div>
                     <div class="card-body">
                         <h4>Population Explosions</h4>
                         <p>Without continuous monitoring, pest populations can surge undetected and overwhelm entire fields.</p>
                     </div>
                 </div>
                 <div class="product-problem-card reveal-up" style="--delay:2">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/problems/spoiled-cherries.jpg" alt="Spoiled cherries from pests">
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/problems/spoiled-cherries.jpg" alt="Spoiled cherries from pests"></div>
                     <div class="card-body">
                         <h4>Export Quality Loss</h4>
                         <p>Pest damage reduces the quality of produce, making it impossible to meet international export standards.</p>
@@ -90,58 +64,28 @@
             </div>
             <div class="pheromones-grid">
                 <div class="pheromone-card reveal-up" style="--delay:0">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/pheromones/apple-codling-moth.jpg" alt="Apple moth">
-                    </div>
-                    <div class="card-body">
-                        <h4>Apple Codling Moth</h4>
-                        <p>Targets Cydia pomonella, a major pest in apple and pear orchards.</p>
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/pheromones/apple-codling-moth.jpg" alt="Apple moth"></div>
+                    <div class="card-body"><h4>Apple Codling Moth</h4><p>Targets Cydia pomonella, a major pest in apple and pear orchards.</p></div>
                 </div>
                 <div class="pheromone-card reveal-up" style="--delay:1">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/pheromones/cherry-fruit-fly.jpg" alt="Cherry fruit fly">
-                    </div>
-                    <div class="card-body">
-                        <h4>Cherry Fruit Fly</h4>
-                        <p>Detects Rhagoletis cerasi, a destructive pest in cherry production.</p>
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/pheromones/cherry-fruit-fly.jpg" alt="Cherry fruit fly"></div>
+                    <div class="card-body"><h4>Cherry Fruit Fly</h4><p>Detects Rhagoletis cerasi, a destructive pest in cherry production.</p></div>
                 </div>
                 <div class="pheromone-card reveal-up" style="--delay:2">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/pheromones/potato-tuber-moth.jpg" alt="Potato tuber moth">
-                    </div>
-                    <div class="card-body">
-                        <h4>Potato Tuber Moth</h4>
-                        <p>Monitors Phthorimaea operculella, a significant threat to potato crops.</p>
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/pheromones/potato-tuber-moth.jpg" alt="Potato tuber moth"></div>
+                    <div class="card-body"><h4>Potato Tuber Moth</h4><p>Monitors Phthorimaea operculella, a significant threat to potato crops.</p></div>
                 </div>
                 <div class="pheromone-card reveal-up" style="--delay:3">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/pheromones/plum-fruit-moth.jpg" alt="Plum fruit moth">
-                    </div>
-                    <div class="card-body">
-                        <h4>Plum Fruit Moth</h4>
-                        <p>Catches Grapholita funebrana, targeting plum and stone fruit orchards.</p>
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/pheromones/plum-fruit-moth.jpg" alt="Plum fruit moth"></div>
+                    <div class="card-body"><h4>Plum Fruit Moth</h4><p>Catches Grapholita funebrana, targeting plum and stone fruit orchards.</p></div>
                 </div>
                 <div class="pheromone-card reveal-up" style="--delay:4">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/pheromones/comstock-mealybug.webp" alt="Comstock mealybug">
-                    </div>
-                    <div class="card-body">
-                        <h4>Comstock Mealybug</h4>
-                        <p>Detects Pseudococcus comstocki, a quarantine pest in many countries.</p>
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/pheromones/comstock-mealybug.webp" alt="Comstock mealybug"></div>
+                    <div class="card-body"><h4>Comstock Mealybug</h4><p>Detects Pseudococcus comstocki, a quarantine pest in many countries.</p></div>
                 </div>
                 <div class="pheromone-card reveal-up" style="--delay:5">
-                    <div class="card-image">
-                        <img src="images/jayhun-trap/pheromones/mulberry-silk-moth.webp" alt="Silk moth">
-                    </div>
-                    <div class="card-body">
-                        <h4>Mulberry Silk Moth</h4>
-                        <p>Monitors silk moth populations in mulberry cultivation areas.</p>
-                    </div>
+                    <div class="card-image"><img src="/images/jayhun-trap/pheromones/mulberry-silk-moth.webp" alt="Silk moth"></div>
+                    <div class="card-body"><h4>Mulberry Silk Moth</h4><p>Monitors silk moth populations in mulberry cultivation areas.</p></div>
                 </div>
             </div>
         </div>
@@ -157,44 +101,32 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card reveal-up" style="--delay:0">
-                    <div class="feature-icon">
-                        <img src="images/jayhun-trap/icons/camera.png" alt="AI Camera">
-                    </div>
+                    <div class="feature-icon"><img src="/images/jayhun-trap/icons/camera.png" alt="AI Camera"></div>
                     <h4>AI-Powered Camera</h4>
                     <p>High-resolution camera with deep learning models for automatic pest identification.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:1">
-                    <div class="feature-icon">
-                        <img src="images/jayhun-trap/icons/pheromone.png" alt="Pheromone cartridges">
-                    </div>
+                    <div class="feature-icon"><img src="/images/jayhun-trap/icons/pheromone.png" alt="Pheromone cartridges"></div>
                     <h4>Pheromone Cartridges</h4>
                     <p>Interchangeable species-specific lure cartridges for targeted pest monitoring.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:2">
-                    <div class="feature-icon">
-                        <img src="images/jayhun-trap/icons/cellular.png" alt="Cellular network">
-                    </div>
+                    <div class="feature-icon"><img src="/images/jayhun-trap/icons/cellular.png" alt="Cellular network"></div>
                     <h4>Wireless Connectivity</h4>
                     <p>Real-time data transmission via 4G networks for instant pest alerts.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:3">
-                    <div class="feature-icon">
-                        <img src="images/jayhun-trap/icons/battery.png" alt="Battery powered">
-                    </div>
+                    <div class="feature-icon"><img src="/images/jayhun-trap/icons/battery.png" alt="Battery powered"></div>
                     <h4>Long Battery Life</h4>
                     <p>Solar-powered with rechargeable battery for months of autonomous operation.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:4">
-                    <div class="feature-icon">
-                        <img src="images/jayhun-trap/icons/technology.png" alt="Smart technology">
-                    </div>
+                    <div class="feature-icon"><img src="/images/jayhun-trap/icons/technology.png" alt="Smart technology"></div>
                     <h4>95%+ Accuracy</h4>
                     <p>Machine learning ensures precise species classification with minimal false positives.</p>
                 </div>
                 <div class="feature-card reveal-up" style="--delay:5">
-                    <div class="feature-icon">
-                        <img src="images/jayhun-trap/icons/weatherproof.png" alt="Field deployment">
-                    </div>
+                    <div class="feature-icon"><img src="/images/jayhun-trap/icons/weatherproof.png" alt="Field deployment"></div>
                     <h4>Weather-Proof Design</h4>
                     <p>IP65-rated enclosure designed for year-round outdoor deployment in any climate.</p>
                 </div>
@@ -211,7 +143,7 @@
             </div>
             <div class="how-content">
                 <div class="how-image reveal-up">
-                    <img src="images/jayhun-trap/how-it-works.png" alt="JAYHUN TRAP How It Works">
+                    <img src="/images/jayhun-trap/how-it-works.png" alt="JAYHUN TRAP How It Works">
                 </div>
                 <div class="how-text reveal-up" style="--delay:1">
                     <h3>Automated Pest Intelligence</h3>
@@ -231,21 +163,11 @@
                 <h2 class="section-title reveal">JAYHUN TRAP <span class="gradient-text">in action</span></h2>
             </div>
             <div class="gallery-grid reveal-up">
-                <div class="gallery-item">
-                    <img src="images/jayhun-trap/gallery/field-banner.jpg" alt="JAYHUN TRAP in field">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/jayhun-trap/gallery/pheromone-trap.jpg" alt="Pheromone trap close-up">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/jayhun-trap/gallery/trap-device.jpg" alt="JAYHUN TRAP device">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/jayhun-trap/gallery/team-01.jpg" alt="Team with trap">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/jayhun-trap/gallery/team-02.jpg" alt="JAYHUN TRAP setup">
-                </div>
+                <div class="gallery-item"><img src="/images/jayhun-trap/gallery/field-banner.jpg" alt="JAYHUN TRAP in field"></div>
+                <div class="gallery-item"><img src="/images/jayhun-trap/gallery/pheromone-trap.jpg" alt="Pheromone trap close-up"></div>
+                <div class="gallery-item"><img src="/images/jayhun-trap/gallery/trap-device.jpg" alt="JAYHUN TRAP device"></div>
+                <div class="gallery-item"><img src="/images/jayhun-trap/gallery/team-01.jpg" alt="Team with trap"></div>
+                <div class="gallery-item"><img src="/images/jayhun-trap/gallery/team-02.jpg" alt="JAYHUN TRAP setup"></div>
             </div>
         </div>
     </section>
@@ -259,8 +181,8 @@
             </div>
             <div class="dashboard-content">
                 <div class="dashboard-images reveal-up">
-                    <img src="images/jayhun-trap/dashboard/overview.png" alt="JAYHUN Dashboard overview">
-                    <img src="images/jayhun-trap/dashboard/analysis.jpg" alt="JAYHUN Dashboard pest analysis">
+                    <img src="/images/jayhun-trap/dashboard/overview.png" alt="JAYHUN Dashboard overview">
+                    <img src="/images/jayhun-trap/dashboard/analysis.jpg" alt="JAYHUN Dashboard pest analysis">
                 </div>
                 <div class="dashboard-text reveal-up" style="--delay:1">
                     <h3>Real-Time Pest Monitoring</h3>
@@ -293,7 +215,7 @@
                     </p>
                 </div>
                 <div class="hardware-image reveal-up" style="--delay:1">
-                    <img src="images/jayhun-trap/hardware.png" alt="JAYHUN TRAP Hardware Specifications">
+                    <img src="/images/jayhun-trap/hardware.png" alt="JAYHUN TRAP Hardware Specifications">
                 </div>
             </div>
         </div>
@@ -307,51 +229,10 @@
                 <h2 class="section-title reveal">Protect your crops from <span class="gradient-text">pests</span></h2>
                 <p class="reveal">Contact us to learn how JAYHUN TRAP can automate your pest monitoring and reduce pesticide usage.</p>
                 <div class="cta-buttons reveal-up">
-                    <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
-                    <a href="index.html#products" class="btn btn-outline">View All Products</a>
+                    <a href="/#contact" class="btn btn-primary">Contact Us</a>
+                    <a href="/#products" class="btn btn-outline">View All Products</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="images/logo/amudar-logo.png" alt="Amudar.io" height="28" style="height: 28px; width: auto;">
-                    <span>AMUDAR.IO</span>
-                </div>
-                <p class="footer-copy">&copy; 2026 Amudario Research LLC. Smart solutions for smart agriculture.</p>
-                <div class="footer-links">
-                    <a href="oxus-ws.html">OXUS WS</a>
-                    <a href="jayhun-trap.html">JAYHUN TRAP</a>
-                    <a href="oxus-airsense.html">AIRSENSE</a>
-                    <a href="gozanlink.html">GOZANLINK</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const nav = document.getElementById('productNav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.remove('at-top');
-            } else {
-                nav.classList.add('at-top');
-            }
-        });
-
-        const reveals = document.querySelectorAll('.reveal, .reveal-up, .reveal-left, .reveal-right');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.15 });
-        reveals.forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+</ProductLayout>
