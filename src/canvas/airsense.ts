@@ -27,12 +27,15 @@ export function drawAirsense(
   ctx.clearRect(0, 0, w, h);
   const now = Date.now() / 1000;
 
-  // Hazy urban sky
+  // Hazy urban sky - Light Theme
   const pollLevel = subT(t, 0.1, 0.5);
   const skyGrad = ctx.createLinearGradient(0, 0, 0, h);
-  const r = lerp(25, 55, pollLevel);
-  skyGrad.addColorStop(0, `rgb(${r},${r + 8},${r + 35})`);
-  skyGrad.addColorStop(1, `rgb(${r - 10},${r},${r + 18})`);
+  // Interpolate between clean white/blueish and smoggy grey
+  const r = 240 - pollLevel * 40; // 240 -> 200
+  const g = 245 - pollLevel * 40;
+  const b = 250 - pollLevel * 30;
+  skyGrad.addColorStop(0, `rgb(${r},${g},${b})`);
+  skyGrad.addColorStop(1, `rgb(${r-10},${g-10},${b-5})`);
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, w, h);
 
@@ -42,13 +45,13 @@ export function drawAirsense(
 
   // Industrial Chimneys (3 of different sizes)
   const chimneys = [
-    { x: w * 0.15, h: 120, w: 20 }, // Short
-    { x: w * 0.22, h: 160, w: 25 }, // Medium
-    { x: w * 0.30, h: 220, w: 30 }, // Tall
+    { x: w * 0.42, h: 120, w: 20 }, // Short
+    { x: w * 0.50, h: 160, w: 25 }, // Medium
+    { x: w * 0.58, h: 220, w: 30 }, // Tall
   ];
 
   chimneys.forEach((c, idx) => {
-    ctx.fillStyle = '#2a2a2a';
+    ctx.fillStyle = '#b0bec5'; // Light cool gray
     ctx.beginPath();
     ctx.moveTo(c.x - c.w/2, horizon);
     ctx.lineTo(c.x + c.w/2, horizon);
@@ -58,7 +61,7 @@ export function drawAirsense(
     ctx.fill();
     
     // Details
-    ctx.fillStyle = '#1a1a1a';
+    ctx.fillStyle = '#90a4ae'; // Slightly darker gray for detail
     ctx.fillRect(c.x - c.w/2 + 3, horizon - c.h, c.w - 6, 8);
     // Warning light on tall one
     if (idx === 2) {
@@ -74,7 +77,7 @@ export function drawAirsense(
   citySkyline.draw(ctx, w, horizon);
 
   // Ground / park
-  ctx.fillStyle = '#0e1a10';
+  ctx.fillStyle = '#e2e8f0'; // Light concrete/grass mix
   ctx.fillRect(0, horizon, w, h - horizon);
 
   // Park trees with gas emissions
@@ -82,10 +85,10 @@ export function drawAirsense(
     const tx = tree.x * w;
     const ty = horizon;
     const s = tree.size;
-    ctx.fillStyle = '#3a2a1a';
+    ctx.fillStyle = '#8d6e63'; // Lighter brown trunk
     ctx.fillRect(tx - 3, ty - s * 0.6, 6, s * 0.6);
     ctx.beginPath(); ctx.arc(tx, ty - s * 0.8, s * 0.5, 0, Math.PI * 2);
-    ctx.fillStyle = `hsl(${tree.hue}, 40%, 20%)`;
+    ctx.fillStyle = `hsl(${tree.hue}, 40%, 45%)`; // Lighter green foliage
     ctx.fill();
 
     if (t > 0.15) {
@@ -116,16 +119,16 @@ export function drawAirsense(
   drawSolarPanel(ctx);
 
   // Airsense Sensor Head (replacing OXUS cross-arm)
-  ctx.save(); ctx.translate(0, -140);
+  ctx.save(); ctx.translate(0, -100);
   
-  // Main Sensor Unit
-  ctx.fillStyle = '#E0E0E0';
-  ctx.beginPath(); ctx.roundRect(-22, -28, 44, 56, 6);
-  ctx.fillStyle = '#1a2a3a'; ctx.fill();
-  ctx.strokeStyle = 'rgba(0,229,160,0.5)'; ctx.lineWidth = 1.5; ctx.stroke();
+  // Main Sensor Unit — bigger
+  ctx.fillStyle = '#f5f5f5'; // Very light grey
+  ctx.beginPath(); ctx.roundRect(-30, -36, 60, 72, 6);
+  ctx.fill();
+  ctx.strokeStyle = '#90a4ae'; ctx.lineWidth = 1.5; ctx.stroke();
   
   // Vents
-  ctx.fillStyle = '#141e2a';
+  ctx.fillStyle = '#cfd8dc'; // Light blue-grey vents
   for (let v = -12; v <= 12; v += 8) ctx.fillRect(-14, v, 28, 3);
   
   // Status LED
@@ -135,8 +138,8 @@ export function drawAirsense(
   
   // Antenna
   ctx.beginPath(); ctx.moveTo(12, -28); ctx.lineTo(12, -55);
-  ctx.strokeStyle = '#808080'; ctx.lineWidth = 1; ctx.stroke();
-  ctx.beginPath(); ctx.arc(12, -57, 3, 0, Math.PI * 2); ctx.fillStyle = '#606060'; ctx.fill();
+  ctx.strokeStyle = '#b0bec5'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.beginPath(); ctx.arc(12, -57, 3, 0, Math.PI * 2); ctx.fillStyle = '#90a4ae'; ctx.fill();
   
   ctx.restore();
   ctx.restore();

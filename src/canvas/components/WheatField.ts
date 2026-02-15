@@ -1,60 +1,89 @@
-import { FieldSystem } from '../systems/FieldSystem';
+import { subT } from '../../utils';
 
-export class WheatField extends FieldSystem {
-  constructor(w: number, h: number) {
-    super({
-      rows: 15, // More rows for density
-      rowSpacingScale: 0.8,
-      baseColor: '#0A1015', // Night context base
-      horizonY: 0.6
-    }, w, h);
-  }
-
+/**
+ * Wheat field drawn with inline row-based rendering.
+ * Wheat heads have proper grain shapes arranged along a central rachis.
+ */
+export class WheatField {
   public draw(ctx: CanvasRenderingContext2D, t: number, now: number, w: number, h: number): void {
-    const growT = t; // Growth based on scroll/time
+    const horizon = h * 0.6;
+    const growth = subT(t, 0.05, 0.6);
+    const wheatRows = 10;
 
-    this.plants.forEach(p => {
-      const prog = p.row / this.config.rows;
-      const scale = 0.4 + 0.6 * prog;
-      
-      // Wind
-      const wind = Math.sin(now * 1.5 + p.seed) * 5 * scale + Math.sin(now * 0.5 + p.row) * 3;
-      
-      const px = p.x + wind;
-      const py = p.y;
-      
-      const growth = Math.min(1, growT * 1.5 + prog * 0.5);
-      const height = (40 + (p.seed % 20)) * scale * growth;
+    for (let r = 0; r < wheatRows; r++) {
+      const prog = r / wheatRows;
+      const y = horizon + Math.pow(prog, 1.5) * (h - horizon);
+      const rowW = w * (0.8 + 1.5 * prog);
+      const count = 18 + r * 4;
+      const spacing = rowW / count;
+      for (let p = 0; p < count; p++) {
+        const px = w / 2 - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;
+        const seed = r * 13 + p * 7;
+        const maxH = 20 + 55 * prog;
+        const currentH = maxH * (0.2 + 0.8 * growth);
+        const sway = Math.sin(now * 0.8 + seed) * 4 * prog;
 
-      // Stalk
-      ctx.beginPath();
-      ctx.moveTo(px, py);
-      ctx.quadraticCurveTo(px + wind * 2, py - height / 2, px + wind * 3, py - height);
-      ctx.strokeStyle = `rgba(180, 160, 100, ${0.3 + 0.7 * prog})`;
-      ctx.lineWidth = 2 * scale;
-      ctx.stroke();
+        // Stalk
+        ctx.beginPath();
+        ctx.moveTo(px, y);
+        ctx.quadraticCurveTo(px + sway * 0.5, y - currentH * 0.5, px + sway, y - currentH);
+        ctx.strokeStyle = `rgba(180, 160, 100, ${0.3 + 0.7 * prog})`;
+        ctx.lineWidth = 1 + 2 * prog;
+        ctx.stroke();
 
-      // Wheat Head (with grains)
-      if (growth > 0.5) {
-        const headX = px + wind * 3;
-        const headY = py - height;
-        const headSize = 12 * scale * growth;
+        // Wheat head — multiple grains along a rachis in a wheat ear shape
+        if (growth > 0.3) {
+          const headX = px + sway;
+          const headY = y - currentH;
+          const headLen = 28 * prog; // total ear length
+          const grainCount = 4 + Math.floor(prog * 3); // 4-7 grains
+          const angle = sway * 0.05; // slight tilt with wind
+          const alpha = 0.5 + 0.5 * prog;
 
-        ctx.save();
-        ctx.translate(headX, headY);
-        ctx.rotate(wind * 0.05);
-        
-        ctx.fillStyle = `rgb(220, 200, 120)`;
-        
-        // Draw grains
-        for(let g=0; g<5; g++) {
-           ctx.beginPath();
-           ctx.ellipse(0, g*3*scale, 2*scale, 4*scale, 0, 0, Math.PI*2);
-           ctx.fill();
+          ctx.save();
+          ctx.translate(headX, headY);
+          ctx.rotate(angle);
+
+          // Central rachis (thin line)
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -headLen);
+          ctx.strokeStyle = `rgba(200, 175, 90, ${alpha})`;
+          ctx.lineWidth = 0.8 * prog;
+          ctx.stroke();
+
+          // Grains — alternating left/right along the rachis
+          ctx.fillStyle = `rgba(220, 190, 80, ${alpha})`;
+          for (let g = 0; g < grainCount; g++) {
+            const gy = -g * (headLen / grainCount); // position along rachis
+            const side = (g % 2 === 0) ? -1 : 1;
+            const gw = 6 * prog; // grain width
+            const gh = 9 * prog;   // grain height
+            const tilt = side * 0.4; // angle outward
+
+            ctx.save();
+            ctx.translate(side * 1.5 * prog, gy);
+            ctx.rotate(tilt);
+            ctx.beginPath();
+            ctx.ellipse(0, 0, gw, gh, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+
+          // Awns (bristles at top)
+          ctx.strokeStyle = `rgba(200, 180, 100, ${alpha * 0.6})`;
+          ctx.lineWidth = 0.5;
+          for (let a = 0; a < 3; a++) {
+            const ax = (a - 1) * 2 * prog;
+            ctx.beginPath();
+            ctx.moveTo(ax, -headLen);
+            ctx.lineTo(ax + (a - 1) * 3 * prog, -headLen - 6 * prog);
+            ctx.stroke();
+          }
+
+          ctx.restore();
         }
-        
-        ctx.restore();
       }
-    });
+    }
   }
 }

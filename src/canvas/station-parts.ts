@@ -14,35 +14,45 @@ export function drawStationMast(ctx: CanvasRenderingContext2D): void {
 }
 
 export function drawSolarPanel(ctx: CanvasRenderingContext2D): void {
-  // Solar panel (horizontal, rectangular)
-  ctx.save(); 
-  ctx.translate(0, 20); // Position relative to attachment point on mast
+  ctx.save();
+  ctx.translate(0, 20);
 
-  // Mount arm
-  ctx.beginPath(); 
-  ctx.moveTo(0, 0); 
-  ctx.lineTo(0, 20); 
-  ctx.strokeStyle = '#808080'; 
+  // Mount arm (vertical)
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, 20);
+  ctx.strokeStyle = '#808080';
+  ctx.lineWidth = 2;
   ctx.stroke();
 
-  ctx.translate(0, 20); 
-  
-  // Panel Body
-  ctx.beginPath(); 
-  ctx.roundRect(-40, -15, 80, 30, 2);
-  ctx.fillStyle = '#1a3a5c'; 
+  ctx.translate(0, 20);
+
+  // Panel body — horizontal rectangle, light blue
+  const pw = 70, ph = 35;
+  ctx.beginPath();
+  ctx.roundRect(-pw / 2, -ph / 2, pw, ph, 2);
+  ctx.fillStyle = '#90caf9'; // Light blue
   ctx.fill();
-  ctx.strokeStyle = 'rgba(0,180,216,0.6)'; 
-  ctx.lineWidth = 1; 
+  ctx.strokeStyle = '#64b5f6';
+  ctx.lineWidth = 1;
   ctx.stroke();
-  
-  // Panel grid details
-  ctx.fillStyle = 'rgba(255,255,255,0.1)';
-  // Draw grid lines
-  for(let i=1; i<4; i++) {
-    ctx.fillRect(-40 + i*20, -15, 1, 30);
+
+  // Squared grid texture
+  const cellSize = 10;
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 0.5;
+  for (let x = -pw / 2 + cellSize; x < pw / 2; x += cellSize) {
+    ctx.beginPath();
+    ctx.moveTo(x, -ph / 2);
+    ctx.lineTo(x, ph / 2);
+    ctx.stroke();
   }
-  ctx.fillRect(-40, 0, 80, 1);
-  
+  for (let y = -ph / 2 + cellSize; y < ph / 2; y += cellSize) {
+    ctx.beginPath();
+    ctx.moveTo(-pw / 2, y);
+    ctx.lineTo(pw / 2, y);
+    ctx.stroke();
+  }
+
   ctx.restore();
 }

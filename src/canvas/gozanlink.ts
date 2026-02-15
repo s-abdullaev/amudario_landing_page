@@ -13,10 +13,10 @@ export function drawGozanlink(
   ctx.clearRect(0, 0, w, h);
   const now = Date.now() / 1000;
 
-  // Dark greenhouse sky
+  // Light greenhouse sky/backdrop
   const skyGrad = ctx.createLinearGradient(0, 0, 0, h);
-  skyGrad.addColorStop(0, '#0a180a');
-  skyGrad.addColorStop(1, '#152815');
+  skyGrad.addColorStop(0, '#f0fff4'); // Mint cream
+  skyGrad.addColorStop(1, '#e6fffa');
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, w, h);
 
@@ -27,7 +27,7 @@ export function drawGozanlink(
   ctx.save();
   ctx.translate(ghCX, ghCY); ctx.scale(zoom, zoom); ctx.translate(-ghCX, -ghCY);
 
-  ctx.fillStyle = '#0a1a0a';
+  ctx.fillStyle = '#f1f8e9'; // Light floor
   ctx.fillRect(0, h * 0.7, w, h * 0.3);
 
   // Greenhouse structure
@@ -112,7 +112,7 @@ export function drawGozanlink(
   ctx.fillStyle = '#E8E8E8';
   ctx.beginPath(); ctx.roundRect(-12, -16, 24, 32, 4); ctx.fill();
   ctx.strokeStyle = 'rgba(0,229,160,0.5)'; ctx.lineWidth = 1; ctx.stroke();
-  ctx.fillStyle = '#0a2a3a'; ctx.fillRect(-8, -12, 16, 12);
+  ctx.fillStyle = '#b3e5fc'; ctx.fillRect(-8, -12, 16, 12); // Light blue screen
   ctx.beginPath(); ctx.arc(0, 10, 2.5, 0, Math.PI * 2);
   ctx.fillStyle = '#00E5A0'; ctx.globalAlpha = 0.5 + Math.sin(now * 4) * 0.5; ctx.fill();
   ctx.globalAlpha = 1;
@@ -120,10 +120,12 @@ export function drawGozanlink(
 
   ctx.restore(); // zoom
 
-  // Callout
+  // Callout — originate from the sensor device (screen-space coords after zoom)
   if (t > 0.4) {
     const envT = subT(t, 0.4, 0.8);
-    drawCalloutBox(ctx, w * 0.6, h * 0.35, 'GREENHOUSE CLIMATE', [
+    const deviceScreenX = ghCX + 90 * zoom;
+    const deviceScreenY = ghCY + 30 * zoom;
+    drawCalloutBox(ctx, deviceScreenX, deviceScreenY - 40, 'GREENHOUSE CLIMATE', [
       { label: 'Temperature', value: `${lerp(18, 24, envT).toFixed(1)}`, unit: '°C', color: '#FF6B6B' },
       { label: 'Humidity', value: `${lerp(50, 65, envT).toFixed(0)}`, unit: '%', color: '#4DA8FF' },
       { label: 'CO₂', value: `${lerp(350, 500, envT).toFixed(0)}`, unit: 'ppm', color: '#00E5A0' },

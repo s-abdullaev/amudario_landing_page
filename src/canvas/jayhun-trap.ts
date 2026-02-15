@@ -2,7 +2,7 @@ import { lerp, subT, easeInOut } from '../utils';
 import { drawCalloutBox } from './callout-box';
 import { WheatField } from './components/WheatField';
 
-const wheatField = new WheatField(1920, 1080); // Default canvas size logic
+const wheatField = new WheatField();
 
 
 // Pre-generate moths
@@ -52,15 +52,15 @@ export function drawJayhunTrap(
   ctx.clearRect(0, 0, w, h);
   const now = Date.now() / 1000;
 
-  // Night sky
+  // Sky - Light Theme (Twilight/Evening)
   const nightGrad = ctx.createLinearGradient(0, 0, 0, h);
-  nightGrad.addColorStop(0, '#050a18');
-  nightGrad.addColorStop(1, '#0a1428');
+  nightGrad.addColorStop(0, '#e6e6fa'); // Lavender
+  nightGrad.addColorStop(1, '#b0c4de'); // LightSteelBlue
   ctx.fillStyle = nightGrad;
   ctx.fillRect(0, 0, w, h);
 
-  // Deterministic stars
-  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  // Stars (Faint for twilight)
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
   for (let i = 0; i < 40; i++) {
     const sx = (i * 137) % w;
     const sy = (i * 97) % (h * 0.6);
@@ -68,7 +68,7 @@ export function drawJayhunTrap(
   }
 
   const horizon = h * 0.6;
-  ctx.fillStyle = '#1a1510';
+  ctx.fillStyle = '#d7ccc8'; // Light earth
   ctx.fillRect(0, horizon, w, h - horizon);
 
   // Wheat field
@@ -82,41 +82,47 @@ export function drawJayhunTrap(
   ctx.save();
   ctx.translate(trapX, trapY); ctx.scale(zoom, zoom); ctx.translate(-trapX, -trapY);
 
-  ctx.fillStyle = '#2a3a2a'; ctx.fillRect(trapX - 3, trapY, 6, h * 0.25);
+  ctx.fillStyle = '#4a5a4a'; ctx.fillRect(trapX - 3, trapY, 6, h * 0.25); // Pole
 
-  // Trap body
+  // Trap body - Lighter green/metallic
   ctx.beginPath();
   ctx.moveTo(trapX - 50, trapY - 20); ctx.lineTo(trapX + 50, trapY - 20);
   ctx.lineTo(trapX + 30, trapY + 30); ctx.lineTo(trapX - 30, trapY + 30);
   ctx.closePath();
-  ctx.fillStyle = '#1a3a1a'; ctx.fill();
-  ctx.strokeStyle = 'rgba(0,229,160,0.3)'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.fillStyle = '#e8f5e9'; // Very light green
+  ctx.fill();
+  ctx.strokeStyle = '#2e7d32'; // Dark green outline
+  ctx.lineWidth = 1; ctx.stroke();
 
   // Entry hole
   ctx.save();
   ctx.beginPath();
   ctx.ellipse(trapX, trapY + 5, 12, 18, 0, 0, Math.PI * 2);
-  ctx.fillStyle = '#050a05'; ctx.fill();
-  ctx.strokeStyle = 'rgba(0,0,0,0.5)'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = '#d7ccc8'; // Light greyish-brown/beige hole
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 1; ctx.stroke();
   ctx.restore();
 
   // Roof
   ctx.beginPath();
   ctx.moveTo(trapX - 60, trapY - 20); ctx.lineTo(trapX, trapY - 50); ctx.lineTo(trapX + 60, trapY - 20);
   ctx.closePath();
-  ctx.fillStyle = '#1e3020'; ctx.fill(); ctx.strokeStyle = 'rgba(0,229,160,0.2)'; ctx.stroke();
+  ctx.fillStyle = '#c8e6c9'; // Light green roof
+  ctx.fill();
+  ctx.strokeStyle = '#2e7d32'; ctx.stroke();
 
-  // Glow
+  // Glow (Yellow attractant)
   const glowR = 40 + Math.sin(now * 2) * 8;
   const glowGrad = ctx.createRadialGradient(trapX, trapY, 5, trapX, trapY, glowR);
-  glowGrad.addColorStop(0, 'rgba(255,200,50,0.3)');
-  glowGrad.addColorStop(1, 'rgba(255,200,50,0)');
+  glowGrad.addColorStop(0, 'rgba(255,193,7,0.4)'); // Amber glow
+  glowGrad.addColorStop(1, 'rgba(255,193,7,0)');
   ctx.fillStyle = glowGrad;
   ctx.beginPath(); ctx.arc(trapX, trapY, glowR, 0, Math.PI * 2); ctx.fill();
 
   if (t > 0.3) {
     ctx.globalAlpha = subT(t, 0.3, 0.45);
-    ctx.fillStyle = '#3a3520'; ctx.fillRect(trapX - 25, trapY + 5, 50, 25);
+    ctx.fillStyle = '#fff9c4'; // Light sticky plate
+    ctx.fillRect(trapX - 25, trapY + 5, 50, 25);
     ctx.globalAlpha = 1;
   }
 
@@ -140,7 +146,8 @@ export function drawJayhunTrap(
     // AI detection box
     if (t > 0.5 && t < 0.95 && i < Math.floor(subT(t, 0.5, 0.7) * MOTH_COUNT)) {
       ctx.save();
-      ctx.strokeStyle = 'rgba(0,229,160,0.8)'; ctx.lineWidth = 1 / zoom;
+      ctx.strokeStyle = '#00E5A0'; // Green detection box
+      ctx.lineWidth = 1 / zoom;
       ctx.setLineDash([3 / zoom, 2 / zoom]);
       ctx.strokeRect(mx - m.size * 0.5, my - m.size * 0.5, m.size, m.size);
       ctx.font = `${9 / zoom}px Inter`; ctx.fillStyle = '#00E5A0';
@@ -154,7 +161,7 @@ export function drawJayhunTrap(
   // Callout
   if (t > 0.45) {
     const count = Math.min(5, Math.floor(subT(t, 0.45, 0.8) * 5.5));
-    drawCalloutBox(ctx, trapX, trapY - 30, 'PEST ANALYSIS', [
+    drawCalloutBox(ctx, trapX, trapY + 10, 'PEST ANALYSIS', [
       { label: 'Species', value: 'Helicoverpa', color: '#00E5A0' },
       { label: 'Count', value: count.toString(), color: '#FF6B6B' },
       { label: 'Confidence', value: '94%', color: '#4DA8FF' },

@@ -3,13 +3,7 @@ import { drawCalloutBox } from './callout-box';
 import { drawStationMast, drawSolarPanel } from './station-parts';
 import { CottonField } from './components/CottonField';
 
-const cottonField = new CottonField(1920, 1080); // Default size, or update on resize if needed? 
-// FieldSystem generates relative to passed size, but plants have absolute coords?
-// Actually FieldSystem generate() uses the passed w/h. If w/h changes significantly, we might need to regenerate.
-// But for now, let's assume standard 1920 width for generation or make it dynamic.
-// The draw() uses the pre-generated plants. If screen resizes, plants might look off.
-// PROPER FIX: Check if w/h changed and regenerate.
-
+const cottonField = new CottonField();
 
 /**
  * OXUS WS — Cotton field with weather station, scroll-driven anemometer.
@@ -23,22 +17,15 @@ export function drawOxusWS(
   ctx.clearRect(0, 0, w, h);
   const now = Date.now() / 1000;
 
-  // Sky
+  // Sky - Light Theme (Day)
   const skyGrad = ctx.createLinearGradient(0, 0, 0, h);
-  skyGrad.addColorStop(0, '#0a1a2a');
-  skyGrad.addColorStop(1, '#152535');
+  skyGrad.addColorStop(0, '#e0f7fa'); // Very light cyan
+  skyGrad.addColorStop(1, '#b2ebf2'); // Slightly darker cyan
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, w, h);
 
   // Cotton field
   const horizon = h * 0.55;
-  
-  // Use new CottonField component
-  // We need to persist the field instance or re-create it?
-  // Ideally, instance should be created once. But drawOxusWS is a function.
-  // For now, we will create it inside or attach it to the module scope if possible, 
-  // but better to keep it simple and stateless-ish or use a memoization pattern if performance hits.
-  // Given the previous pattern in Airsense, let's instantiate it at module level.
   
   cottonField.draw(ctx, t, now, w, h);
 
@@ -69,7 +56,7 @@ export function drawOxusWS(
     ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(cx, cy);
     ctx.strokeStyle = '#808080'; ctx.lineWidth = 1; ctx.stroke();
     ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2);
-    ctx.fillStyle = '#00E5A0'; ctx.fill();
+    ctx.fillStyle = '#1a1a1a'; ctx.fill();
   }
   ctx.restore(); ctx.restore();
 
@@ -103,12 +90,12 @@ export function drawOxusWS(
 
   // Callout
   if (t > 0.35) {
-    drawCalloutBox(ctx, sx + 20 * sc, sy - 60 * sc, 'FIELD CONDITIONS', [
+    drawCalloutBox(ctx, sx, sy - 60 * sc, 'FIELD CONDITIONS', [
       { label: 'Wind Speed', value: (12 + t * 15).toFixed(1), unit: 'km/h', color: '#00E5A0' },
       { label: 'Temperature', value: '28.5', unit: '°C', color: '#FFB347' },
       { label: 'Humidity', value: '42', unit: '%', color: '#4DA8FF' },
       { label: 'Pressure', value: '1012', unit: 'hPa', color: '#f0f4ff' },
-    ], subT(t, 0.35, 0.55), 'left');
+    ], subT(t, 0.35, 0.55), 'right');
   }
 }
 

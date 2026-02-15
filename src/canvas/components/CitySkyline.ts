@@ -41,17 +41,18 @@ export class CitySkyline {
       const bx = cityX + (i / this.buildings.length) * cityW + b.gap;
       const by = horizon - b.bh;
       
-      // Building body
-      ctx.fillStyle = '#0f1820';
+      // Building body - Light gray silhouette
+      ctx.fillStyle = '#cfd8dc'; // Blue-grey 100
       ctx.fillRect(bx, by, b.bw, b.bh);
       
-      // Windows
+      // Windows - reflective/glassy
       const padX = (b.bw - b.cols * 8) / 2 + 2;
       b.windows.forEach(win => {
         const wx = bx + padX + win.wx * 8;
         const wy = by + 6 + win.wy * 12;
-        ctx.fillStyle = win.warmth === 0 ? 'rgba(255,220,120,0.6)' :
-                        win.warmth === 1 ? 'rgba(180,210,255,0.4)' : 'rgba(255,240,200,0.8)';
+        // Subtle blue/white reflections
+        ctx.fillStyle = win.warmth === 0 ? 'rgba(255,255,255,0.6)' :
+                        win.warmth === 1 ? 'rgba(200,220,255,0.5)' : 'rgba(230,240,255,0.4)';
         ctx.fillRect(wx, wy, 4, 5);
       });
     }

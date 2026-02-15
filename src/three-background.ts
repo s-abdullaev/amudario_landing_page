@@ -30,9 +30,10 @@ export function initBackground(container: HTMLElement): void {
     pos[i * 3 + 1] = (Math.random() - 0.5) * 600;
     pos[i * 3 + 2] = (Math.random() - 0.5) * 400;
     const m = Math.random();
-    col[i * 3]     = m * 0.0;
-    col[i * 3 + 1] = 0.5 + m * 0.4;
-    col[i * 3 + 2] = 0.4 + (1 - m) * 0.45;
+    // Darker colors for light theme: Teal/Green mix
+    col[i * 3]     = 0.0; // R
+    col[i * 3 + 1] = 0.4 + m * 0.3; // G (0.4-0.7)
+    col[i * 3 + 2] = 0.5 + (1 - m) * 0.3; // B (0.5-0.8)
   }
 
   geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
@@ -42,9 +43,9 @@ export function initBackground(container: HTMLElement): void {
     size: 2,
     vertexColors: true,
     transparent: true,
-    opacity: 0.5,
+    opacity: 0.6,
     sizeAttenuation: true,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending, // Additive is invisible on white
     depthWrite: false,
   }));
   scene.add(particlesMesh);
@@ -59,7 +60,7 @@ export function initBackground(container: HTMLElement): void {
   const gridGeo = new THREE.BufferGeometry();
   gridGeo.setAttribute('position', new THREE.Float32BufferAttribute(gridPoints, 3));
   scene.add(new THREE.LineSegments(gridGeo, new THREE.LineBasicMaterial({
-    color: 0x00e5a0, transparent: true, opacity: 0.03,
+    color: 0x10b981, transparent: true, opacity: 0.08, // Darker green, slightly more opaque
   })));
 
   // Resize handler

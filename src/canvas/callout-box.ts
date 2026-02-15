@@ -23,26 +23,30 @@ export function drawCalloutBox(
   const alpha = easeInOut(t);
   if (alpha < 0.01) return;
 
-  // Position callout at bottom-right of device to avoid bullet points on left
   const boxW = 240;
   const rows = Math.ceil(items.length / 2);
   const boxH = 40 + rows * 36;
   
-  // Force bottom-right positioning
-  const offsetX = 50; 
-  const offsetY = 60; 
-  
-  const boxX = deviceX + offsetX;
-  const boxY = deviceY + offsetY;
+  // Position callout based on side
+  let boxX: number, boxY: number;
+  if (side === 'left') {
+    // Northwest: box to upper-left of device
+    boxX = deviceX - boxW - 50;
+    boxY = deviceY - boxH - 20;
+  } else {
+    // Southeast (default): box to lower-right of device
+    boxX = deviceX + 50;
+    boxY = deviceY + 60;
+  }
 
   ctx.save();
   ctx.globalAlpha = alpha;
 
-  // Angled connecting line from device to box
+  // Connecting line from device to box
   ctx.beginPath();
   ctx.moveTo(deviceX, deviceY);
-  ctx.lineTo(boxX, boxY + boxH/2); // Connect to side of box
-  ctx.strokeStyle = 'rgba(77, 168, 255, 0.4)'; // Blue-ish indicator line
+  ctx.lineTo(side === 'left' ? boxX + boxW : boxX, boxY + boxH / 2);
+  ctx.strokeStyle = 'rgba(77, 168, 255, 0.4)';
   ctx.lineWidth = 1.5;
   ctx.setLineDash([4, 3]);
   ctx.stroke();
@@ -58,7 +62,7 @@ export function drawCalloutBox(
   ctx.shadowColor = 'rgba(0,0,0,0.6)';
   ctx.shadowBlur = 20;
   ctx.shadowOffsetY = 8;
-  ctx.fillStyle = 'rgba(10, 20, 40, 0.92)'; // Darker blue background
+  ctx.fillStyle = 'rgba(10, 20, 40, 0.55)'; // Semi-transparent background
   ctx.beginPath();
   ctx.roundRect(boxX, boxY, boxW, boxH, 12);
   ctx.fill();

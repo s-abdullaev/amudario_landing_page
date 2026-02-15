@@ -18,7 +18,9 @@ export abstract class FieldSystem {
 
   constructor(config: FieldConfig, width: number, height: number) {
     this.config = config;
-    this.generate(width, height);
+    // Generate normalized coordinates (0..1)
+    // We ignore the passed width/height for generation to make it responsive
+    this.generate(1, 1);
   }
 
   protected generate(w: number, h: number): void {

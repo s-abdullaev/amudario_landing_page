@@ -6,7 +6,9 @@ export interface SmokeParticle {
   phase: number;
   speed: number;
   hue: number;
-  spread: number; // Persist spread value
+  spreadX: number;
+  spreadY: number;
+  driftDir: number; // -1 left, 0 center, 1 right
 }
 
 export class SmokeSystem {
@@ -16,11 +18,13 @@ export class SmokeSystem {
     for (let i = 0; i < count; i++) {
       this.particles.push({
         r: 3 + Math.random() * 8,
-        alpha: 0.2 + Math.random() * 0.3,
+        alpha: 0.15 + Math.random() * 0.25,
         phase: Math.random() * 10,
-        speed: 0.3 + Math.random() * 0.4, // Slightly slower for relaxed feel
+        speed: 0.2 + Math.random() * 0.35,
         hue: Math.random() > 0.5 ? 0 : 30,
-        spread: (Math.random() - 0.5) * 40 // Random spread per particle
+        spreadX: (Math.random() - 0.5) * 2, // normalized spread direction
+        spreadY: (Math.random() - 0.5) * 0.5,
+        driftDir: Math.random() - 0.5, // random horizontal drift
       });
     }
   }
@@ -37,37 +41,33 @@ export class SmokeSystem {
   ): void {
     if (t <= 0.2) return;
 
-    const driftT = (t - 0.2) / 0.5; // Opacity scaler
-    
-    // Target: Airsense Sensor Intake (approx visual location)
-    // Station is at stationX, stationY. Sensor head is ~ -140px up from stationY (in local coords)
-    // -140 (head) + -18 (LED/Intake area) = -158 relative to stationY
-    const targetX = stationX - 20; 
-    const targetY = stationY - 100; // Roughly the height of the sensor head
+    const driftT = (t - 0.2) / 0.5;
 
     this.particles.forEach((sp, i) => {
       const sourceX = chimneyX + Math.sin(sp.phase) * 10;
       const sourceY = horizon - chimneyH - 5;
-      
-      // Make simulation time-based so it floats freely regardless of scroll
-      const lifeT = (now * sp.speed * 0.3 + sp.phase / 8) % 1; // Even slower (0.3 factor)
-      
-      // Control points for bezier-like flow
-      // Use stored spread, scale by lifeT squared
-      // INCREASED SPREAD: multiply by larger factor for more divergence
-      const spread = sp.spread * 5 * (lifeT * lifeT); 
-      
-      const px = lerp(sourceX, targetX, lifeT) + Math.sin(now * 1.0 + sp.phase + lifeT * 3) * (5 + lifeT * 20) + spread;
-      const py = lerp(sourceY, targetY, lifeT) + Math.cos(now * 0.8 + sp.phase) * 5 - lifeT * 10 + spread * 0.5;
-      
-      // Alpha based on lifeT (fade in/out) and scroll visibility (driftT)
+
+      // Each particle loops through its lifetime
+      const lifeT = (now * sp.speed * 0.25 + sp.phase / 8) % 1;
+
+      // Scatter widely through the air — rise and spread in all directions
+      const scatterRange = 300 * lifeT; // grows as particle ages
+      const windDrift = sp.driftDir * scatterRange;
+      const turbulence = Math.sin(now * 0.8 + sp.phase + lifeT * 4) * (10 + lifeT * 40);
+
+      const px = sourceX + windDrift + turbulence + sp.spreadX * scatterRange * 0.8;
+      const py = sourceY - lifeT * 180 + sp.spreadY * scatterRange * 0.4 + Math.cos(now * 0.5 + sp.phase) * 8;
+
+      // Fade in/out across lifetime
       const a = sp.alpha * Math.sin(lifeT * Math.PI) * Math.min(driftT * 4, 1);
-      
+
       if (a > 0.01) {
-        ctx.beginPath(); 
-        // Increase size growth for spreading look
-        ctx.arc(px, py, sp.r * (0.8 + lifeT * 6), 0, Math.PI * 2);
-        ctx.fillStyle = i % 2 === 0 ? 'rgba(80, 80, 80, ' + a + ')' : 'rgba(120, 120, 120, ' + a + ')';
+        ctx.beginPath();
+        // Grow larger as they scatter
+        ctx.arc(px, py, sp.r * (0.8 + lifeT * 5), 0, Math.PI * 2);
+        ctx.fillStyle = i % 2 === 0
+          ? `rgba(80, 80, 80, ${a})`
+          : `rgba(120, 120, 120, ${a})`;
         ctx.fill();
       }
     });
