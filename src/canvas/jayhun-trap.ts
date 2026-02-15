@@ -160,11 +160,13 @@ export function drawJayhunTrap(
 
   // Callout
   if (t > 0.45) {
-    const count = Math.min(5, Math.floor(subT(t, 0.45, 0.8) * 5.5));
+    const count = Math.min(17, Math.floor(subT(t, 0.45, 0.8) * 18));
+    const dailyRate = lerp(0, 4.2, subT(t, 0.45, 0.8));
     drawCalloutBox(ctx, trapX, trapY + 10, 'PEST ANALYSIS', [
       { label: 'Species', value: 'Helicoverpa', color: '#00E5A0' },
-      { label: 'Count', value: count.toString(), color: '#FF6B6B' },
-      { label: 'Confidence', value: '94%', color: '#4DA8FF' },
+      { label: 'Count', value: count.toString(), color: '#4DA8FF' },
+      { label: 'Daily Rate', value: dailyRate.toFixed(1) + ' /day', color: '#f0f4ff' },
+      { label: 'Risk', value: count > 10 ? 'High' : 'Medium', color: count > 10 ? '#FF6B6B' : '#FFB347' },
     ], subT(t, 0.45, 0.65), 'left');
   }
 }

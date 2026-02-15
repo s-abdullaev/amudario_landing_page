@@ -126,10 +126,12 @@ export function drawGozanlink(
     const deviceScreenX = ghCX + 90 * zoom;
     const deviceScreenY = ghCY + 30 * zoom;
     drawCalloutBox(ctx, deviceScreenX, deviceScreenY - 40, 'GREENHOUSE CLIMATE', [
-      { label: 'Temperature', value: `${lerp(18, 24, envT).toFixed(1)}`, unit: '°C', color: '#FF6B6B' },
-      { label: 'Humidity', value: `${lerp(50, 65, envT).toFixed(0)}`, unit: '%', color: '#4DA8FF' },
-      { label: 'CO₂', value: `${lerp(350, 500, envT).toFixed(0)}`, unit: 'ppm', color: '#00E5A0' },
-    ], subT(t, 0.4, 0.6), 'left');
+      { label: 'Temperature', value: `${lerp(18, 26.3, envT).toFixed(1)}`, unit: '°C', color: '#FF6B6B' },
+      { label: 'Humidity', value: `${lerp(50, 74, envT).toFixed(0)}`, unit: '%', color: '#4DA8FF' },
+      { label: 'CO₂', value: `${lerp(350, 520, envT).toFixed(0)}`, unit: 'ppm', color: '#00E5A0' },
+      { label: 'Wind', value: `${lerp(0.5, 1.8, envT).toFixed(1)}`, unit: 'm/s', color: '#f0f4ff' },
+      { label: 'Gas Usage', value: `${lerp(1.0, 3.4, envT).toFixed(1)}`, unit: 'm³/h', color: '#FFB347' },
+    ], subT(t, 0.4, 0.6), 'left', 3);
   }
 }
 

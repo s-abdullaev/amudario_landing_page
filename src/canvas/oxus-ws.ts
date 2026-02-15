@@ -90,11 +90,15 @@ export function drawOxusWS(
 
   // Callout
   if (t > 0.35) {
+    const envT = subT(t, 0.35, 0.85);
     drawCalloutBox(ctx, sx, sy - 60 * sc, 'FIELD CONDITIONS', [
-      { label: 'Wind Speed', value: (12 + t * 15).toFixed(1), unit: 'km/h', color: '#00E5A0' },
-      { label: 'Temperature', value: '28.5', unit: '°C', color: '#FFB347' },
-      { label: 'Humidity', value: '42', unit: '%', color: '#4DA8FF' },
-      { label: 'Pressure', value: '1012', unit: 'hPa', color: '#f0f4ff' },
+      { label: 'Temperature', value: lerp(18, 24.5, envT).toFixed(1), unit: '°C', color: '#FFB347' },
+      { label: 'Humidity', value: lerp(40, 62, envT).toFixed(0), unit: '%', color: '#4DA8FF' },
+      { label: 'Wind Speed', value: lerp(0.5, 3.2, envT).toFixed(1), unit: 'm/s', color: '#00E5A0' },
+      { label: 'Soil Wetness', value: lerp(25, 41, envT).toFixed(0), unit: '%', color: '#4DA8FF' },
+      { label: 'Soil Temp', value: lerp(14, 18.7, envT).toFixed(1), unit: '°C', color: '#FFB347' },
+      { label: 'Soil EC', value: lerp(0.8, 1.4, envT).toFixed(1), unit: 'dS/m', color: '#f0f4ff' },
+      { label: 'Rain', value: '0.0', unit: 'mm', color: '#4DA8FF' },
     ], subT(t, 0.35, 0.55), 'right');
   }
 }

@@ -9,6 +9,7 @@ export interface CalloutItem {
 
 /**
  * Draws a stat callout box connected to a device with a dashed line.
+ * @param cols — number of columns in the grid (default 2)
  * @param side — 'left' or 'right' of the device
  */
 export function drawCalloutBox(
@@ -18,23 +19,23 @@ export function drawCalloutBox(
   title: string,
   items: CalloutItem[],
   t: number,
-  side: 'left' | 'right' = 'left'
+  side: 'left' | 'right' = 'left',
+  cols: number = 2
 ): void {
   const alpha = easeInOut(t);
   if (alpha < 0.01) return;
 
-  const boxW = 240;
-  const rows = Math.ceil(items.length / 2);
+  const colW = 110;
+  const boxW = 32 + cols * colW;
+  const rows = Math.ceil(items.length / cols);
   const boxH = 40 + rows * 36;
   
   // Position callout based on side
   let boxX: number, boxY: number;
   if (side === 'left') {
-    // Northwest: box to upper-left of device
     boxX = deviceX - boxW - 50;
     boxY = deviceY - boxH - 20;
   } else {
-    // Southeast (default): box to lower-right of device
     boxX = deviceX + 50;
     boxY = deviceY + 60;
   }
@@ -58,16 +59,16 @@ export function drawCalloutBox(
   ctx.fillStyle = '#4DA8FF';
   ctx.fill();
 
-  // Glass panel - distinct blueish tint, darker
+  // Glass panel
   ctx.shadowColor = 'rgba(0,0,0,0.6)';
   ctx.shadowBlur = 20;
   ctx.shadowOffsetY = 8;
-  ctx.fillStyle = 'rgba(10, 20, 40, 0.55)'; // Semi-transparent background
+  ctx.fillStyle = 'rgba(10, 20, 40, 0.55)';
   ctx.beginPath();
   ctx.roundRect(boxX, boxY, boxW, boxH, 12);
   ctx.fill();
   ctx.shadowColor = 'transparent';
-  ctx.strokeStyle = 'rgba(77, 168, 255, 0.3)'; // Blue border
+  ctx.strokeStyle = 'rgba(77, 168, 255, 0.3)';
   ctx.lineWidth = 1;
   ctx.stroke();
 
@@ -79,9 +80,9 @@ export function drawCalloutBox(
 
   // Items in Grid
   items.forEach((item, i) => {
-    const col = i % 2;
-    const row = Math.floor(i / 2);
-    const ix = boxX + 16 + col * 110;
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const ix = boxX + 16 + col * colW;
     const iy = boxY + 44 + row * 36;
     
     ctx.font = '400 10px Inter';

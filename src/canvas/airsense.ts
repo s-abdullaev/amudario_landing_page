@@ -147,11 +147,15 @@ export function drawAirsense(
   // Callout
   if (t > 0.5) {
     const valRatio = subT(t, 0.5, 0.85);
+    const aqi = Math.round(valRatio * 87);
     drawCalloutBox(ctx, stationX, stationY - 70, 'AIR QUALITY', [
-      { label: 'PM2.5', value: Math.round(valRatio * 87).toString(), unit: 'μg/m³', color: '#FF6B6B' },
-      { label: 'CO₂', value: Math.round(valRatio * 450).toString(), unit: 'ppm', color: '#4DA8FF' },
-      { label: 'VOC', value: Math.round(valRatio * 23).toString(), unit: 'ppb', color: '#00E5A0' },
-    ], subT(t, 0.5, 0.7), 'left');
+      { label: 'AQI', value: aqi.toString(), color: aqi > 50 ? '#FF6B6B' : '#00E5A0' },
+      { label: 'PM2.5', value: Math.round(valRatio * 28).toString(), unit: 'µg/m³', color: '#FF6B6B' },
+      { label: 'CO₂', value: Math.round(valRatio * 412).toString(), unit: 'ppm', color: '#4DA8FF' },
+      { label: 'PM10', value: Math.round(valRatio * 45).toString(), unit: 'µg/m³', color: '#FFB347' },
+      { label: 'PM1.0', value: Math.round(valRatio * 12).toString(), unit: 'µg/m³', color: '#f0f4ff' },
+      { label: 'VOC', value: (valRatio * 0.3).toFixed(1), unit: 'ppm', color: '#00E5A0' },
+    ], subT(t, 0.5, 0.7), 'left', 3);
   }
 }
 

@@ -1,0 +1,731 @@
+/* ============================================================
+   AMUDAR.IO — Product Detail Pages Stylesheet
+   ============================================================ */
+
+/* --- PRODUCT HERO BANNER --- */
+.product-hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    padding: 120px 24px 60px;
+}
+
+.product-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.product-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45);
+}
+
+.product-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+}
+
+.product-hero-content .section-tag {
+    background: rgba(0, 229, 160, 0.15);
+    border-color: rgba(0, 229, 160, 0.3);
+    color: #00e5a0;
+}
+
+.product-hero-content .section-title {
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.product-hero-content .product-hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.product-hero .back-link {
+    position: absolute;
+    top: 100px;
+    left: 32px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s var(--ease-out);
+}
+
+.product-hero .back-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+.product-hero .back-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* --- PRODUCT OVERVIEW --- */
+.product-overview {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.overview-image img {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.overview-text h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.overview-text p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+/* --- PROBLEMS SECTION (Product Detail) --- */
+.product-problems {
+    padding: 100px 0;
+    background: var(--bg-tertiary);
+}
+
+.product-problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.product-problem-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.5s var(--ease-out);
+}
+
+.product-problem-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+.product-problem-card .card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-problem-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+}
+
+.product-problem-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.product-problem-card .card-body {
+    padding: 24px;
+}
+
+.product-problem-card .card-body h4 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.product-problem-card .card-body p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* --- FEATURES GRID --- */
+.product-features {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-lg);
+    padding: 36px 28px;
+    text-align: center;
+    transition: all 0.5s var(--ease-out);
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 184, 128, 0.3);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.06);
+}
+
+.feature-card .feature-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+}
+
+.feature-card .feature-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.feature-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* --- HOW IT WORKS (Product) --- */
+.product-how-it-works {
+    padding: 100px 0;
+    background: var(--bg-tertiary);
+}
+
+.how-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.how-content.reverse {
+    direction: rtl;
+}
+
+.how-content.reverse > * {
+    direction: ltr;
+}
+
+.how-text h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.how-text p {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.how-image img {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* --- GALLERY --- */
+.product-gallery {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.gallery-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    aspect-ratio: 4/3;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s;
+}
+
+.gallery-item:hover::after {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* --- DASHBOARD SECTION --- */
+.product-dashboard {
+    padding: 100px 0;
+    background: var(--bg-tertiary);
+}
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.dashboard-images {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dashboard-images img {
+    border-radius: var(--radius-md);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-text h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.dashboard-text p {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.dashboard-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-text ul li {
+    padding: 10px 0 10px 24px;
+    position: relative;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.dashboard-text ul li:last-child {
+    border-bottom: none;
+}
+
+.dashboard-text ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+}
+
+/* --- HARDWARE SPECS --- */
+.product-hardware {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.hardware-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.hardware-text h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.hardware-text p {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.hardware-image img {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* --- VIDEO SECTION --- */
+.product-video {
+    padding: 100px 0;
+    background: var(--bg-tertiary);
+}
+
+.video-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.video-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.video-wrapper img {
+    width: 100%;
+    display: block;
+}
+
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--ease-out);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.video-play-btn svg {
+    width: 28px;
+    height: 28px;
+    margin-left: 3px;
+    color: var(--accent-green);
+}
+
+.video-wrapper:hover .video-play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.video-text h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.video-text p {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* --- PHEROMONES SECTION (JAYHUN specific) --- */
+.product-pheromones {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.pheromones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.pheromone-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.5s var(--ease-out);
+}
+
+.pheromone-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+.pheromone-card .card-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.pheromone-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+}
+
+.pheromone-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.pheromone-card .card-body {
+    padding: 20px;
+}
+
+.pheromone-card .card-body h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.pheromone-card .card-body p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* --- CTA SECTION --- */
+.product-cta {
+    padding: 100px 0;
+    background: var(--bg-secondary);
+    text-align: center;
+}
+
+.product-cta .cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.product-cta h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.product-cta p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* --- PRODUCT DETAIL NAV --- */
+.product-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 24px;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s var(--ease-out);
+}
+
+.product-nav.at-top {
+    background: transparent;
+    border-bottom-color: transparent;
+}
+
+.product-nav .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.product-nav .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+}
+
+.product-nav.at-top .nav-logo {
+    color: #fff;
+}
+
+.product-nav .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(0, 229, 160, 0.08);
+    border: 1px solid rgba(0, 229, 160, 0.2);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-green);
+    transition: all 0.3s var(--ease-out);
+}
+
+.product-nav .nav-back:hover {
+    background: rgba(0, 229, 160, 0.15);
+    transform: translateX(-4px);
+}
+
+.product-nav .nav-back svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .overview-grid,
+    .how-content,
+    .dashboard-content,
+    .hardware-content,
+    .video-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .how-content.reverse {
+        direction: ltr;
+    }
+
+    .features-grid,
+    .product-problems-grid,
+    .pheromones-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-hero {
+        min-height: 50vh;
+        padding: 100px 20px 40px;
+    }
+
+    .product-hero .back-link {
+        top: 85px;
+        left: 16px;
+    }
+
+    .product-hero-content .section-title {
+        font-size: 2rem;
+    }
+
+    .features-grid,
+    .product-problems-grid,
+    .pheromones-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .product-overview,
+    .product-problems,
+    .product-features,
+    .product-how-it-works,
+    .product-gallery,
+    .product-dashboard,
+    .product-hardware,
+    .product-video,
+    .product-pheromones,
+    .product-cta {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .gallery-item:first-child {
+        grid-column: span 1;
+    }
+
+    .product-hero-content .product-hero-subtitle {
+        font-size: 0.95rem;
+    }
+}
