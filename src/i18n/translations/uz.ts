@@ -19,7 +19,7 @@ export default {
     viewAllProducts: 'Барча маҳсулотларни кўриш',
     exploreProducts: 'Маҳсулотларни кўриш',
     getInTouch: 'Алоқага чиқиш',
-    learnMore: 'Батафсил билиш',
+    learnMore: 'Батафсил танишиш',
   },
   sectionTags: {
     ourSolutions: 'Бизнинг ечимлар',
