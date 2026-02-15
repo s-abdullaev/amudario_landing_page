@@ -5,13 +5,17 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "playwright test",
+    "test:qa": "playwright test responsive-qa",
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "astro": "^5.4.1",
     "three": "^0.182.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/three": "^0.182.0",
     "typescript": "^5.9.3"
   }

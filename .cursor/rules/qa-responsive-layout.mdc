@@ -1,0 +1,52 @@
+---
+description: QA subagent - responsive layout verification and fixes for mobile, tablet, desktop
+globs: "**/*.css,**/*.astro,**/global.css,**/product-detail.css"
+alwaysApply: false
+---
+
+# QA Responsive Layout Subagent
+
+When editing styles or layouts, run the QA test suite and fix any issues.
+
+## Run QA Tests
+
+```bash
+npm run test:qa
+```
+
+Or run all projects (desktop, tablet, mobile):
+
+```bash
+npx playwright test responsive-qa --project=desktop
+npx playwright test responsive-qa --project=tablet
+npx playwright test responsive-qa --project=mobile
+```
+
+## Viewport Breakpoints
+
+- **Mobile**: 390×844 (iPhone 14)
+- **Tablet**: 1024×768 (iPad Pro)
+- **Desktop**: 1280×720
+
+## Common Fixes
+
+### Horizontal overflow
+- Ensure `body { overflow-x: hidden }`
+- Use `max-width: 100%` on images and fixed-width elements
+- Avoid `position: fixed` elements extending past viewport
+
+### Story section / overlay
+- Use responsive padding: `padding: clamp(20px, 5vw, 40px)`
+- `story-facts` on mobile: already adjusted to single column at max-width 768px
+
+### Grid layouts
+- `solutions-grid`: 4 cols → 2 cols @1024px → 1 col @768px
+- `problems-grid`: 2 cols → 1 col @480px
+- Add `gap` that scales: `gap: clamp(16px, 2vw, 24px)`
+
+### Touch targets
+- Minimum 44×44px for buttons/links on mobile
+- Use `min-height` and `min-width` or adequate padding
+
+### Container
+- `max-width: 1200px`, `padding: 0 24px` (16px on mobile)
