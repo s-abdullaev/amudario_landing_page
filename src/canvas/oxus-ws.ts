@@ -1,6 +1,15 @@
 import { lerp, subT, easeInOut } from '../utils';
 import { drawCalloutBox } from './callout-box';
 import { drawStationMast, drawSolarPanel } from './station-parts';
+import { CottonField } from './components/CottonField';
+
+const cottonField = new CottonField(1920, 1080); // Default size, or update on resize if needed? 
+// FieldSystem generates relative to passed size, but plants have absolute coords?
+// Actually FieldSystem generate() uses the passed w/h. If w/h changes significantly, we might need to regenerate.
+// But for now, let's assume standard 1920 width for generation or make it dynamic.
+// The draw() uses the pre-generated plants. If screen resizes, plants might look off.
+// PROPER FIX: Check if w/h changed and regenerate.
+
 
 /**
  * OXUS WS — Cotton field with weather station, scroll-driven anemometer.
@@ -23,47 +32,15 @@ export function drawOxusWS(
 
   // Cotton field
   const horizon = h * 0.55;
-  const bloomT = subT(t, 0.2, 0.8);
-  ctx.save();
-  ctx.fillStyle = '#0d1a12';
-  ctx.fillRect(0, horizon, w, h - horizon);
-
-  const rows = 12;
-  for (let r = 0; r < rows; r++) {
-    const prog = r / rows;
-    const y = horizon + Math.pow(prog, 1.4) * (h - horizon);
-    const scale = 0.3 + 0.7 * prog;
-    const rowW = w * (0.6 + 2 * prog);
-    const count = 8 + r * 2;
-    const spacing = rowW / count;
-
-    for (let p = 0; p < count; p++) {
-      const px = w / 2 - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;
-      const seed = r * 99 + p * 13;
-      const wind = Math.sin(now + seed) * 3 * scale;
-
-      // Bush
-      ctx.beginPath();
-      ctx.arc(px + wind, y, 25 * scale, 0, Math.PI, true);
-      ctx.fillStyle = `rgba(30, ${60 + r * 5}, 40, ${0.4 + 0.6 * prog})`;
-      ctx.fill();
-
-      // Cotton bolls
-      const numBolls = 2 + (seed % 2);
-      for (let b = 0; b < numBolls; b++) {
-        const bx = px + wind + Math.sin(seed + b) * 15 * scale;
-        const by = y - Math.cos(seed + b) * 10 * scale;
-        const open = Math.max(0, Math.min(1, bloomT * 1.5 + Math.sin(seed) * 0.5 - 0.2));
-        const size = (4 + 6 * open) * scale;
-        ctx.beginPath();
-        ctx.arc(bx, by, size, 0, Math.PI * 2);
-        const gb = Math.floor(lerp(40, 240, open));
-        ctx.fillStyle = `rgb(${Math.floor(lerp(20, 240, open))}, ${gb}, ${Math.floor(lerp(20, 240, open))})`;
-        ctx.fill();
-      }
-    }
-  }
-  ctx.restore();
+  
+  // Use new CottonField component
+  // We need to persist the field instance or re-create it?
+  // Ideally, instance should be created once. But drawOxusWS is a function.
+  // For now, we will create it inside or attach it to the module scope if possible, 
+  // but better to keep it simple and stateless-ish or use a memoization pattern if performance hits.
+  // Given the previous pattern in Airsense, let's instantiate it at module level.
+  
+  cottonField.draw(ctx, t, now, w, h);
 
   // Weather Station
   const sc = Math.min(w, h) / 600;

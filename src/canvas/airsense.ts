@@ -1,47 +1,14 @@
 import { lerp, subT } from '../utils';
 import { drawCalloutBox } from './callout-box';
 import { drawStationMast, drawSolarPanel } from './station-parts';
+import { SmokeSystem } from './systems/SmokeSystem';
+import { CitySkyline } from './components/CitySkyline';
 
-// Pre-generated smoke particles
-interface SmokeParticle {
-  r: number; alpha: number; phase: number; speed: number; hue: number;
-}
-const smokeParts: SmokeParticle[] = [];
-for (let i = 0; i < 100; i++) {
-  smokeParts.push({
-    r: 3 + Math.random() * 8,
-    alpha: 0.2 + Math.random() * 0.3,
-    phase: Math.random() * 10,
-    speed: 0.5 + Math.random() * 0.5,
-    hue: Math.random() > 0.5 ? 0 : 30,
-  });
-}
+// Initialize Systems
+const smokeSystem = new SmokeSystem(100);
+const citySkyline = new CitySkyline(25);
 
-// Pre-generated city buildings
-interface CityBuilding {
-  bh: number; bw: number; gap: number;
-  windows: { wx: number; wy: number; warmth: number }[];
-  cols: number; rows: number;
-}
-const cityBuildings: CityBuilding[] = [];
-for (let i = 0; i < 25; i++) {
-  const seed = i * 7 + 3;
-  const bh = 40 + Math.abs(Math.sin(seed * 1.7)) * 60 + Math.abs(Math.cos(seed * 0.3)) * 30;
-  const bw = 25 + Math.abs(Math.sin(seed * 3.1)) * 35;
-  const gap = Math.abs(Math.sin(seed * 2.3)) * 8;
-  const windows: CityBuilding['windows'] = [];
-  const cols = Math.floor(bw / 8);
-  const brows = Math.floor(bh / 12);
-  for (let wy = 0; wy < brows; wy++) {
-    for (let wx = 0; wx < cols; wx++) {
-      const litSeed = (i * 31 + wy * 7 + wx * 13) % 100;
-      if (litSeed < 40) windows.push({ wx, wy, warmth: litSeed % 3 });
-    }
-  }
-  cityBuildings.push({ bh, bw, gap, windows, cols, rows: brows });
-}
-
-// Pre-generated park trees
+// Pre-generated park trees (keeping local for now as it's simple)
 const parkTrees = Array.from({ length: 8 }, (_, i) => ({
   x: 0.3 + Math.abs(Math.sin(i * 4.7)) * 0.5,
   size: 20 + Math.abs(Math.sin(i * 2.3)) * 25,
@@ -100,27 +67,11 @@ export function drawAirsense(
     }
   });
 
-  /* Removed old single chimney code */
   const chimneyX = chimneys[2].x; // Use tall chimney for smoke source reference
   const chimneyH = chimneys[2].h;
 
   // City skyline
-  const cityW = w * 1.4;
-  const cityX = w * 0.5 - cityW * 0.5;
-  for (const [i, b] of cityBuildings.entries()) {
-    const bx = cityX + (i / cityBuildings.length) * cityW + b.gap;
-    const by = horizon - b.bh;
-    ctx.fillStyle = '#0f1820';
-    ctx.fillRect(bx, by, b.bw, b.bh);
-    const padX = (b.bw - b.cols * 8) / 2 + 2;
-    b.windows.forEach(win => {
-      const wx = bx + padX + win.wx * 8;
-      const wy = by + 6 + win.wy * 12;
-      ctx.fillStyle = win.warmth === 0 ? 'rgba(255,220,120,0.6)' :
-                      win.warmth === 1 ? 'rgba(180,210,255,0.4)' : 'rgba(255,240,200,0.8)';
-      ctx.fillRect(wx, wy, 4, 5);
-    });
-  }
+  citySkyline.draw(ctx, w, horizon);
 
   // Ground / park
   ctx.fillStyle = '#0e1a10';
@@ -149,40 +100,8 @@ export function drawAirsense(
     }
   });
 
-  // Smoke Particles
-  if (t > 0.2) {
-    const driftT = subT(t, 0.2, 0.7);
-    smokeParts.forEach((sp, i) => {
-      const sourceX = chimneyX + Math.sin(sp.phase) * 10;
-      const sourceY = horizon - chimneyH - 5;
-      const lifeT = (driftT * sp.speed * 2.5 + sp.phase / 8) % 1; // Faster smoke
-      
-      // Target: Airsense Sensor Intake (approx visual location)
-      // Station is at stationX, stationY. Sensor head is ~ -140px up from stationY (in local coords)
-      // -140 (head) + -18 (LED/Intake area) = -158 relative to stationY
-      // We applied a scale 'sc' in the drawing code, but particles are world space?
-      // Wait, particles are drawn in world space, station in transformed space.
-      // We need to target the World Space coordinate of the sensor head.
-      // Station scale 'sc' is roughly 0.8-1.2 depending on screen size.
-      // Let's target slightly to the left of the station X.
-      
-      const targetX = stationX - 20; 
-      const targetY = stationY - 100; // Roughly the height of the sensor head
-      
-      // Control points for bezier-like flow
-      const px = lerp(sourceX, targetX, lifeT) + Math.sin(now * 1.5 + sp.phase + lifeT * 3) * (5 + lifeT * 10);
-      const py = lerp(sourceY, targetY, lifeT) + Math.cos(now * 1.0 + sp.phase) * 5 - lifeT * 10;
-      
-      const a = sp.alpha * Math.sin(lifeT * Math.PI) * Math.min(driftT * 4, 1);
-      
-      if (a > 0.01) {
-        ctx.beginPath(); 
-        ctx.arc(px, py, sp.r * (0.8 + lifeT * 2), 0, Math.PI * 2);
-        ctx.fillStyle = i % 2 === 0 ? `rgba(80, 80, 80, ${a})` : `rgba(120, 120, 120, ${a})`;
-        ctx.fill();
-      }
-    });
-  }
+  // Smoke Particles (System)
+  smokeSystem.updateAndDraw(ctx, t, now, chimneyX, chimneyH, horizon, stationX, stationY);
 
   // Airsense station
   
@@ -238,4 +157,5 @@ export const AIRSENSE_CAPTIONS = [
   'Sensors detect volatile compounds',
   'Monitoring PM2.5 and CO₂ levels',
   'Alerting users to air quality changes',
+  'High precision atmospheric data collection',
 ];

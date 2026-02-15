@@ -1,5 +1,9 @@
 import { lerp, subT, easeInOut } from '../utils';
 import { drawCalloutBox } from './callout-box';
+import { WheatField } from './components/WheatField';
+
+const wheatField = new WheatField(1920, 1080); // Default canvas size logic
+
 
 // Pre-generate moths
 interface Moth {
@@ -68,43 +72,8 @@ export function drawJayhunTrap(
   ctx.fillRect(0, horizon, w, h - horizon);
 
   // Wheat field
-  const growth = subT(t, 0.05, 0.6);
-  for (let r = 0; r < 10; r++) {
-    const prog = r / 10;
-    const y = horizon + Math.pow(prog, 1.5) * (h - horizon);
-    const rowW = w * (0.8 + 1.5 * prog);
-    const count = 18 + r * 4;
-    const spacing = rowW / count;
-
-    for (let p = 0; p < count; p++) {
-      const px = w / 2 - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;
-      const seed = r * 13 + p * 7;
-      const maxH = 20 + 55 * prog;
-      const currentH = maxH * (0.2 + 0.8 * growth);
-      const sway = Math.sin(now * 0.8 + seed) * 4 * prog;
-
-      ctx.beginPath();
-      ctx.moveTo(px, y);
-      ctx.quadraticCurveTo(px + sway * 0.5, y - currentH * 0.5, px + sway, y - currentH);
-      ctx.strokeStyle = `rgba(180, 160, 100, ${0.3 + 0.7 * prog})`;
-      ctx.lineWidth = 1 + 2 * prog;
-      ctx.stroke();
-
-      // Draw grains if grown enough
-      if (growth > 0.2) {
-        ctx.fillStyle = `rgba(220, 190, 80, ${0.4 + 0.6 * prog})`;
-        const grainCount = 6;
-        for(let g=0; g<grainCount; g++) {
-           const gy = y - currentH * (0.6 + g/grainCount * 0.4);
-           const gx = px + sway * (0.6 + g/grainCount * 0.4);
-           const offset = (g % 2 === 0 ? -1 : 1) * 3 * prog;
-           ctx.beginPath();
-           ctx.ellipse(gx + offset, gy, 2 * prog, 4 * prog, sway * 0.05 + (g%2===0?-0.3:0.3), 0, Math.PI * 2);
-           ctx.fill();
-        }
-      }
-    }
-  }
+  // Use new WheatField component
+  wheatField.draw(ctx, t, now, w, h);
 
   // Trap
   const trapX = w * 0.75;
