@@ -1,0 +1,202 @@
+import { lerp, subT, easeInOut } from '../utils';
+import { drawCalloutBox } from './callout-box';
+
+// Pre-generate moths
+interface Moth {
+  x: number; y: number; size: number; speed: number;
+  phase: number; wingPhase: number;
+}
+
+const MOTH_COUNT = 5;
+const moths: Moth[] = [];
+for (let i = 0; i < MOTH_COUNT; i++) {
+  moths.push({
+    x: Math.random(), y: Math.random(),
+    size: 8 + Math.random() * 10,
+    speed: 0.3 + Math.random() * 0.5,
+    phase: Math.random() * Math.PI * 2,
+    wingPhase: Math.random() * Math.PI * 2,
+  });
+}
+
+function drawMoth(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, wingAngle: number, alpha: number): void {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.globalAlpha = alpha;
+  ctx.beginPath(); ctx.ellipse(0, 0, size * 0.15, size * 0.4, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#8B7355'; ctx.fill();
+  ctx.save(); ctx.rotate(wingAngle);
+  ctx.beginPath(); ctx.ellipse(-size * 0.35, -size * 0.1, size * 0.45, size * 0.25, -0.3, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(160,130,90,0.7)'; ctx.fill();
+  ctx.restore();
+  ctx.save(); ctx.rotate(-wingAngle);
+  ctx.beginPath(); ctx.ellipse(size * 0.35, -size * 0.1, size * 0.45, size * 0.25, 0.3, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(160,130,90,0.7)'; ctx.fill();
+  ctx.restore();
+  ctx.restore();
+}
+
+/**
+ * JAYHUN TRAP — Moths attracted to pheromone trap in a wheat field.
+ */
+export function drawJayhunTrap(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  t: number
+): void {
+  ctx.clearRect(0, 0, w, h);
+  const now = Date.now() / 1000;
+
+  // Night sky
+  const nightGrad = ctx.createLinearGradient(0, 0, 0, h);
+  nightGrad.addColorStop(0, '#050a18');
+  nightGrad.addColorStop(1, '#0a1428');
+  ctx.fillStyle = nightGrad;
+  ctx.fillRect(0, 0, w, h);
+
+  // Deterministic stars
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  for (let i = 0; i < 40; i++) {
+    const sx = (i * 137) % w;
+    const sy = (i * 97) % (h * 0.6);
+    ctx.beginPath(); ctx.arc(sx, sy, 0.5 + (i % 3) * 0.5, 0, Math.PI * 2); ctx.fill();
+  }
+
+  const horizon = h * 0.6;
+  ctx.fillStyle = '#1a1510';
+  ctx.fillRect(0, horizon, w, h - horizon);
+
+  // Wheat field
+  const growth = subT(t, 0.05, 0.6);
+  for (let r = 0; r < 10; r++) {
+    const prog = r / 10;
+    const y = horizon + Math.pow(prog, 1.5) * (h - horizon);
+    const rowW = w * (0.8 + 1.5 * prog);
+    const count = 18 + r * 4;
+    const spacing = rowW / count;
+
+    for (let p = 0; p < count; p++) {
+      const px = w / 2 - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;
+      const seed = r * 13 + p * 7;
+      const maxH = 20 + 55 * prog;
+      const currentH = maxH * (0.2 + 0.8 * growth);
+      const sway = Math.sin(now * 0.8 + seed) * 4 * prog;
+
+      ctx.beginPath();
+      ctx.moveTo(px, y);
+      ctx.quadraticCurveTo(px + sway * 0.5, y - currentH * 0.5, px + sway, y - currentH);
+      ctx.strokeStyle = `rgba(180, 160, 100, ${0.3 + 0.7 * prog})`;
+      ctx.lineWidth = 1 + 2 * prog;
+      ctx.stroke();
+
+      // Draw grains if grown enough
+      if (growth > 0.2) {
+        ctx.fillStyle = `rgba(220, 190, 80, ${0.4 + 0.6 * prog})`;
+        const grainCount = 6;
+        for(let g=0; g<grainCount; g++) {
+           const gy = y - currentH * (0.6 + g/grainCount * 0.4);
+           const gx = px + sway * (0.6 + g/grainCount * 0.4);
+           const offset = (g % 2 === 0 ? -1 : 1) * 3 * prog;
+           ctx.beginPath();
+           ctx.ellipse(gx + offset, gy, 2 * prog, 4 * prog, sway * 0.05 + (g%2===0?-0.3:0.3), 0, Math.PI * 2);
+           ctx.fill();
+        }
+      }
+    }
+  }
+
+  // Trap
+  const trapX = w * 0.75;
+  const trapY = h * 0.45;
+  const zoom = 1 + easeInOut(subT(t, 0.25, 0.6)) * 1.5;
+  ctx.save();
+  ctx.translate(trapX, trapY); ctx.scale(zoom, zoom); ctx.translate(-trapX, -trapY);
+
+  ctx.fillStyle = '#2a3a2a'; ctx.fillRect(trapX - 3, trapY, 6, h * 0.25);
+
+  // Trap body
+  ctx.beginPath();
+  ctx.moveTo(trapX - 50, trapY - 20); ctx.lineTo(trapX + 50, trapY - 20);
+  ctx.lineTo(trapX + 30, trapY + 30); ctx.lineTo(trapX - 30, trapY + 30);
+  ctx.closePath();
+  ctx.fillStyle = '#1a3a1a'; ctx.fill();
+  ctx.strokeStyle = 'rgba(0,229,160,0.3)'; ctx.lineWidth = 1; ctx.stroke();
+
+  // Entry hole
+  ctx.save();
+  ctx.beginPath();
+  ctx.ellipse(trapX, trapY + 5, 12, 18, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#050a05'; ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,0.5)'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.restore();
+
+  // Roof
+  ctx.beginPath();
+  ctx.moveTo(trapX - 60, trapY - 20); ctx.lineTo(trapX, trapY - 50); ctx.lineTo(trapX + 60, trapY - 20);
+  ctx.closePath();
+  ctx.fillStyle = '#1e3020'; ctx.fill(); ctx.strokeStyle = 'rgba(0,229,160,0.2)'; ctx.stroke();
+
+  // Glow
+  const glowR = 40 + Math.sin(now * 2) * 8;
+  const glowGrad = ctx.createRadialGradient(trapX, trapY, 5, trapX, trapY, glowR);
+  glowGrad.addColorStop(0, 'rgba(255,200,50,0.3)');
+  glowGrad.addColorStop(1, 'rgba(255,200,50,0)');
+  ctx.fillStyle = glowGrad;
+  ctx.beginPath(); ctx.arc(trapX, trapY, glowR, 0, Math.PI * 2); ctx.fill();
+
+  if (t > 0.3) {
+    ctx.globalAlpha = subT(t, 0.3, 0.45);
+    ctx.fillStyle = '#3a3520'; ctx.fillRect(trapX - 25, trapY + 5, 50, 25);
+    ctx.globalAlpha = 1;
+  }
+
+  // Moths
+  moths.forEach((m, i) => {
+    const wingAng = Math.sin(now * 8 + m.wingPhase) * 0.4;
+    let mx: number, my: number;
+    if (t < 0.2) {
+      const flyT = t / 0.2;
+      mx = lerp(m.x * w, trapX + (i - 2) * 12, flyT * m.speed);
+      my = lerp(m.y * h * 0.5, trapY - 10, flyT * m.speed);
+    } else if (t < 0.45) {
+      mx = trapX + (i - 2) * 8;
+      my = trapY + 10 + (i % 3) * 5;
+    } else {
+      mx = trapX - 15 + (i % 3) * 15;
+      my = trapY + 10 + Math.floor(i / 3) * 10;
+    }
+    drawMoth(ctx, mx, my, m.size * (t > 0.4 ? 1 : 0.7), wingAng, 1);
+
+    // AI detection box
+    if (t > 0.5 && t < 0.95 && i < Math.floor(subT(t, 0.5, 0.7) * MOTH_COUNT)) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(0,229,160,0.8)'; ctx.lineWidth = 1 / zoom;
+      ctx.setLineDash([3 / zoom, 2 / zoom]);
+      ctx.strokeRect(mx - m.size * 0.5, my - m.size * 0.5, m.size, m.size);
+      ctx.font = `${9 / zoom}px Inter`; ctx.fillStyle = '#00E5A0';
+      ctx.fillText(`${85 + i * 2}%`, mx - m.size * 0.5, my - m.size * 0.5 - 2 / zoom);
+      ctx.restore();
+    }
+  });
+
+  ctx.restore(); // zoom
+
+  // Callout
+  if (t > 0.45) {
+    const count = Math.min(5, Math.floor(subT(t, 0.45, 0.8) * 5.5));
+    drawCalloutBox(ctx, trapX, trapY - 30, 'PEST ANALYSIS', [
+      { label: 'Species', value: 'Helicoverpa', color: '#00E5A0' },
+      { label: 'Count', value: count.toString(), color: '#FF6B6B' },
+      { label: 'Confidence', value: '94%', color: '#4DA8FF' },
+    ], subT(t, 0.45, 0.65), 'left');
+  }
+}
+
+export const JAYHUN_CAPTIONS = [
+  'Wheat ripening under the night sky…',
+  'Moths lured by pheromones…',
+  'Pests captured on sticky plate',
+  'AI identifies species instantly',
+  'Automated counting for precision data',
+];
