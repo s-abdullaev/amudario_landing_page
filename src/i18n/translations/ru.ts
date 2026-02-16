@@ -111,7 +111,7 @@ export default {
     },
     gozanStory: {
       tag: '04 — Теплица',
-      title: 'GOZAN<span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
       facts: [
         '🌡️ Отслеживание внутренней и наружной температуры и влажности',
         '🌱 Влажность, температура и электропроводность почвы',
@@ -387,7 +387,7 @@ export default {
     },
     hero: {
       tag: '04 — Теплица',
-      title: 'GOZAN<span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
       subtitle: 'IoT-система управления теплицей для точного контроля климата — мониторинг температуры, влажности, CO₂, освещения и почвы с автоматической вентиляцией и поливом.',
     },
     problems: {

@@ -1,6 +1,25 @@
 import { lerp, subT, easeInOut } from '../utils';
 import { drawCalloutBox } from './callout-box';
 
+// Pre-generate snowflakes
+interface Snowflake {
+  x: number; y: number; size: number;
+  speedY: number; drift: number; driftFreq: number; phase: number;
+}
+const SNOW_COUNT = 80;
+const snowflakes: Snowflake[] = [];
+for (let i = 0; i < SNOW_COUNT; i++) {
+  snowflakes.push({
+    x: Math.random(),
+    y: Math.random(),
+    size: 1 + Math.random() * 2.5,
+    speedY: 0.015 + Math.random() * 0.025,
+    drift: 8 + Math.random() * 15,
+    driftFreq: 0.5 + Math.random() * 1.5,
+    phase: Math.random() * Math.PI * 2,
+  });
+}
+
 /**
  * GOZANLINK — Smart greenhouse with growing tomatoes and indoor sensor.
  */
@@ -13,52 +32,111 @@ export function drawGozanlink(
   ctx.clearRect(0, 0, w, h);
   const now = Date.now() / 1000;
 
-  // Light greenhouse sky/backdrop
+  // Night blue sky
   const skyGrad = ctx.createLinearGradient(0, 0, 0, h);
-  skyGrad.addColorStop(0, '#f0fff4'); // Mint cream
-  skyGrad.addColorStop(1, '#e6fffa');
+  skyGrad.addColorStop(0, '#0a1628');
+  skyGrad.addColorStop(0.4, '#142a4f');
+  skyGrad.addColorStop(0.7, '#1c3a6e');
+  skyGrad.addColorStop(1, '#243b5e');
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, w, h);
 
+  // Stars
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  for (let i = 0; i < 60; i++) {
+    const sx = (i * 137 + 43) % w;
+    const sy = (i * 89 + 17) % (h * 0.6);
+    const starSize = 0.5 + (i % 4) * 0.4;
+    const twinkle = 0.4 + Math.sin(now * 1.5 + i * 0.7) * 0.3;
+    ctx.globalAlpha = twinkle;
+    ctx.beginPath(); ctx.arc(sx, sy, starSize, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  const horizon = h * 0.7;
+
+  // Snowy ground
+  const groundGrad = ctx.createLinearGradient(0, horizon, 0, h);
+  groundGrad.addColorStop(0, '#c8d6e5');
+  groundGrad.addColorStop(1, '#a4b5c9');
+  ctx.fillStyle = groundGrad;
+  ctx.fillRect(0, horizon, w, h - horizon);
+
+  // Falling snowflakes
+  for (const s of snowflakes) {
+    const sy = ((s.y + now * s.speedY) % 1.1) * h;
+    const sx = s.x * w + Math.sin(now * s.driftFreq + s.phase) * s.drift;
+    const alpha = 0.4 + s.size * 0.15;
+    ctx.beginPath();
+    ctx.arc(sx, sy, s.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+    ctx.fill();
+  }
+
   const ghCX = w * 0.75;
-  const ghCY = h * 0.42;
+  const ghCY = horizon - 90;
   const zoom = 1 + easeInOut(subT(t, 0.1, 0.4)) * 2;
 
   ctx.save();
   ctx.translate(ghCX, ghCY); ctx.scale(zoom, zoom); ctx.translate(-ghCX, -ghCY);
 
-  ctx.fillStyle = '#f1f8e9'; // Light floor
-  ctx.fillRect(0, h * 0.7, w, h * 0.3);
-
-  // Greenhouse structure
+  // Greenhouse structure — opaque walls with green-tinted glass
   ctx.beginPath();
   ctx.moveTo(ghCX - 140, ghCY + 90); ctx.lineTo(ghCX - 140, ghCY - 20);
   ctx.quadraticCurveTo(ghCX, ghCY - 90, ghCX + 140, ghCY - 20);
   ctx.lineTo(ghCX + 140, ghCY + 90); ctx.closePath();
   const ghGrad = ctx.createLinearGradient(ghCX - 140, ghCY - 90, ghCX + 140, ghCY + 90);
-  ghGrad.addColorStop(0, 'rgba(100,180,100,0.1)');
-  ghGrad.addColorStop(1, 'rgba(50,120,50,0.06)');
+  ghGrad.addColorStop(0, '#c8e6c9');
+  ghGrad.addColorStop(0.5, '#a5d6a7');
+  ghGrad.addColorStop(1, '#81c784');
   ctx.fillStyle = ghGrad; ctx.fill();
-  ctx.strokeStyle = 'rgba(100,200,100,0.3)'; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.strokeStyle = '#388e3c'; ctx.lineWidth = 2; ctx.stroke();
+
+  // Concrete/metal base strip
+  ctx.fillStyle = '#78909c';
+  ctx.fillRect(ghCX - 140, ghCY + 80, 280, 10);
 
   // Glass pane lines
   ctx.beginPath();
   ctx.moveTo(ghCX, ghCY - 90); ctx.lineTo(ghCX, ghCY + 90);
   ctx.moveTo(ghCX - 70, ghCY - 60); ctx.lineTo(ghCX - 70, ghCY + 90);
   ctx.moveTo(ghCX + 70, ghCY - 60); ctx.lineTo(ghCX + 70, ghCY + 90);
-  ctx.strokeStyle = 'rgba(100,200,100,0.12)'; ctx.lineWidth = 0.5; ctx.stroke();
+  ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.lineWidth = 1; ctx.stroke();
 
-  // Door (Front Center)
-  ctx.fillStyle = 'rgba(20, 40, 20, 0.4)';
-  ctx.fillRect(ghCX - 25, ghCY + 20, 50, 70);
-  ctx.strokeStyle = 'rgba(100, 220, 100, 0.5)';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(ghCX - 25, ghCY + 20, 50, 70);
-  // Door handle
-  ctx.beginPath(); ctx.arc(ghCX + 15, ghCY + 55, 3, 0, Math.PI*2); ctx.fillStyle='#ccc'; ctx.fill();
+  // Horizontal pane divider
+  ctx.beginPath();
+  ctx.moveTo(ghCX - 138, ghCY + 30); ctx.lineTo(ghCX + 138, ghCY + 30);
+  ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = 1; ctx.stroke();
+
+  // Glass sheen highlight
+  ctx.beginPath();
+  ctx.moveTo(ghCX - 120, ghCY + 90); ctx.lineTo(ghCX - 120, ghCY - 10);
+  ctx.quadraticCurveTo(ghCX - 50, ghCY - 70, ghCX - 10, ghCY - 20);
+  ctx.lineTo(ghCX - 10, ghCY + 90); ctx.closePath();
+  ctx.fillStyle = 'rgba(255,255,255,0.15)'; ctx.fill();
+
+  // Door (Front Center) — fades away as greenhouse zooms in
+  const doorAlpha = 1 - easeInOut(subT(t, 0.1, 0.35));
+  if (doorAlpha > 0.01) {
+    ctx.save();
+    ctx.globalAlpha = doorAlpha;
+    ctx.fillStyle = '#2e7d32';
+    ctx.fillRect(ghCX - 25, ghCY + 20, 50, 70);
+    ctx.strokeStyle = '#1b5e20';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(ghCX - 25, ghCY + 20, 50, 70);
+    // Door window
+    ctx.fillStyle = 'rgba(200,230,200,0.6)';
+    ctx.fillRect(ghCX - 18, ghCY + 26, 36, 30);
+    ctx.strokeStyle = '#1b5e20'; ctx.lineWidth = 1;
+    ctx.strokeRect(ghCX - 18, ghCY + 26, 36, 30);
+    // Door handle
+    ctx.beginPath(); ctx.arc(ghCX + 15, ghCY + 65, 3, 0, Math.PI*2); ctx.fillStyle='#bbb'; ctx.fill();
+    ctx.restore();
+  }
 
   // Chimney (Roof)
-  ctx.fillStyle = '#2a3a2a';
+  ctx.fillStyle = '#546e7a';
   ctx.beginPath();
   ctx.moveTo(ghCX + 80, ghCY - 40);
   ctx.lineTo(ghCX + 80, ghCY - 100);
@@ -66,14 +144,18 @@ export function drawGozanlink(
   ctx.lineTo(ghCX + 100, ghCY - 30);
   ctx.closePath();
   ctx.fill();
+  ctx.strokeStyle = '#37474f'; ctx.lineWidth = 1; ctx.stroke();
   // Chimney cap
-  ctx.fillStyle = '#1a2a1a';
-  ctx.fillRect(ghCX + 78, ghCY - 105, 24, 5);
+  ctx.fillStyle = '#37474f';
+  ctx.fillRect(ghCX + 76, ghCY - 105, 28, 6);
   // Smoke puffs
   if (t > 0.1) {
-     const smokeT = (now * 0.5) % 1;
-     ctx.fillStyle = `rgba(200,200,200,${0.3 * (1-smokeT)})`;
-     ctx.beginPath(); ctx.arc(ghCX + 90, ghCY - 110 - smokeT * 30, 5 + smokeT * 10, 0, Math.PI*2); ctx.fill();
+     for (let s = 0; s < 3; s++) {
+       const smokeT = ((now * 0.4 + s * 0.35) % 1);
+       ctx.fillStyle = `rgba(210,210,210,${0.4 * (1-smokeT)})`;
+       const sx = ghCX + 90 + Math.sin(smokeT * 3 + s) * 6;
+       ctx.beginPath(); ctx.arc(sx, ghCY - 110 - smokeT * 40, 4 + smokeT * 12, 0, Math.PI*2); ctx.fill();
+     }
   }
 
   // Plants & tomatoes

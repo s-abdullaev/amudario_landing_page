@@ -111,7 +111,7 @@ export default {
     },
     gozanStory: {
       tag: '04 — Иссиқхона',
-      title: 'GOZAN<span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
       facts: [
         '🌡️ Ички ва ташқи ҳарорат ва намликни кузатиш',
         '🌱 Тупроқ намлиги, ҳарорати ва электр ўтказувчанлиги',
@@ -387,7 +387,7 @@ export default {
     },
     hero: {
       tag: '04 — Иссиқхона',
-      title: 'GOZAN<span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
       subtitle: 'Аниқ иқлим назорати учун IoT иссиқхона бошқарув тизими — ҳарорат, намлик, CO₂, ёруғлик ва тупроқни автоматик шамоллатиш ва суғориш билан кузатади.',
     },
     problems: {

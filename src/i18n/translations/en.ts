@@ -111,7 +111,7 @@ export default {
     },
     gozanStory: {
       tag: '04 — Greenhouse',
-      title: 'GOZAN<span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
       facts: [
         '🌡️ Internal & external temperature and humidity tracking',
         '🌱 Soil moisture, temperature & electrical conductivity',
@@ -387,7 +387,7 @@ export default {
     },
     hero: {
       tag: '04 — Greenhouse',
-      title: 'GOZAN<span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
       subtitle: 'IoT greenhouse management system for precise climate control — monitoring temperature, humidity, CO\u2082, light, and soil with automated ventilation and irrigation.',
     },
     problems: {
