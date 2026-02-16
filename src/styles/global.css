@@ -35,7 +35,7 @@ ul { list-style: none; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 /* --- THREE.JS --- */
-#three-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+#three-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
 
 .navbar, .hero, .problems-section, .solutions-section,
 .story-section, .how-section, .team-section,
@@ -362,9 +362,11 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
-    .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-secondary); flex-direction: column; padding: 100px 32px 32px; gap: 8px; transition: right 0.4s var(--ease-out); border-left: 1px solid rgba(255,255,255,0.05); z-index: 999; }
-    .nav-links.open { right: 0; }
+    .nav-links { position: fixed; top: 0; right: 0; width: 280px; height: 100vh; background: var(--bg-secondary); flex-direction: column; padding: 100px 32px 32px; gap: 8px; transition: transform 0.4s var(--ease-out); border-left: 1px solid rgba(255,255,255,0.05); z-index: 999; transform: translateX(100%); }
+    .nav-links.open { transform: translateX(0); }
     .nav-links a { font-size: 1rem; padding: 12px 0; }
+    .nav-links .nav-cta { display: inline-block; padding: 12px 28px; margin-top: 8px; }
+    .nav-lang-item { margin-left: 0 !important; margin-top: 8px; }
     .nav-toggle { display: flex; z-index: 1001; }
     .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .nav-toggle.active span:nth-child(2) { opacity: 0; }
@@ -377,7 +379,7 @@ ul { list-style: none; }
     .footer-content { flex-direction: column; text-align: center; }
     .problems-grid { grid-template-columns: 1fr 1fr; }
     .story-overlay { padding: 90px 20px 50px; }
-    .story-caption { font-size: 0.8rem; max-width: 90vw; }
+    .story-caption { font-size: 0.8rem; max-width: 90vw; white-space: normal; }
 }
 
 @media (max-width: 480px) {
