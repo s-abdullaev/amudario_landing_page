@@ -8,13 +8,13 @@ export class WheatField {
   public draw(ctx: CanvasRenderingContext2D, t: number, now: number, w: number, h: number): void {
     const horizon = h * 0.6;
     const growth = subT(t, 0.05, 0.6);
-    const wheatRows = 10;
+    const wheatRows = 16;
 
     for (let r = 0; r < wheatRows; r++) {
       const prog = r / wheatRows;
       const y = horizon + Math.pow(prog, 1.5) * (h - horizon);
-      const rowW = w * (0.8 + 1.5 * prog);
-      const count = 18 + r * 4;
+      const rowW = w * (0.85 + 1.6 * prog);
+      const count = 28 + r * 6;
       const spacing = rowW / count;
       for (let p = 0; p < count; p++) {
         const px = w / 2 - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;

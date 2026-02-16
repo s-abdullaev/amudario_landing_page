@@ -51,38 +51,38 @@ export function drawOxusWS(
   ctx.strokeStyle = '#808080'; ctx.lineWidth = 1.5; ctx.stroke();
   // Screen body
   ctx.save(); ctx.translate(50, 6);
-  const sw = 36;
+  const sw = 28;
   // Dome cap
   ctx.beginPath();
-  ctx.ellipse(0, 0, sw / 2 + 3, 6, 0, Math.PI, 0);
+  ctx.ellipse(0, 0, sw / 2 + 2, 5, 0, Math.PI, 0);
   ctx.closePath();
   ctx.fillStyle = '#E0E0E0'; ctx.fill();
   ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 1; ctx.stroke();
   // Louver plates
-  const lCount = 5;
+  const lCount = 4;
   const lH = 3;
-  const lGap = 5;
+  const lGap = 4;
   for (let i = 0; i < lCount; i++) {
-    const ly = 6 + i * (lH + lGap);
+    const ly = 1 + i * (lH + lGap);
     if (i > 0) {
       ctx.fillStyle = 'rgba(40,40,40,0.12)';
       ctx.fillRect(-sw / 2 + 2, ly - lGap, sw - 4, lGap);
     }
     ctx.beginPath();
-    ctx.roundRect(-sw / 2 - 3, ly, sw + 6, lH, 1);
+    ctx.roundRect(-sw / 2 - 2, ly, sw + 4, lH, 1);
     ctx.fillStyle = '#E8E8E8'; ctx.fill();
     ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 0.5; ctx.stroke();
   }
   // Side supports
-  const sTop = 6;
-  const sBot = 6 + (lCount - 1) * (lH + lGap) + lH;
+  const sTop = 1;
+  const sBot = 1 + (lCount - 1) * (lH + lGap) + lH;
   ctx.beginPath();
   ctx.moveTo(-sw / 2, sTop); ctx.lineTo(-sw / 2, sBot);
   ctx.moveTo(sw / 2, sTop); ctx.lineTo(sw / 2, sBot);
   ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 1; ctx.stroke();
   // Bottom cap
   ctx.beginPath();
-  ctx.ellipse(0, sBot + 3, sw / 2 + 1, 4, 0, 0, Math.PI * 2);
+  ctx.ellipse(0, sBot + 2, sw / 2 + 1, 3, 0, 0, Math.PI * 2);
   ctx.fillStyle = '#D0D0D0'; ctx.fill();
   ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 0.5; ctx.stroke();
   ctx.restore(); // screen body

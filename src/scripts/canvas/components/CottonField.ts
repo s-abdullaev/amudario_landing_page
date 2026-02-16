@@ -118,11 +118,11 @@ export class CottonField {
         ctx.fillStyle = `rgba(38, ${68 + r * 5}, 42, ${(0.25 + 0.35 * prog) * growT})`;
         ctx.fill();
 
-        // ── Cotton bolls ──
+        // ── Cotton bolls (at top of stem) ──
         const numBolls = 2 + (seed % 2);
         for (let b = 0; b < numBolls; b++) {
-          const bx = topX + Math.sin(seed + b) * 14 * scale;
-          const by = y - Math.cos(seed + b) * 10 * scale;
+          const bx = topX + Math.sin(seed + b) * 10 * scale;
+          const by = topY + Math.cos(seed + b) * 6 * scale;
           const open = Math.max(0, Math.min(1, bloomT * 1.5 + Math.sin(seed) * 0.5 - 0.2));
           const size = (4 + 6 * open) * scale;
 

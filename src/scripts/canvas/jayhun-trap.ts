@@ -1,5 +1,6 @@
 import { lerp, subT, easeInOut } from '../utils';
 import { drawCalloutBox } from './callout-box';
+import { drawSolarPanel } from './station-parts';
 import { WheatField } from './components/WheatField';
 
 const wheatField = new WheatField();
@@ -127,23 +128,26 @@ export function drawJayhunTrap(
 
   ctx.fillStyle = '#4a5a4a'; ctx.fillRect(trapX - 3, trapY, 6, h * 0.25); // Pole
 
-  // Trap body - Lighter green/metallic
+  // Trap body - Lighter green/metallic (rectangular bottom)
   ctx.beginPath();
   ctx.moveTo(trapX - 50, trapY - 20); ctx.lineTo(trapX + 50, trapY - 20);
-  ctx.lineTo(trapX + 30, trapY + 30); ctx.lineTo(trapX - 30, trapY + 30);
+  ctx.lineTo(trapX + 48, trapY + 30); ctx.lineTo(trapX - 48, trapY + 30);
   ctx.closePath();
   ctx.fillStyle = '#e8f5e9'; // Very light green
   ctx.fill();
   ctx.strokeStyle = '#2e7d32'; // Dark green outline
   ctx.lineWidth = 1; ctx.stroke();
 
-  // Entry hole
+  // Entry hole (triangular)
   ctx.save();
   ctx.beginPath();
-  ctx.ellipse(trapX, trapY + 5, 12, 18, 0, 0, Math.PI * 2);
+  ctx.moveTo(trapX, trapY - 10);        // top vertex
+  ctx.lineTo(trapX - 14, trapY + 18);   // bottom-left
+  ctx.lineTo(trapX + 14, trapY + 18);   // bottom-right
+  ctx.closePath();
   ctx.fillStyle = '#d7ccc8'; // Light greyish-brown/beige hole
   ctx.fill();
-  ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 1; ctx.stroke();
   ctx.restore();
 
   // Roof
@@ -153,6 +157,13 @@ export function drawJayhunTrap(
   ctx.fillStyle = '#c8e6c9'; // Light green roof
   ctx.fill();
   ctx.strokeStyle = '#2e7d32'; ctx.stroke();
+
+  // Solar panel attached to the middle of the mast
+  ctx.save();
+  ctx.translate(trapX, trapY + 40);
+  ctx.scale(0.85, 0.85);
+  drawSolarPanel(ctx);
+  ctx.restore();
 
   // Glow (Yellow attractant)
   const glowR = 40 + Math.sin(now * 2) * 8;
