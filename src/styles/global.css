@@ -171,25 +171,6 @@ ul { list-style: none; }
     transition: width 0.05s linear;
 }
 
-.story-caption {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    max-width: 500px;
-    padding: 10px 24px;
-    background: var(--bg-glass);
-    backdrop-filter: blur(10px);
-    border-radius: 100px;
-    border: 1px solid rgba(0,0,0,0.06);
-    transition: opacity 0.4s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 
 /* --- STORY FACTS (grid layout on left) --- */
 .story-facts {
@@ -379,7 +360,6 @@ ul { list-style: none; }
     .footer-content { flex-direction: column; text-align: center; }
     .problems-grid { grid-template-columns: 1fr 1fr; }
     .story-overlay { padding: 90px 20px 50px; }
-    .story-caption { font-size: 0.8rem; max-width: 90vw; white-space: normal; }
 }
 
 @media (max-width: 480px) {

@@ -216,10 +216,3 @@ export function drawGozanlink(
     ], subT(t, 0.4, 0.6), 'left', 3);
   }
 }
-
-export const GOZAN_CAPTIONS = [
-  'Inside the smart greenhouse…',
-  'Temperature and humidity optimized',
-  'Tomatoes ripening under ideal conditions',
-  'Precision climate control in action',
-];

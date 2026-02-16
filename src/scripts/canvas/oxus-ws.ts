@@ -215,11 +215,3 @@ export function drawOxusWS(
     ], subT(t, 0.35, 0.55), 'right');
   }
 }
-
-export const OXUS_CAPTIONS = [
-  'Monitoring vast cotton fields…',
-  'Smart sensors track microclimate data',
-  'Cotton buds opening in optimal conditions',
-  'Real-time wind and weather analysis',
-  'Ensuring healthy crop cycles with precision data',
-];

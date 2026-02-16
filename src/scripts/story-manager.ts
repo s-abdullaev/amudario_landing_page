@@ -1,8 +1,8 @@
 import { clamp } from './utils';
-import { drawOxusWS, OXUS_CAPTIONS } from './canvas/oxus-ws';
-import { drawJayhunTrap, JAYHUN_CAPTIONS } from './canvas/jayhun-trap';
-import { drawAirsense, AIRSENSE_CAPTIONS } from './canvas/airsense';
-import { drawGozanlink, GOZAN_CAPTIONS } from './canvas/gozanlink';
+import { drawOxusWS } from './canvas/oxus-ws';
+import { drawJayhunTrap } from './canvas/jayhun-trap';
+import { drawAirsense } from './canvas/airsense';
+import { drawGozanlink } from './canvas/gozanlink';
 
 export type StoryId = 'explode' | 'jayhun' | 'airsense' | 'gozan';
 
@@ -10,11 +10,9 @@ interface StoryState {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   section: HTMLElement;
-  caption: HTMLElement | null;
   progressBar: HTMLElement | null;
   factsContainer: HTMLElement | null;
   draw: (ctx: CanvasRenderingContext2D, w: number, h: number, t: number) => void;
-  captions: string[];
 }
 
 const STORY_IDS: StoryId[] = ['explode', 'jayhun', 'airsense', 'gozan'];
@@ -24,13 +22,6 @@ const DRAW_MAP: Record<StoryId, (ctx: CanvasRenderingContext2D, w: number, h: nu
   jayhun: drawJayhunTrap,
   airsense: drawAirsense,
   gozan: drawGozanlink,
-};
-
-const CAPTIONS_MAP: Record<StoryId, string[]> = {
-  explode: OXUS_CAPTIONS,
-  jayhun: JAYHUN_CAPTIONS,
-  airsense: AIRSENSE_CAPTIONS,
-  gozan: GOZAN_CAPTIONS,
 };
 
 const stories = new Map<StoryId, StoryState>();
@@ -57,14 +48,6 @@ function revealFacts(state: StoryState, t: number): void {
   });
 }
 
-function updateCaption(state: StoryState, t: number): void {
-  if (!state.caption) return;
-  const msgs = state.captions;
-  const idx = Math.min(Math.floor(t * msgs.length), msgs.length - 1);
-  const text = msgs[idx];
-  if (state.caption.textContent !== text) state.caption.textContent = text;
-}
-
 function updateProgress(state: StoryState, t: number): void {
   if (state.progressBar) state.progressBar.style.width = `${t * 100}%`;
 }
@@ -76,14 +59,12 @@ export function initStories(): void {
     if (!canvas) continue;
     const ctx = canvas.getContext('2d')!;
     const section = canvas.closest('.story-section') as HTMLElement;
-    const caption = section.querySelector('.story-caption') as HTMLElement | null;
     const progressBar = section.querySelector('.story-progress-fill') as HTMLElement | null;
     const factsContainer = section.querySelector('.story-facts') as HTMLElement | null;
 
     stories.set(id, {
-      canvas, ctx, section, caption, progressBar, factsContainer,
+      canvas, ctx, section, progressBar, factsContainer,
       draw: DRAW_MAP[id],
-      captions: CAPTIONS_MAP[id],
     });
   }
 }
@@ -97,7 +78,6 @@ export function updateStoriesOnScroll(): void {
     const t = getStoryT(state.section);
     updateProgress(state, t);
     revealFacts(state, t);
-    updateCaption(state, t);
     state.draw(state.ctx, state.canvas.width, state.canvas.height, t);
   });
 }
@@ -110,7 +90,6 @@ export function animateStories(): void {
     resizeCanvas(state.canvas);
     const t = getStoryT(state.section);
     revealFacts(state, t);
-    updateCaption(state, t);
     state.draw(state.ctx, state.canvas.width, state.canvas.height, t);
   });
 }

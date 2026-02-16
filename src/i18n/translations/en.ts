@@ -83,7 +83,6 @@ export default {
         '🦠 Predicts 10+ diseases & 20+ pest outbreak timings',
         '📊 Weekly agro-forecasts on dashboard',
       ],
-      caption: 'Helping cotton bolls ripen with precision data…',
     },
     jayhunStory: {
       tag: '02 — Pheromone Trap',
@@ -95,7 +94,6 @@ export default {
         '☀️ Fully autonomous — solar-powered with GSM communication',
         '📊 Monitor 20+ pest outbreak risks',
       ],
-      caption: 'Smart pheromone trap capturing moths…',
     },
     airsenseStory: {
       tag: '03 — Air Quality',
@@ -107,7 +105,6 @@ export default {
         '📡 GPS positioning with GSM/GPRS data transmission',
         '📊 Online dashboard for air quality',
       ],
-      caption: 'Analyzing urban air quality…',
     },
     gozanStory: {
       tag: '04 — Greenhouse',
@@ -119,7 +116,6 @@ export default {
         '⚡ Power outage detection & pump control sensor',
         '📱 Emergency alerts via phone call & SMS',
       ],
-      caption: 'Monitoring greenhouse climate…',
     },
     howItWorks: {
       title: 'From <span class="gradient-text">field</span> to <span class="gradient-text">forecast</span>',

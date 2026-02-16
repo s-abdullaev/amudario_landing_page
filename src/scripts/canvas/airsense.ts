@@ -158,11 +158,3 @@ export function drawAirsense(
     ], subT(t, 0.5, 0.7), 'left', 3);
   }
 }
-
-export const AIRSENSE_CAPTIONS = [
-  'Plants emit gases into urban air…',
-  'Sensors detect volatile compounds',
-  'Monitoring PM2.5 and CO₂ levels',
-  'Alerting users to air quality changes',
-  'High precision atmospheric data collection',
-];

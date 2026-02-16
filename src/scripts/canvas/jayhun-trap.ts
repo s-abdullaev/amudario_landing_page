@@ -260,11 +260,3 @@ export function drawJayhunTrap(
     ], subT(t, 0.45, 0.65), 'left');
   }
 }
-
-export const JAYHUN_CAPTIONS = [
-  'Wheat ripening under the night sky…',
-  'Moths lured by pheromones…',
-  'Pests captured on sticky plate',
-  'AI identifies species instantly',
-  'Automated counting for precision data',
-];
