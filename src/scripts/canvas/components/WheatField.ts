@@ -8,17 +8,22 @@ export class WheatField {
   public draw(ctx: CanvasRenderingContext2D, t: number, now: number, w: number, h: number): void {
     const horizon = h * 0.6;
     const growth = subT(t, 0.05, 0.6);
-    const wheatRows = 16;
+    // Density adapts to screen width — mobile gets fewer stalks per row
+    const isMobile = w <= 480;
+    const isTablet = w > 480 && w <= 768;
+    const wheatRows = isMobile ? 10 : isTablet ? 13 : 16;
+    const deviceSeed = Math.floor(w / 100);          // different seed per device tier
 
     for (let r = 0; r < wheatRows; r++) {
       const prog = r / wheatRows;
       const y = horizon + Math.pow(prog, 1.5) * (h - horizon);
       const rowW = w * (0.85 + 1.6 * prog);
-      const count = 28 + r * 6;
+      const baseCount = isMobile ? (10 + r * 2) : isTablet ? (18 + r * 4) : (28 + r * 6);
+      const count = baseCount;
       const spacing = rowW / count;
       for (let p = 0; p < count; p++) {
         const px = w / 2 - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;
-        const seed = r * 13 + p * 7;
+        const seed = r * 13 + p * 7 + deviceSeed * 11;
         const maxH = 20 + 55 * prog;
         const currentH = maxH * (0.2 + 0.8 * growth);
         const sway = Math.sin(now * 0.8 + seed) * 4 * prog;

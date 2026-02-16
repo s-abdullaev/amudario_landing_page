@@ -18,8 +18,13 @@ export class CottonField {
     ctx.fillStyle = grd;
     ctx.fillRect(0, horizon, w, h - horizon);
 
-    // Cotton rows — dense planting
-    const rows = 16;
+    // Cotton rows — density adapts to screen width
+    // Mobile: fewer rows & plants; tablet: moderate; desktop: full density
+    const isMobile = w <= 480;
+    const isTablet = w > 480 && w <= 768;
+    const rows = isMobile ? 10 : isTablet ? 13 : 16;
+    const deviceSeed = Math.floor(w / 100);          // different seed per device tier
+
     for (let r = 0; r < rows; r++) {
       const prog = r / rows;
       const y = horizon + Math.pow(prog, 1.4) * (h - horizon);
@@ -27,7 +32,8 @@ export class CottonField {
       const alpha = 0.4 + 0.6 * prog;
       const rowW = w * (0.6 + 2 * prog);
       const rowX = w / 2;
-      const count = 14 + r * 3;
+      const baseCount = isMobile ? (6 + r * 1) : isTablet ? (10 + r * 2) : (14 + r * 3);
+      const count = baseCount;
       const spacing = rowW / count;
 
       // Dirt row line
@@ -40,7 +46,7 @@ export class CottonField {
 
       for (let p = 0; p < count; p++) {
         const px = rowX - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;
-        const seed = r * 99 + p * 13;
+        const seed = r * 99 + p * 13 + deviceSeed * 7;
         const wind = Math.sin(now + seed) * 3 * scale * growT;
         const maxStemH = 32 * scale;
         const stemH = maxStemH * (0.08 + 0.92 * growT);
