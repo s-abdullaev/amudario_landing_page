@@ -40,36 +40,136 @@ export function drawOxusWS(
   // Pole (Shared)
   drawStationMast(ctx);
 
-  // Cross-arm + Anemometer
+  // ── Stevenson Screen on RIGHT arm ──
+  ctx.save(); ctx.translate(0, -112);
+  // Horizontal arm from mast
+  ctx.beginPath();
+  ctx.moveTo(6, 0); ctx.lineTo(50, 0);
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 2; ctx.stroke();
+  // Short vertical hanger
+  ctx.beginPath(); ctx.moveTo(50, 0); ctx.lineTo(50, 6);
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 1.5; ctx.stroke();
+  // Screen body
+  ctx.save(); ctx.translate(50, 6);
+  const sw = 36;
+  // Dome cap
+  ctx.beginPath();
+  ctx.ellipse(0, 0, sw / 2 + 3, 6, 0, Math.PI, 0);
+  ctx.closePath();
+  ctx.fillStyle = '#E0E0E0'; ctx.fill();
+  ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 1; ctx.stroke();
+  // Louver plates
+  const lCount = 5;
+  const lH = 3;
+  const lGap = 5;
+  for (let i = 0; i < lCount; i++) {
+    const ly = 6 + i * (lH + lGap);
+    if (i > 0) {
+      ctx.fillStyle = 'rgba(40,40,40,0.12)';
+      ctx.fillRect(-sw / 2 + 2, ly - lGap, sw - 4, lGap);
+    }
+    ctx.beginPath();
+    ctx.roundRect(-sw / 2 - 3, ly, sw + 6, lH, 1);
+    ctx.fillStyle = '#E8E8E8'; ctx.fill();
+    ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 0.5; ctx.stroke();
+  }
+  // Side supports
+  const sTop = 6;
+  const sBot = 6 + (lCount - 1) * (lH + lGap) + lH;
+  ctx.beginPath();
+  ctx.moveTo(-sw / 2, sTop); ctx.lineTo(-sw / 2, sBot);
+  ctx.moveTo(sw / 2, sTop); ctx.lineTo(sw / 2, sBot);
+  ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 1; ctx.stroke();
+  // Bottom cap
+  ctx.beginPath();
+  ctx.ellipse(0, sBot + 3, sw / 2 + 1, 4, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#D0D0D0'; ctx.fill();
+  ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 0.5; ctx.stroke();
+  ctx.restore(); // screen body
+  ctx.restore(); // arm
+
+  // ── Rain Gauge on LEFT arm ──
+  ctx.save(); ctx.translate(0, -90);
+  // Horizontal arm from mast
+  ctx.beginPath();
+  ctx.moveTo(-6, 0); ctx.lineTo(-42, 0);
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 2; ctx.stroke();
+  // Gauge mounted at arm end
+  ctx.save(); ctx.translate(-42, 0);
+  // Funnel opening (wide rim at top)
+  const rfw = 24;
+  ctx.beginPath();
+  ctx.rect(-rfw / 2 - 2, -20, rfw + 4, 3);
+  ctx.fillStyle = '#D0D0D0'; ctx.fill();
+  ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 1; ctx.stroke();
+  // Funnel taper
+  ctx.beginPath();
+  ctx.moveTo(-rfw / 2, -17);
+  ctx.lineTo(rfw / 2, -17);
+  ctx.lineTo(8, -8);
+  ctx.lineTo(-8, -8);
+  ctx.closePath();
+  ctx.fillStyle = '#E0E0E0'; ctx.fill();
+  ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 0.5; ctx.stroke();
+  // Cylinder body
+  ctx.beginPath();
+  ctx.roundRect(-8, -8, 16, 24, 1);
+  ctx.fillStyle = '#E8E8E8'; ctx.fill();
+  ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 1; ctx.stroke();
+  // Water level indicator line
+  ctx.beginPath();
+  ctx.moveTo(-5, 8); ctx.lineTo(5, 8);
+  ctx.strokeStyle = '#4DA8FF'; ctx.lineWidth = 1.5; ctx.stroke();
+  // Bottom base
+  ctx.beginPath();
+  ctx.rect(-9, 16, 18, 3);
+  ctx.fillStyle = '#D0D0D0'; ctx.fill();
+  ctx.strokeStyle = '#A0A0A0'; ctx.lineWidth = 0.5; ctx.stroke();
+  ctx.restore(); // gauge body
+  ctx.restore(); // arm
+
+  // Cross-arm bar
   ctx.save(); ctx.translate(0, -140);
   ctx.fillStyle = '#A0A0A0';
-  ctx.beginPath(); ctx.roundRect(-60, -4, 120, 8, 2); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.roundRect(-65, -3, 130, 6, 2); ctx.fill(); ctx.stroke();
 
-  ctx.save(); ctx.translate(-55, -5);
-  ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -10); ctx.stroke();
+  // Wind vane (LEFT side — arrow with tail fin)
+  ctx.save(); ctx.translate(-55, -3);
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -18);
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.save(); ctx.translate(0, -18);
+  ctx.rotate(Math.sin(now * 0.7) * 0.4 + t * 2);
+  ctx.beginPath(); ctx.moveTo(-22, 0); ctx.lineTo(22, 0);
+  ctx.strokeStyle = '#555'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(22, 0); ctx.lineTo(15, -5);
+  ctx.moveTo(22, 0); ctx.lineTo(15, 5);
+  ctx.strokeStyle = '#555'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.beginPath();
+  ctx.rect(-22, -7, 10, 14);
+  ctx.fillStyle = '#555'; ctx.fill();
+  ctx.restore(); ctx.restore();
+
+  // Anemometer (RIGHT side — 3 spinning cups)
+  ctx.save(); ctx.translate(55, -3);
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -18);
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 2; ctx.stroke();
   const rot = t * 25 + now * 0.5;
-  ctx.save(); ctx.translate(0, -10); ctx.scale(1, 0.3);
+  ctx.save(); ctx.translate(0, -18);
+  ctx.beginPath(); ctx.arc(0, 0, 3, 0, Math.PI * 2);
+  ctx.fillStyle = '#1a1a1a'; ctx.fill();
+  ctx.save(); ctx.scale(1, 0.3);
   for (let a = 0; a < 3; a++) {
     const ang = rot + a * (Math.PI * 2 / 3);
-    const cx = Math.cos(ang) * 15;
-    const cy = Math.sin(ang) * 15;
+    const cx = Math.cos(ang) * 18;
+    const cy = Math.sin(ang) * 18;
     ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(cx, cy);
-    ctx.strokeStyle = '#808080'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+    ctx.strokeStyle = '#808080'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2);
     ctx.fillStyle = '#1a1a1a'; ctx.fill();
   }
-  ctx.restore(); ctx.restore();
+  ctx.restore(); ctx.restore(); ctx.restore();
 
-  // Wind vane
-  ctx.save(); ctx.translate(55, -5);
-  ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -10); ctx.stroke();
-  ctx.save(); ctx.translate(0, -10);
-  ctx.rotate(Math.sin(now) * 0.5 + t * 2);
-  ctx.beginPath();
-  ctx.moveTo(-15, 0); ctx.lineTo(15, 0); ctx.lineTo(10, -5);
-  ctx.moveTo(15, 0); ctx.lineTo(10, 5);
-  ctx.strokeStyle = '#00B4D8'; ctx.lineWidth = 2; ctx.stroke();
-  ctx.restore(); ctx.restore();
   ctx.restore(); // cross-arm
 
   // Solar panel (Shared)
@@ -84,6 +184,19 @@ export function drawOxusWS(
   ctx.fillStyle = '#00E5A0';
   ctx.globalAlpha = 0.5 + Math.sin(now * 3) * 0.5; ctx.fill();
   ctx.globalAlpha = 1;
+  ctx.restore();
+
+  // Base stand
+  ctx.save(); ctx.translate(0, 195);
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 28, 6, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#C0C0C0'; ctx.fill();
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(-18, 4); ctx.lineTo(-24, 10); ctx.lineTo(-12, 10); ctx.closePath();
+  ctx.moveTo(18, 4); ctx.lineTo(12, 10); ctx.lineTo(24, 10); ctx.closePath();
+  ctx.fillStyle = '#B0B0B0'; ctx.fill();
+  ctx.strokeStyle = '#808080'; ctx.lineWidth = 0.5; ctx.stroke();
   ctx.restore();
 
   ctx.restore(); // station
