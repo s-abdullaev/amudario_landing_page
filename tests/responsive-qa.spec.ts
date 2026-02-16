@@ -150,6 +150,121 @@ test.describe('Product Page - Layout QA', () => {
   });
 });
 
+test.describe('Navbar hamburger collapse', () => {
+  test('desktop: nav links visible, hamburger hidden', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'desktop', 'desktop-only test');
+    await page.goto(HOMEPAGE, { waitUntil: 'load' });
+
+    const navLinks = page.locator('.nav-links');
+    const navToggle = page.locator('.nav-toggle');
+
+    await expect(navLinks).toBeVisible();
+    // Hamburger should be hidden (display: none) on desktop
+    await expect(navToggle).toBeHidden();
+
+    // Nav links should be laid out horizontally
+    const linksBox = await navLinks.boundingBox();
+    expect(linksBox).not.toBeNull();
+    expect(linksBox!.width).toBeGreaterThan(300);
+  });
+
+  test('tablet: nav links visible, hamburger hidden (breakpoint > 768px)', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'tablet', 'tablet-only test');
+    await page.goto(HOMEPAGE, { waitUntil: 'load' });
+
+    const navLinks = page.locator('.nav-links');
+    const navToggle = page.locator('.nav-toggle');
+
+    // Tablet is 1024px, above the 768px breakpoint — links visible, hamburger hidden
+    await expect(navLinks).toBeVisible();
+    await expect(navToggle).toBeHidden();
+  });
+
+  test('mobile: hamburger visible, nav links hidden until toggled', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile', 'mobile-only test');
+    await page.goto(HOMEPAGE, { waitUntil: 'load' });
+
+    const navLinks = page.locator('.nav-links');
+    const navToggle = page.locator('.nav-toggle');
+
+    // Hamburger should be visible on mobile
+    await expect(navToggle).toBeVisible();
+
+    // Nav links panel should be off-screen (right: -100%)
+    const linksBox = await navLinks.boundingBox();
+    expect(linksBox).not.toBeNull();
+    expect(linksBox!.x).toBeGreaterThanOrEqual(390); // pushed off viewport
+
+    // Click hamburger to open
+    await navToggle.click();
+    await page.waitForTimeout(500); // wait for slide animation
+
+    // Nav links should now be visible and on-screen
+    await expect(navLinks).toHaveClass(/open/);
+    const openBox = await navLinks.boundingBox();
+    expect(openBox).not.toBeNull();
+    expect(openBox!.x).toBeLessThan(390);
+    expect(openBox!.width).toBeGreaterThan(200);
+
+    // Hamburger should show X pattern (active class)
+    await expect(navToggle).toHaveClass(/active/);
+
+    // Click hamburger again to close
+    await navToggle.click();
+    await page.waitForTimeout(500);
+
+    await expect(navLinks).not.toHaveClass(/open/);
+  });
+});
+
+test.describe('Logo aspect ratio', () => {
+  test('navbar logo preserves aspect ratio on homepage', async ({ page }) => {
+    await page.goto(HOMEPAGE, { waitUntil: 'load' });
+
+    const logoImg = page.locator('.nav-logo img');
+    await expect(logoImg).toBeVisible();
+
+    const ratio = await logoImg.evaluate((img: HTMLImageElement) => {
+      const natural = img.naturalWidth / img.naturalHeight;
+      const rendered = img.getBoundingClientRect().width / img.getBoundingClientRect().height;
+      return { natural: Math.round(natural * 100) / 100, rendered: Math.round(rendered * 100) / 100 };
+    });
+
+    expect(ratio.rendered).toBeCloseTo(ratio.natural, 1);
+  });
+
+  test('navbar logo preserves aspect ratio on product page', async ({ page }) => {
+    await page.goto(PRODUCT_PAGE, { waitUntil: 'load' });
+
+    const logoImg = page.locator('.nav-logo img');
+    await expect(logoImg).toBeVisible();
+
+    const ratio = await logoImg.evaluate((img: HTMLImageElement) => {
+      const natural = img.naturalWidth / img.naturalHeight;
+      const rendered = img.getBoundingClientRect().width / img.getBoundingClientRect().height;
+      return { natural: Math.round(natural * 100) / 100, rendered: Math.round(rendered * 100) / 100 };
+    });
+
+    expect(ratio.rendered).toBeCloseTo(ratio.natural, 1);
+  });
+
+  test('footer logo preserves aspect ratio', async ({ page }) => {
+    await page.goto(HOMEPAGE, { waitUntil: 'load' });
+    await page.locator('.footer').scrollIntoViewIfNeeded();
+
+    const logoImg = page.locator('.footer-brand img');
+    await expect(logoImg).toBeVisible();
+
+    const ratio = await logoImg.evaluate((img: HTMLImageElement) => {
+      const natural = img.naturalWidth / img.naturalHeight;
+      const rendered = img.getBoundingClientRect().width / img.getBoundingClientRect().height;
+      return { natural: Math.round(natural * 100) / 100, rendered: Math.round(rendered * 100) / 100 };
+    });
+
+    expect(ratio.rendered).toBeCloseTo(ratio.natural, 1);
+  });
+});
+
 test.describe('Cross-viewport layout sanity', () => {
   test('no elements with zero dimensions when visible', async ({ page }) => {
     await page.goto(HOMEPAGE, { waitUntil: 'load' });

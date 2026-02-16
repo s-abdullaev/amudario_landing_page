@@ -615,6 +615,12 @@
     font-size: 1.1rem;
     letter-spacing: 0.08em;
     color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.product-nav .nav-logo img {
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .product-nav.at-top .nav-logo {
