@@ -31,8 +31,8 @@ export function drawOxusWS(
 
   // Weather Station
   const sc = Math.min(w, h) / 600;
-  const sx = w * 0.75;
-  const sy = h * 0.48;
+  const sx = w * 0.81;
+  const sy = h * 0.50;
   ctx.save();
   ctx.translate(sx, sy);
   ctx.scale(sc, sc);
@@ -186,17 +186,13 @@ export function drawOxusWS(
   ctx.globalAlpha = 1;
   ctx.restore();
 
-  // Base stand
+  // Ground-mounted pole base
   ctx.save(); ctx.translate(0, 195);
+  // Small mounting flange where pole meets ground
   ctx.beginPath();
-  ctx.ellipse(0, 0, 28, 6, 0, 0, Math.PI * 2);
-  ctx.fillStyle = '#C0C0C0'; ctx.fill();
-  ctx.strokeStyle = '#808080'; ctx.lineWidth = 1; ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(-18, 4); ctx.lineTo(-24, 10); ctx.lineTo(-12, 10); ctx.closePath();
-  ctx.moveTo(18, 4); ctx.lineTo(12, 10); ctx.lineTo(24, 10); ctx.closePath();
-  ctx.fillStyle = '#B0B0B0'; ctx.fill();
-  ctx.strokeStyle = '#808080'; ctx.lineWidth = 0.5; ctx.stroke();
+  ctx.roundRect(-10, -4, 20, 8, 2);
+  ctx.fillStyle = '#A0A0A0'; ctx.fill();
+  ctx.strokeStyle = '#707070'; ctx.lineWidth = 1; ctx.stroke();
   ctx.restore();
 
   ctx.restore(); // station
