@@ -5,7 +5,7 @@
 [[redirects]]
   from = "/"
   to = "/uz/"
-  status = 302
+  status = 301
 
 [[headers]]
   for = "/assets/*"
