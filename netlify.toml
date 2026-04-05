@@ -6,6 +6,7 @@
   from = "/"
   to = "/uz/"
   status = 301
+  force = true
 
 [[headers]]
   for = "/assets/*"
