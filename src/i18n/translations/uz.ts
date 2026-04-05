@@ -41,6 +41,7 @@ export default {
     meta: {
       title: 'Amudar.io — Фермерлар учун ақлли ечимлар',
       description: 'Amudar.io Ўзбекистонда аниқ деҳқончилик учун ақлли агрометеорологик станциялар, феромон тузоқлар, ҳаво сифати мониторинги ва иссиқхона бошқарув тизимларини тақдим этади.',
+      keywords: 'ob-havo stansiyasi, meteostansiya, agrometeostansiya, ob-havo prognozi, aqlli dehqonchilik, SI ferma, SI dehqonchilik, SI qishloq xo\'jaligi, sun\'iy intellekt qishloq xo\'jaligi, zararkunandalarni boshqarish, hasharotlar, o\'simlik kasalliklari, sug\'orish, issiqxona, iqlim monitoringi, atrof-muhit monitoringi, havo sifati, issiqxona boshqaruvi, aniq dehqonchilik, karantin, pestitsidlar, barqaror qishloq xo\'jaligi, yashil iqtisodiyot, iqlim o\'zgarishi, iqlimga chidamlilik, O\'zbekiston',
     },
     hero: {
       badge: 'Аниқ деҳқончилик технологияси',
@@ -176,6 +177,7 @@ export default {
     meta: {
       title: 'OXUS WS — Ақлли агрометеостанция | Amudar.io',
       description: 'OXUS WS — аниқ об-ҳаво мониторинги учун 30+ сенсор параметрли, қуёш энергияси билан ишлайдиган, 4G/LoRa орқали реал вақтда маълумот узатувчи ақлли агрометеостанция.',
+      keywords: 'ob-havo stansiyasi, meteostansiya, agrometeostansiya, ob-havo prognozi, aqlli dehqonchilik, SI dehqonchilik, aniq dehqonchilik, iqlim monitoringi, iqlimga chidamlilik, tuproq namligi sensori, sug\'orish boshqaruvi, o\'simlik kasalliklari, O\'zbekiston',
     },
     hero: {
       tag: '01 — Агрометеостанция',
@@ -240,6 +242,7 @@ export default {
     meta: {
       title: 'JAYHUN TRAP — Сунъий интеллектли феромон тузоқ | Amudar.io',
       description: 'JAYHUN TRAP — автоматик зараркунандаларни аниқлаш, турларни таснифлаш ва 95%+ аниқлик билан ҳисоблаш учун сунъий интеллект билан бошқариладиган феромон тузоқ.',
+      keywords: 'SI dehqonchilik, SI ferma, zararkunandalarni boshqarish, feromon tuzoq, hasharotlar, karantin, pestitsidlar, o\'simlik kasalliklari, barqaror qishloq xo\'jaligi, yashil iqtisodiyot, aniq dehqonchilik, O\'zbekiston',
     },
     hero: {
       tag: '02 — Феромон тузоқ',
@@ -316,6 +319,7 @@ export default {
     meta: {
       title: 'OXUS AIRSENSE — Ҳаво сифати монитори | Amudar.io',
       description: 'OXUS AIRSENSE — шаҳар ва қишлоқ хўжалиги муҳитлари учун PM2.5, PM10, CO2, SO2 ва VOC сенсорли ақлли ҳаво сифати мониторинг станцияси.',
+      keywords: 'havo sifati monitoringi, atrof-muhit monitoringi, PM2.5, PM10, CO2 sensori, havo ifloslanishi, iqlim monitoringi, iqlim o\'zgarishi, yashil iqtisodiyot, barqaror qishloq xo\'jaligi, O\'zbekiston',
     },
     hero: {
       tag: '03 — Ҳаво сифати',
@@ -380,6 +384,7 @@ export default {
     meta: {
       title: 'GOZANLINK — Ақлли иссиқхона бошқаруви | Amudar.io',
       description: 'GOZANLINK — ҳарорат, намлик, CO2, ёруғлик ва тупроқни кузатувчи, автоматик шамоллатиш ва суғориш бошқаруви билан IoT иссиқхона бошқарув тизими.',
+      keywords: 'issiqxona boshqaruvi, aqlli issiqxona, issiqxona avtomatizatsiyasi, sug\'orish, iqlim monitoringi, aniq dehqonchilik, SI dehqonchilik, barqaror qishloq xo\'jaligi, iqlim o\'zgarishi, iqlimga chidamlilik, O\'zbekiston',
     },
     hero: {
       tag: '04 — Иссиқхона',

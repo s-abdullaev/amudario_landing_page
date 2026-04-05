@@ -2,21 +2,85 @@
 interface Props {
   title: string;
   description: string;
+  lang?: string;
+  keywords?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, lang = 'en', keywords } = Astro.props;
+
+const baseUrl = 'https://amudar.io';
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(en|uz|ru)/, '') || '/';
+const canonicalUrl = Astro.url.href;
+const enUrl = `${baseUrl}/en${pathWithoutLang}`;
+const uzUrl = `${baseUrl}/uz${pathWithoutLang}`;
+const ruUrl = `${baseUrl}/ru${pathWithoutLang}`;
+const ogImage = `${baseUrl}/favicon_io/android-chrome-512x512.png`;
+const ogLocale = lang === 'ru' ? 'ru_RU' : lang === 'uz' ? 'uz_UZ' : 'en_US';
+
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Amudar.io',
+  alternateName: 'Amudario Research LLC',
+  url: baseUrl,
+  logo: `${baseUrl}/favicon_io/android-chrome-512x512.png`,
+  description: 'Smart agrometeorological stations, AI pheromone traps, air quality monitors, and IoT greenhouse management systems for precision agriculture.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+998-90-927-11-77',
+    contactType: 'customer service',
+    email: 'info@amudar.io',
+  },
+  sameAs: ['https://t.me/amudar_io'],
+  areaServed: ['UZ', 'KZ', 'TJ', 'KG', 'TM'],
+});
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <meta name="description" content={description}>
+    {keywords && <meta name="keywords" content={keywords}>}
+    <link rel="canonical" href={canonicalUrl}>
+
+    <!-- Hreflang for multilingual SEO -->
+    <link rel="alternate" hreflang="en" href={enUrl}>
+    <link rel="alternate" hreflang="uz" href={uzUrl}>
+    <link rel="alternate" hreflang="ru" href={ruUrl}>
+    <link rel="alternate" hreflang="x-default" href={uzUrl}>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonicalUrl}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:site_name" content="Amudar.io">
+    <meta property="og:locale" content={ogLocale}>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={ogImage}>
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json" set:html={orgSchema} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWZLDE14ZP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DWZLDE14ZP');
+    </script>
 </head>
 <body>
     <slot />

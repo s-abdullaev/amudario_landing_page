@@ -41,6 +41,7 @@ export default {
     meta: {
       title: 'Amudar.io — Smart Solutions for Smart Agriculture',
       description: 'Amudar.io provides smart agrometeorological stations, pheromone traps, air quality monitoring devices, and greenhouse management systems for precision agriculture in Uzbekistan.',
+      keywords: 'weather station, agrometeostation, agrometeorological station, smart farming, AI in agriculture, integrated pest management, pest monitoring, insects, plant diseases, irrigation, greenhouse, climate monitoring, environment monitoring, air quality, greenhouse management, precision farming, quarantine pests, pesticides, sustainable agriculture, green economy, climate change, climate resilience, IoT agriculture, smart agriculture, Uzbekistan, Central Asia',
     },
     hero: {
       badge: 'Precision Agriculture Technology',
@@ -176,6 +177,7 @@ export default {
     meta: {
       title: 'OXUS WS — Smart Agrometeostation | Amudar.io',
       description: 'OXUS WS is a smart agrometeostation with 30+ sensor parameters for precision weather monitoring, solar-powered, with real-time data via 4G/LoRa.',
+      keywords: 'weather station, agrometeostation, agrometeorological station, smart farming, precision farming, climate monitoring, climate resilience, IoT weather station, soil moisture sensor, irrigation management, plant disease prediction, crop monitoring, Uzbekistan',
     },
     hero: {
       tag: '01 — Agrometeostation',
@@ -240,6 +242,7 @@ export default {
     meta: {
       title: 'JAYHUN TRAP — AI Pheromone Trap | Amudar.io',
       description: 'JAYHUN TRAP is an AI-powered pheromone trap for automated pest detection, species classification, and counting with 95%+ accuracy.',
+      keywords: 'AI pest detection, pheromone trap, integrated pest management, pest monitoring, insects, quarantine pests, pesticides reduction, sustainable agriculture, green economy, codling moth, fruit fly, precision farming, plant diseases',
     },
     hero: {
       tag: '02 — Pheromone Trap',
@@ -316,6 +319,7 @@ export default {
     meta: {
       title: 'OXUS AIRSENSE — Air Quality Monitor | Amudar.io',
       description: 'OXUS AIRSENSE is a smart air quality monitoring station with PM2.5, PM10, CO2, SO2, and VOC sensors for urban and agricultural environments.',
+      keywords: 'air quality monitoring, environment monitoring, PM2.5, PM10, CO2 sensor, air pollution, climate monitoring, climate change, green economy, sustainable agriculture, smart farming, Uzbekistan',
     },
     hero: {
       tag: '03 — Air Quality',
@@ -380,6 +384,7 @@ export default {
     meta: {
       title: 'GOZANLINK — Smart Greenhouse Management | Amudar.io',
       description: 'GOZANLINK is an IoT greenhouse management system tracking temperature, humidity, CO2, light, and soil — with automated ventilation and irrigation control.',
+      keywords: 'greenhouse management, smart greenhouse, greenhouse automation, irrigation, climate monitoring, greenhouse climate control, precision farming, sustainable agriculture, IoT greenhouse, climate resilience, climate change',
     },
     hero: {
       tag: '04 — Greenhouse',

@@ -11,6 +11,7 @@
     "test:ui": "playwright test --ui"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "astro": "^5.4.1",
     "three": "^0.182.0"
   },

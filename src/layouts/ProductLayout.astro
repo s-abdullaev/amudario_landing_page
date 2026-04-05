@@ -8,12 +8,13 @@ interface Props {
   title: string;
   description: string;
   lang: Locale;
+  keywords?: string;
 }
 
-const { title, description, lang } = Astro.props;
+const { title, description, lang, keywords } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} lang={lang}>
+<BaseLayout title={title} description={description} lang={lang} keywords={keywords}>
     <ProductNav lang={lang} />
     <slot />
     <Footer lang={lang} />
