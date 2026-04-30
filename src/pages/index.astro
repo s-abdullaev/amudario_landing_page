@@ -1,27 +1,12 @@
 ---
-// Browser language auto-redirect for local dev and non-Netlify environments.
+// Redirect to default locale
 ---
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting...</title>
-    <script>
-      const supported = ['uz', 'en', 'ru'];
-      const preferred = navigator.languages?.length ? navigator.languages : [navigator.language];
-      const normalized = preferred.map((locale) => locale.toLowerCase());
-      const matched =
-        normalized.find((locale) => locale.startsWith('uz')) ? 'uz' :
-        normalized.find((locale) => locale.startsWith('ru')) ? 'ru' :
-        normalized.find((locale) => locale.startsWith('en')) ? 'en' :
-        'uz';
-
-      if (supported.includes(matched)) {
-        window.location.replace(`/${matched}/${window.location.search}${window.location.hash}`);
-      } else {
-        window.location.replace(`/uz/${window.location.search}${window.location.hash}`);
-      }
-    </script>
+    <meta http-equiv="refresh" content="0;url=/uz/" />
+    <link rel="canonical" href="/uz/" />
   </head>
-  <body></body>
+  <body>
+    <script is:inline>window.location.replace('/uz/');</script>
+  </body>
 </html>
