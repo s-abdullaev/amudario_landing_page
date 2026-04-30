@@ -1,3 +1,27 @@
 ---
-// Redirect handled at HTTP level by netlify.toml
+// Browser language auto-redirect for local dev and non-Netlify environments.
 ---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting...</title>
+    <script>
+      const supported = ['uz', 'en', 'ru'];
+      const preferred = navigator.languages?.length ? navigator.languages : [navigator.language];
+      const normalized = preferred.map((locale) => locale.toLowerCase());
+      const matched =
+        normalized.find((locale) => locale.startsWith('uz')) ? 'uz' :
+        normalized.find((locale) => locale.startsWith('ru')) ? 'ru' :
+        normalized.find((locale) => locale.startsWith('en')) ? 'en' :
+        'uz';
+
+      if (supported.includes(matched)) {
+        window.location.replace(`/${matched}/${window.location.search}${window.location.hash}`);
+      } else {
+        window.location.replace(`/uz/${window.location.search}${window.location.hash}`);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

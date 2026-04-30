@@ -2,10 +2,10 @@ export default {
   /* ── Умумий / Муштарак ───────────────────────────────────── */
   nav: {
     products: 'Маҳсулотлар',
-    oxusWs: 'OXUS WS',
-    jayhunTrap: 'JAYHUN TRAP',
-    airsense: 'AIRSENSE',
-    gozanlink: 'GOZANLINK',
+    oxusWs: 'OxusWS',
+    jayhunTrap: 'JayhunTrap',
+    airsense: 'AirSense',
+    gozanlink: 'GozanLink',
     team: 'Жамоа',
     contact: 'Алоқа',
     allProducts: 'Барча маҳсулотлар',
@@ -58,25 +58,25 @@ export default {
       title: '<span class="gradient-text">Аниқ деҳқончилик</span> учун ақлли воситалар',
       subtitle: 'Қишлоқ хўжалиги мониторинги, зараркунандаларга қарши кураш ва атроф-муҳитни бошқаришда инқилоб қилувчи тўртта ўзаро боғланган ақлли тизим.',
       oxusWs: {
-        name: 'OXUS WS',
+        name: 'OxusWS',
         desc: 'Аниқ об-ҳаво мониторинги учун 30+ сенсор параметрли ақлли агрометеостанция.',
       },
       jayhunTrap: {
-        name: 'JAYHUN TRAP',
+        name: 'JayhunTrap',
         desc: 'Автоматик зараркунандаларни аниқлаш ва турларни ҳисоблаш учун сунъий интеллект билан бошқариладиган феромон тузоқлар.',
       },
       airsense: {
-        name: 'OXUS AIRSENSE',
+        name: 'Oxus AirSense',
         desc: 'PM2.5/PM10 сенсорлар ва ифлослантирувчи моддалар таҳлили билан ақлли ҳаво сифати мониторинги.',
       },
       gozanlink: {
-        name: 'GOZANLINK',
+        name: 'GozanLink',
         desc: 'Ҳарорат, намлик, CO₂ ва ёруғликни кузатувчи IoT иссиқхона бошқарув тизими.',
       },
     },
     oxusWsStory: {
       tag: '01 — Агрометеостанция',
-      title: 'OXUS <span class="gradient-text">WS</span>',
+      title: 'Oxus<span class="gradient-text">WS</span>',
       facts: [
         '🌡️ Ҳаво ҳарорати, намлик, ёғингарчилик, шамол тезлиги ва йўналишини ўлчайди',
         '🌱 Тупроқ намлиги, ҳарорати ва электр ўтказувчанлиги сенсорлари',
@@ -87,7 +87,7 @@ export default {
     },
     jayhunStory: {
       tag: '02 — Феромон тузоқ',
-      title: 'JAYHUN <span class="gradient-text">TRAP</span>',
+      title: 'Jayhun<span class="gradient-text">Trap</span>',
       facts: [
         '📸 Кенг бурчакли камералар узлуксиз расмларни булутга юклайди',
         '🤖 Сунъий интеллект билан автоматик зараркунандаларни аниқлаш ва турларни таснифлаш',
@@ -98,7 +98,7 @@ export default {
     },
     airsenseStory: {
       tag: '03 — Ҳаво сифати',
-      title: 'OXUS <span class="gradient-text">AIRSENSE</span>',
+      title: 'Oxus <span class="gradient-text">AirSense</span>',
       facts: [
         '💨 NO₂, CO, NH₃, SO₂, H₂S ва O₃ газларини ўлчайди',
         '🔬 PM1.0, PM2.5 ва PM10 чанг зарралари сенсорлари',
@@ -109,7 +109,7 @@ export default {
     },
     gozanStory: {
       tag: '04 — Иссиқхона',
-      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">Gozan</span><span class="gradient-text">Link</span>',
       facts: [
         '🌡️ Ички ва ташқи ҳарорат ва намликни кузатиш',
         '🌱 Тупроқ намлиги, ҳарорати ва электр ўтказувчанлиги',
@@ -132,19 +132,19 @@ export default {
       subtitle: 'Ўн йилларча халқаро тадқиқот тажрибасига эга университет профессорлари томонидан таъсис этилган.',
       members: [
         {
-          name: 'Жасурбек Хўжаев',
-          role: 'Ҳамтаъсисчи',
-          credentials: ['Inha University профессори', 'АКТ муҳандислиги бўйича PhD, Жанубий Корея', '5 давлатда 15+ йиллик илмий-тадқиқот иши'],
-        },
-        {
-          name: 'Азизбек Мараҳимов',
-          role: 'Ҳамтаъсисчи',
-          credentials: ['New Uzbekistan University профессори', 'Саноат бошқаруви бўйича PhD', '10+ йиллик халқаро лойиҳаларни бошқариш'],
+          name: 'Шуҳрат Кушбаков',
+          role: 'Бизнес ҳамтаъсисчи',
+          credentials: ['Жамоанинг бизнес акуласи — логистика ва бизнес ривожланишда 16 йиллик тажриба', '$22 миллионлик шартномаларни муваффақиятли ёпган', 'Нефть-газ соҳасида ишлаган, Digital Transformation бўйича MBA даражасига эга'],
         },
         {
           name: 'Сарвар Абдуллаев',
-          role: 'Ҳамтаъсисчи',
-          credentials: ['Inha University профессори', 'Компьютер фанлари бўйича PhD, King\'s College London', '5 давлатда 12+ йиллик илмий-тадқиқот иши'],
+          role: 'Техник ҳамтаъсисчи — маҳсулот дизайни ва операциялар',
+          credentials: ['Жамоанинг орзугўйи, катта ғояларни аниқ маҳсулотга айлантиради', 'Маҳсулот дизайни ва операцияларни ғоядан ишга туширишгача бошқаради', 'Жамоани тезлик ва аниқ йўналиш билан олға олиб боради'],
+        },
+        {
+          name: 'Жасурбек Хўжаев',
+          role: 'Техник ҳамтаъсисчи — аппарат дизайн ва ишлаб чиқариш',
+          credentials: ['Жамоанинг тинимсиз тадқиқотчиси ва темир-терсак устаси', 'Аппарат қисм дизайни ва ишлаб чиқариш жараёнига тўлиқ масъул', 'Ҳар бир қурилмани дала шароитига чидамли ва амалиётга тайёр қилади'],
         },
       ],
     },

@@ -4,8 +4,20 @@
 
 [[redirects]]
   from = "/"
+  to = "/ru/"
+  status = 302
+  conditions = {Language = ["ru"]}
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/"
   to = "/uz/"
-  status = 301
+  status = 302
 
 [[headers]]
   for = "/assets/*"

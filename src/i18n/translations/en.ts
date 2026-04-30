@@ -2,10 +2,10 @@ export default {
   /* ── Common / Shared ─────────────────────────────────────── */
   nav: {
     products: 'Products',
-    oxusWs: 'OXUS WS',
-    jayhunTrap: 'JAYHUN TRAP',
-    airsense: 'AIRSENSE',
-    gozanlink: 'GOZANLINK',
+    oxusWs: 'OxusWS',
+    jayhunTrap: 'JayhunTrap',
+    airsense: 'AirSense',
+    gozanlink: 'GozanLink',
     team: 'Team',
     contact: 'Contact',
     allProducts: 'All Products',
@@ -58,25 +58,25 @@ export default {
       title: 'Intelligent tools for <span class="gradient-text">precision farming</span>',
       subtitle: 'Four interconnected smart systems that revolutionize agricultural monitoring, pest control, and environmental management.',
       oxusWs: {
-        name: 'OXUS WS',
+        name: 'OxusWS',
         desc: 'Smart agrometeostation with 30+ sensor parameters for precision weather monitoring.',
       },
       jayhunTrap: {
-        name: 'JAYHUN TRAP',
+        name: 'JayhunTrap',
         desc: 'AI-powered pheromone traps for automated pest detection and species counting.',
       },
       airsense: {
-        name: 'OXUS AIRSENSE',
+        name: 'Oxus AirSense',
         desc: 'Smart air quality monitoring with PM2.5/PM10 sensors and pollutant analysis.',
       },
       gozanlink: {
-        name: 'GOZANLINK',
+        name: 'GozanLink',
         desc: 'IoT greenhouse management tracking temperature, humidity, CO₂, and light.',
       },
     },
     oxusWsStory: {
       tag: '01 — Agrometeostation',
-      title: 'OXUS <span class="gradient-text">WS</span>',
+      title: 'Oxus<span class="gradient-text">WS</span>',
       facts: [
         '🌡️ Monitors air temp, humidity, precipitation, wind speed & direction',
         '🌱 Soil moisture, temperature & electrical conductivity sensors',
@@ -87,7 +87,7 @@ export default {
     },
     jayhunStory: {
       tag: '02 — Pheromone Trap',
-      title: 'JAYHUN <span class="gradient-text">TRAP</span>',
+      title: 'Jayhun<span class="gradient-text">Trap</span>',
       facts: [
         '📸 Wide-angle cameras continuously upload images to cloud',
         '🤖 AI-powered automatic pest detection & species classification',
@@ -98,7 +98,7 @@ export default {
     },
     airsenseStory: {
       tag: '03 — Air Quality',
-      title: 'OXUS <span class="gradient-text">AIRSENSE</span>',
+      title: 'Oxus <span class="gradient-text">AirSense</span>',
       facts: [
         '💨 Measures NO₂, CO, NH₃, SO₂, H₂S & O₃ gases',
         '🔬 PM1.0, PM2.5 & PM10 particulate matter sensors',
@@ -109,7 +109,7 @@ export default {
     },
     gozanStory: {
       tag: '04 — Greenhouse',
-      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">Gozan</span><span class="gradient-text">Link</span>',
       facts: [
         '🌡️ Internal & external temperature and humidity tracking',
         '🌱 Soil moisture, temperature & electrical conductivity',
@@ -132,19 +132,19 @@ export default {
       subtitle: 'Founded by university professors with decades of international research experience.',
       members: [
         {
-          name: 'Jasurbek Khodjayev',
-          role: 'Co-Founder',
-          credentials: ['Inha University Professor', 'PhD in ICT Engineering, South Korea', '15+ years R&D across 5 countries'],
-        },
-        {
-          name: 'Azizbek Marakhimov',
-          role: 'Co-Founder',
-          credentials: ['New Uzbekistan University Professor', 'PhD in Industrial Management', '10+ years managing international projects'],
+          name: 'Shuhrat Kushbakov',
+          role: 'Business Co-Founder',
+          credentials: ['The business shark of the team - 16 years in logistics and business development', 'Closed contracts worth $22 million across high-stakes deals', 'Built his edge in the oil and gas industry, with an MBA in Digital Transformation'],
         },
         {
           name: 'Sarvar Abdullayev',
-          role: 'Co-Founder',
-          credentials: ['Inha University Professor', 'PhD in CS, King\'s College London', '12+ years R&D across 5 countries'],
+          role: 'Technical Co-Founder - Product Design & Operations',
+          credentials: ['The daydreamer who turns big ideas into product direction', 'Leads product design and day-to-day operations from concept to rollout', 'Keeps the team moving fast without losing the bigger picture'],
+        },
+        {
+          name: 'Jasurbek Khodjayev',
+          role: 'Technical Co-Founder - Hardware Design & Manufacturing',
+          credentials: ['The team tinkerer who loves solving real-world engineering puzzles', 'Owns hardware design and manufacturing from prototype to production', 'Makes sure every device is rugged, practical, and field-ready'],
         },
       ],
     },

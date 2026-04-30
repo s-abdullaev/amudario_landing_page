@@ -206,7 +206,7 @@ const t = useTranslations(lang);
             <div class="team-grid">
                 {t.home.team.members.map((member, i) => (
                     <div class="team-card reveal-up" style={`--delay:${i}`}>
-                        <div class="team-avatar"><img src={`/images/team/${['jasurbek-khodjaev', 'azizbek-marakhimov', 'sarvar-abdullaev'][i]}.jpg`} alt={member.name}></div>
+                        <div class="team-avatar"><img src={['/assets/img/members/Shukhrat_Kushbakov.jpg', '/assets/img/members/khodjaev-jasurbek-majidovich.jpg', '/assets/img/members/Jasurbek_Khodjaev_5.jpg'][i]} alt={member.name}></div>
                         <h3>{member.name}</h3>
                         <span class="team-role">{member.role}</span>
                         <ul class="team-credentials">
