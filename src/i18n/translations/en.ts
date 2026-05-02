@@ -66,7 +66,7 @@ export default {
         desc: 'AI-powered pheromone traps for automated pest detection and species counting.',
       },
       airsense: {
-        name: 'Oxus AirSense',
+        name: 'AirSense',
         desc: 'Smart air quality monitoring with PM2.5/PM10 sensors and pollutant analysis.',
       },
       gozanlink: {
@@ -98,7 +98,7 @@ export default {
     },
     airsenseStory: {
       tag: '03 — Air Quality',
-      title: 'Oxus <span class="gradient-text">AirSense</span>',
+      title: 'Air<span class="gradient-text">Sense</span>',
       facts: [
         '💨 Measures NO₂, CO, NH₃, SO₂, H₂S & O₃ gases',
         '🔬 PM1.0, PM2.5 & PM10 particulate matter sensors',
@@ -128,23 +128,23 @@ export default {
       ],
     },
     team: {
-      title: 'World-class <span class="gradient-text">expertise</span>',
-      subtitle: 'Founded by university professors with decades of international research experience.',
+      title: 'Meet our <span class="gradient-text">team</span>',
+      subtitle: 'We are a small, dedicated team with complementary strengths, working side by side to disrupt farming with AI and IoT.',
       members: [
         {
           name: 'Shuhrat Kushbakov',
-          role: 'Business Co-Founder',
-          credentials: ['The business shark of the team - 16 years in logistics and business development', 'Closed contracts worth $22 million across high-stakes deals', 'Built his edge in the oil and gas industry, with an MBA in Digital Transformation'],
+          role: 'Business Co-founder',
+          credentials: ['16 years in procurement, project management and business development', '$11B in career deals, including a $20M flagship contract', 'Record full-cycle delivery from kickoff to completion: 5 days', 'MBA in Digital Transformation'],
         },
         {
           name: 'Sarvar Abdullayev',
-          role: 'Technical Co-Founder - Product Design & Operations',
-          credentials: ['The daydreamer who turns big ideas into product direction', 'Leads product design and day-to-day operations from concept to rollout', 'Keeps the team moving fast without losing the bigger picture'],
+          role: 'Technical Co-founder (Product)',
+          credentials: ['20 years in software engineering and operations', 'Reprimanded by the headmaster for infecting school PCs with VBScript virus.', 'Won a hackathon for simulating the Ebola outbreak across world airports', 'PhD in Computer Science'],
         },
         {
           name: 'Jasurbek Khodjayev',
-          role: 'Technical Co-Founder - Hardware Design & Manufacturing',
-          credentials: ['The team tinkerer who loves solving real-world engineering puzzles', 'Owns hardware design and manufacturing from prototype to production', 'Makes sure every device is rugged, practical, and field-ready'],
+          role: 'Technical Co-founder (Hardware)',
+          credentials: ['20 years designing and building systems', 'Developed indoor first responder tracking system as a part of large European project', 'Built a wall penetrating radar system for detecting humans', 'PhD in Information and Communication Engineering'],
         },
       ],
     },
@@ -172,16 +172,16 @@ export default {
     },
   },
 
-  /* ── OXUS WS Product Page ────────────────────────────────── */
+  /* ── OxusWS Product Page ────────────────────────────────── */
   oxusWs: {
     meta: {
-      title: 'OXUS WS — Smart Agrometeostation | Amudar.io',
-      description: 'OXUS WS is a smart agrometeostation with 30+ sensor parameters for precision weather monitoring, solar-powered, with real-time data via 4G/LoRa.',
+      title: 'OxusWS — Smart Agrometeostation | Amudar.io',
+      description: 'OxusWS is a smart agrometeostation with 30+ sensor parameters for precision weather monitoring, solar-powered, with real-time data via 4G/LoRa.',
       keywords: 'weather station, agrometeostation, agrometeorological station, smart farming, precision farming, climate monitoring, climate resilience, IoT weather station, soil moisture sensor, irrigation management, plant disease prediction, crop monitoring, Uzbekistan',
     },
     hero: {
       tag: '01 — Agrometeostation',
-      title: 'OXUS <span class="gradient-text">WS</span>',
+      title: 'Oxus<span class="gradient-text">WS</span>',
       subtitle: 'Smart agrometeostation with 30+ sensor parameters for precision weather and crop monitoring — solar-powered, connected via 4G/LoRa.',
     },
     problems: {
@@ -195,7 +195,7 @@ export default {
     },
     features: {
       title: 'Precision <span class="gradient-text">monitoring</span> capabilities',
-      subtitle: 'OXUS WS integrates multiple sensors to provide comprehensive agricultural and environmental data.',
+      subtitle: 'OxusWS integrates multiple sensors to provide comprehensive agricultural and environmental data.',
       cards: [
         { title: 'Wind Monitoring', desc: 'Measure wind speed and direction for crop protection and spray planning.' },
         { title: 'Rainfall Measurement', desc: 'Track precipitation in real time to optimize irrigation schedules and water usage.' },
@@ -208,10 +208,10 @@ export default {
     howItWorks: {
       title: 'From <span class="gradient-text">sensors</span> to <span class="gradient-text">decisions</span>',
       heading: 'Intelligent Data Pipeline',
-      text: 'OXUS WS collects data from 30+ sensors installed in the field — measuring temperature, humidity, wind, rainfall, soil moisture, UV radiation, and more. Data is transmitted in real time via 4G or LoRa networks to our cloud platform, where machine learning models process the information and generate actionable insights including disease risk predictions, frost alerts, and optimal irrigation schedules. Farmers access everything through an intuitive web dashboard and mobile app.',
+      text: 'OxusWS collects data from 30+ sensors installed in the field — measuring temperature, humidity, wind, rainfall, soil moisture, UV radiation, and more. Data is transmitted in real time via 4G or LoRa networks to our cloud platform, where machine learning models process the information and generate actionable insights including disease risk predictions, frost alerts, and optimal irrigation schedules. Farmers access everything through an intuitive web dashboard and mobile app.',
     },
     gallery: {
-      title: 'OXUS WS <span class="gradient-text">in the field</span>',
+      title: 'OxusWS <span class="gradient-text">in the field</span>',
     },
     dashboard: {
       title: 'Real-time <span class="gradient-text">monitoring platform</span>',
@@ -229,24 +229,24 @@ export default {
     hardware: {
       title: 'Built to <span class="gradient-text">withstand</span> the elements',
       heading: 'Industrial-Grade Construction',
-      text: 'OXUS WS is built with weather-resistant materials rated for outdoor use across all seasons. The station is powered entirely by a solar panel with a rechargeable battery, eliminating the need for grid electricity. It features a modular design allowing sensors to be added or replaced depending on specific crop requirements. Communication modules support both 4G cellular and LoRa long-range wireless, ensuring connectivity even in remote agricultural areas. Each station undergoes rigorous quality testing before deployment.',
+      text: 'OxusWS is built with weather-resistant materials rated for outdoor use across all seasons. The station is powered entirely by a solar panel with a rechargeable battery, eliminating the need for grid electricity. It features a modular design allowing sensors to be added or replaced depending on specific crop requirements. Communication modules support both 4G cellular and LoRa long-range wireless, ensuring connectivity even in remote agricultural areas. Each station undergoes rigorous quality testing before deployment.',
     },
     cta: {
       title: 'Ready to monitor <span class="gradient-text">your fields?</span>',
-      text: 'Contact us to learn how OXUS WS can transform your farming with precision weather data.',
+      text: 'Contact us to learn how OxusWS can transform your farming with precision weather data.',
     },
   },
 
-  /* ── JAYHUN TRAP Product Page ────────────────────────────── */
+  /* ── JayhunTrap Product Page ────────────────────────────── */
   jayhunTrap: {
     meta: {
-      title: 'JAYHUN TRAP — AI Pheromone Trap | Amudar.io',
-      description: 'JAYHUN TRAP is an AI-powered pheromone trap for automated pest detection, species classification, and counting with 95%+ accuracy.',
+      title: 'JayhunTrap — AI Pheromone Trap | Amudar.io',
+      description: 'JayhunTrap is an AI-powered pheromone trap for automated pest detection, species classification, and counting with 95%+ accuracy.',
       keywords: 'AI pest detection, pheromone trap, integrated pest management, pest monitoring, insects, quarantine pests, pesticides reduction, sustainable agriculture, green economy, codling moth, fruit fly, precision farming, plant diseases',
     },
     hero: {
       tag: '02 — Pheromone Trap',
-      title: 'JAYHUN <span class="gradient-text">TRAP</span>',
+      title: 'Jayhun<span class="gradient-text">Trap</span>',
       subtitle: 'AI-powered smart pheromone trap for automated pest detection, species classification, and real-time counting with 95%+ accuracy.',
     },
     problems: {
@@ -272,7 +272,7 @@ export default {
     },
     features: {
       title: 'Smart <span class="gradient-text">pest detection</span> technology',
-      subtitle: 'JAYHUN TRAP combines AI vision, IoT connectivity, and precision pheromone science.',
+      subtitle: 'JayhunTrap combines AI vision, IoT connectivity, and precision pheromone science.',
       cards: [
         { title: 'AI-Powered Camera', desc: 'High-resolution camera with deep learning models for automatic pest identification.' },
         { title: 'Pheromone Cartridges', desc: 'Interchangeable species-specific lure cartridges for targeted pest monitoring.' },
@@ -285,15 +285,15 @@ export default {
     howItWorks: {
       title: 'From <span class="gradient-text">trap</span> to <span class="gradient-text">alert</span>',
       heading: 'Automated Pest Intelligence',
-      text: 'JAYHUN TRAP uses species-specific pheromone lures to attract target pests into the trap chamber. A built-in high-resolution camera captures images of trapped insects, which are processed by on-device AI models for species identification and counting. Results are transmitted via 4G to the cloud dashboard in real time. Farmers receive automated alerts when pest populations exceed economic thresholds, enabling timely and targeted pesticide application — reducing chemical usage by up to 60%.',
+      text: 'JayhunTrap uses species-specific pheromone lures to attract target pests into the trap chamber. A built-in high-resolution camera captures images of trapped insects, which are processed by on-device AI models for species identification and counting. Results are transmitted via 4G to the cloud dashboard in real time. Farmers receive automated alerts when pest populations exceed economic thresholds, enabling timely and targeted pesticide application — reducing chemical usage by up to 60%.',
     },
     gallery: {
-      title: 'JAYHUN TRAP <span class="gradient-text">in action</span>',
+      title: 'JayhunTrap <span class="gradient-text">in action</span>',
     },
     dashboard: {
       title: 'Pest <span class="gradient-text">intelligence platform</span>',
       heading: 'Real-Time Pest Monitoring',
-      text: 'The JAYHUN dashboard provides complete visibility into pest activity across all your fields.',
+      text: 'The JayhunTrap dashboard provides complete visibility into pest activity across all your fields.',
       features: [
         'Live pest counts with species identification and confidence levels',
         'Population trend analysis and forecasting',
@@ -306,24 +306,24 @@ export default {
     hardware: {
       title: 'Engineered for <span class="gradient-text">field conditions</span>',
       heading: 'Robust Field-Ready Design',
-      text: 'JAYHUN TRAP features an IP65-rated weatherproof enclosure with a UV-resistant outer shell. The internal camera module uses low-power night vision for 24/7 pest detection. Solar panel with battery backup ensures continuous autonomous operation. The modular pheromone cartridge system allows quick and easy lure replacement. Each unit is equipped with GPS for precise geo-location mapping and supports both 4G and LoRa connectivity for flexible network deployment.',
+      text: 'JayhunTrap features an IP65-rated weatherproof enclosure with a UV-resistant outer shell. The internal camera module uses low-power night vision for 24/7 pest detection. Solar panel with battery backup ensures continuous autonomous operation. The modular pheromone cartridge system allows quick and easy lure replacement. Each unit is equipped with GPS for precise geo-location mapping and supports both 4G and LoRa connectivity for flexible network deployment.',
     },
     cta: {
       title: 'Protect your crops from <span class="gradient-text">pests</span>',
-      text: 'Contact us to learn how JAYHUN TRAP can automate your pest monitoring and reduce pesticide usage.',
+      text: 'Contact us to learn how JayhunTrap can automate your pest monitoring and reduce pesticide usage.',
     },
   },
 
-  /* ── OXUS AIRSENSE Product Page ──────────────────────────── */
+  /* ── AirSense Product Page ──────────────────────────── */
   oxusAirsense: {
     meta: {
-      title: 'OXUS AIRSENSE — Air Quality Monitor | Amudar.io',
-      description: 'OXUS AIRSENSE is a smart air quality monitoring station with PM2.5, PM10, CO2, SO2, and VOC sensors for urban and agricultural environments.',
+      title: 'AirSense — Air Quality Monitor | Amudar.io',
+      description: 'AirSense is a smart air quality monitoring station with PM2.5, PM10, CO2, SO2, and VOC sensors for urban and agricultural environments.',
       keywords: 'air quality monitoring, environment monitoring, PM2.5, PM10, CO2 sensor, air pollution, climate monitoring, climate change, green economy, sustainable agriculture, smart farming, Uzbekistan',
     },
     hero: {
       tag: '03 — Air Quality',
-      title: 'OXUS <span class="gradient-text">AIRSENSE</span>',
+      title: 'Air<span class="gradient-text">Sense</span>',
       subtitle: 'Smart air quality monitoring station with PM2.5, PM10, CO\u2082, SO\u2082, and VOC sensors — designed for urban, peri-urban, and agricultural zones.',
     },
     problems: {
@@ -337,7 +337,7 @@ export default {
     },
     features: {
       title: 'Comprehensive <span class="gradient-text">air analysis</span>',
-      subtitle: 'OXUS AIRSENSE measures a wide range of pollutants and environmental parameters for complete air quality assessment.',
+      subtitle: 'AirSense measures a wide range of pollutants and environmental parameters for complete air quality assessment.',
       cards: [
         { title: 'PM2.5 & PM10', desc: 'Laser-based particulate matter sensors for accurate real-time fine dust measurement.' },
         { title: 'Gas Detection', desc: 'CO\u2082, SO\u2082, NO\u2082, and VOC sensors for comprehensive atmospheric gas analysis.' },
@@ -350,15 +350,15 @@ export default {
     howItWorks: {
       title: 'From <span class="gradient-text">air</span> to <span class="gradient-text">insight</span>',
       heading: 'Continuous Air Monitoring',
-      text: 'OXUS AIRSENSE continuously samples ambient air through precision intake ports, analyzing it with an array of electrochemical and laser-based sensors. Particulate matter (PM2.5, PM10) is measured using light-scattering technology, while gas sensors detect CO\u2082, SO\u2082, VOC, and other pollutants. Data is processed on-device and transmitted via 4G to our cloud platform where it is combined with weather data and satellite imagery for comprehensive air quality analysis. Results are displayed on public dashboards and mobile apps, with automated alerts for hazardous conditions.',
+      text: 'AirSense continuously samples ambient air through precision intake ports, analyzing it with an array of electrochemical and laser-based sensors. Particulate matter (PM2.5, PM10) is measured using light-scattering technology, while gas sensors detect CO\u2082, SO\u2082, VOC, and other pollutants. Data is processed on-device and transmitted via 4G to our cloud platform where it is combined with weather data and satellite imagery for comprehensive air quality analysis. Results are displayed on public dashboards and mobile apps, with automated alerts for hazardous conditions.',
     },
     gallery: {
-      title: 'AIRSENSE <span class="gradient-text">deployments</span>',
+      title: 'AirSense <span class="gradient-text">deployments</span>',
     },
     dashboard: {
       title: 'Air quality <span class="gradient-text">intelligence</span>',
       heading: 'Comprehensive AQI Platform',
-      text: 'The OXUS AIRSENSE dashboard delivers actionable air quality intelligence to cities, communities, and agricultural operations.',
+      text: 'The AirSense dashboard delivers actionable air quality intelligence to cities, communities, and agricultural operations.',
       features: [
         'Real-time AQI display with color-coded health risk levels',
         'Individual pollutant breakdown — PM2.5, PM10, CO\u2082, SO\u2082, VOC',
@@ -371,24 +371,24 @@ export default {
     hardware: {
       title: 'Professional-grade <span class="gradient-text">monitoring station</span>',
       heading: 'Precision Air Quality Station',
-      text: 'OXUS AIRSENSE is housed in a compact, weather-resistant enclosure designed for permanent outdoor installation. The station integrates multiple sensor types — laser particle counters for PM2.5/PM10, NDIR sensors for CO\u2082, electrochemical cells for SO\u2082 and NO\u2082, and photoionization detectors for VOCs. A built-in heating element prevents condensation in cold weather. The system communicates via 4G/Wi-Fi and runs on solar or mains power. Automated self-diagnostics ensure consistent measurement accuracy over time.',
+      text: 'AirSense is housed in a compact, weather-resistant enclosure designed for permanent outdoor installation. The station integrates multiple sensor types — laser particle counters for PM2.5/PM10, NDIR sensors for CO\u2082, electrochemical cells for SO\u2082 and NO\u2082, and photoionization detectors for VOCs. A built-in heating element prevents condensation in cold weather. The system communicates via 4G/Wi-Fi and runs on solar or mains power. Automated self-diagnostics ensure consistent measurement accuracy over time.',
     },
     cta: {
       title: 'Monitor the air <span class="gradient-text">you breathe</span>',
-      text: 'Contact us to deploy OXUS AIRSENSE in your city, campus, or agricultural region.',
+      text: 'Contact us to deploy AirSense in your city, campus, or agricultural region.',
     },
   },
 
-  /* ── GOZANLINK Product Page ──────────────────────────────── */
+  /* ── GozanLink Product Page ──────────────────────────────── */
   gozanlink: {
     meta: {
-      title: 'GOZANLINK — Smart Greenhouse Management | Amudar.io',
-      description: 'GOZANLINK is an IoT greenhouse management system tracking temperature, humidity, CO2, light, and soil — with automated ventilation and irrigation control.',
+      title: 'GozanLink — Smart Greenhouse Management | Amudar.io',
+      description: 'GozanLink is an IoT greenhouse management system tracking temperature, humidity, CO2, light, and soil — with automated ventilation and irrigation control.',
       keywords: 'greenhouse management, smart greenhouse, greenhouse automation, irrigation, climate monitoring, greenhouse climate control, precision farming, sustainable agriculture, IoT greenhouse, climate resilience, climate change',
     },
     hero: {
       tag: '04 — Greenhouse',
-      title: '<span style="color:#fff">GOZAN</span><span class="gradient-text">LINK</span>',
+      title: '<span style="color:#fff">Gozan</span><span class="gradient-text">Link</span>',
       subtitle: 'IoT greenhouse management system for precise climate control — monitoring temperature, humidity, CO\u2082, light, and soil with automated ventilation and irrigation.',
     },
     problems: {
@@ -402,7 +402,7 @@ export default {
     },
     features: {
       title: 'Complete greenhouse <span class="gradient-text">control</span>',
-      subtitle: 'GOZANLINK provides full environmental monitoring and automated control for optimal greenhouse climate.',
+      subtitle: 'GozanLink provides full environmental monitoring and automated control for optimal greenhouse climate.',
       cards: [
         { title: 'Temperature Control', desc: 'Precise monitoring of air and soil temperature with automated heating and cooling response.' },
         { title: 'Humidity Management', desc: 'Real-time humidity tracking with automated ventilation to prevent mold and disease.' },
@@ -415,15 +415,15 @@ export default {
     howItWorks: {
       title: 'Smart <span class="gradient-text">greenhouse</span> automation',
       heading: 'Intelligent Climate Management',
-      text: 'GOZANLINK installs a network of wireless sensors throughout your greenhouse — measuring temperature, humidity, CO\u2082, light intensity, and soil moisture at multiple points. The central controller collects data from all sensors and automatically adjusts ventilation fans, heating systems, irrigation pumps, and shade screens to maintain optimal growing conditions. All data is synced to the cloud in real time, accessible via web dashboard and mobile app. Farmers can set custom climate profiles for different crops and growth stages, with the system automatically adapting throughout the day and night.',
+      text: 'GozanLink installs a network of wireless sensors throughout your greenhouse — measuring temperature, humidity, CO\u2082, light intensity, and soil moisture at multiple points. The central controller collects data from all sensors and automatically adjusts ventilation fans, heating systems, irrigation pumps, and shade screens to maintain optimal growing conditions. All data is synced to the cloud in real time, accessible via web dashboard and mobile app. Farmers can set custom climate profiles for different crops and growth stages, with the system automatically adapting throughout the day and night.',
     },
     gallery: {
-      title: 'GOZANLINK <span class="gradient-text">installations</span>',
+      title: 'GozanLink <span class="gradient-text">installations</span>',
     },
     dashboard: {
       title: 'Greenhouse <span class="gradient-text">control center</span>',
       heading: 'Complete Greenhouse Command',
-      text: 'The GOZANLINK dashboard gives you full visibility and control over every aspect of your greenhouse environment.',
+      text: 'The GozanLink dashboard gives you full visibility and control over every aspect of your greenhouse environment.',
       features: [
         'Real-time sensor readings displayed with intuitive gauges and graphs',
         'Automated climate profiles with custom schedules for each crop type',
@@ -436,11 +436,11 @@ export default {
     hardware: {
       title: 'Built for <span class="gradient-text">greenhouse</span> conditions',
       heading: 'Modular Sensor Network',
-      text: 'GOZANLINK uses a modular architecture with wireless sensor nodes distributed throughout the greenhouse. Each node can measure temperature, humidity, soil moisture, light, and CO\u2082. The central gateway communicates via Wi-Fi or 4G with the cloud platform. Relay modules control ventilation fans, heating elements, irrigation pumps, and shade screens. The system is designed for easy installation without specialized tools — most setups complete in under a day. All components are rated for the high-humidity, high-temperature greenhouse environment.',
+      text: 'GozanLink uses a modular architecture with wireless sensor nodes distributed throughout the greenhouse. Each node can measure temperature, humidity, soil moisture, light, and CO\u2082. The central gateway communicates via Wi-Fi or 4G with the cloud platform. Relay modules control ventilation fans, heating elements, irrigation pumps, and shade screens. The system is designed for easy installation without specialized tools — most setups complete in under a day. All components are rated for the high-humidity, high-temperature greenhouse environment.',
     },
     cta: {
       title: 'Optimize your <span class="gradient-text">greenhouse</span>',
-      text: 'Contact us to learn how GOZANLINK can automate your greenhouse management and boost yields.',
+      text: 'Contact us to learn how GozanLink can automate your greenhouse management and boost yields.',
     },
   },
 } as const;

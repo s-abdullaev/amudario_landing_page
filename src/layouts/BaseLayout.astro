@@ -14,7 +14,9 @@ const canonicalUrl = Astro.url.href;
 const enUrl = `${baseUrl}/en${pathWithoutLang}`;
 const uzUrl = `${baseUrl}/uz${pathWithoutLang}`;
 const ruUrl = `${baseUrl}/ru${pathWithoutLang}`;
-const ogImage = `${baseUrl}/favicon_io/android-chrome-512x512.png`;
+const faviconPng = '/images/logo/Favicon.png';
+const faviconTransparentPng = '/images/logo/FaviconTransparent.png';
+const ogImage = `${baseUrl}${faviconTransparentPng}`;
 const ogLocale = lang === 'ru' ? 'ru_RU' : lang === 'uz' ? 'uz_UZ' : 'en_US';
 
 const orgSchema = JSON.stringify({
@@ -23,7 +25,7 @@ const orgSchema = JSON.stringify({
   name: 'Amudar.io',
   alternateName: 'Amudario Research LLC',
   url: baseUrl,
-  logo: `${baseUrl}/favicon_io/android-chrome-512x512.png`,
+  logo: `${baseUrl}${faviconTransparentPng}`,
   description: 'Smart agrometeorological stations, AI pheromone traps, air quality monitors, and IoT greenhouse management systems for precision agriculture.',
   contactPoint: {
     '@type': 'ContactPoint',
@@ -43,6 +45,9 @@ const orgSchema = JSON.stringify({
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <meta name="description" content={description}>
+    <link rel="icon" type="image/png" href={faviconPng}>
+    <link rel="shortcut icon" href={faviconPng}>
+    <link rel="apple-touch-icon" href={faviconTransparentPng}>
     {keywords && <meta name="keywords" content={keywords}>}
     <link rel="canonical" href={canonicalUrl}>
 
