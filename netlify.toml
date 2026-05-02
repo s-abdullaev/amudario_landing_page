@@ -17,6 +17,12 @@
 [[redirects]]
   from = "/"
   to = "/uz/"
+  status = 302
+  conditions = {Language = ["uz"]}
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
   status = 301
   force = true
 
