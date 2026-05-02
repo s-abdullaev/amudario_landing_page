@@ -31,11 +31,13 @@ export function drawOxusWS(
 
   // Weather Station
   const sc = Math.min(w, h) / 600;
+  const zoom = 1 + easeInOut(subT(t, 0.25, 0.6)) * 0.35;
   const sx = w * 0.81;
-  const sy = h * 0.50;
+  // Slightly lower anchor so the mast base visually sits into the field.
+  const sy = h * 0.56;
   ctx.save();
   ctx.translate(sx, sy);
-  ctx.scale(sc, sc);
+  ctx.scale(sc * zoom, sc * zoom);
 
   // Pole (Shared)
   drawStationMast(ctx);
@@ -186,8 +188,12 @@ export function drawOxusWS(
   ctx.globalAlpha = 1;
   ctx.restore();
 
-  // Ground-mounted pole base
-  ctx.save(); ctx.translate(0, 195);
+  // Ground-mounted pole base + subtle contact shadow
+  ctx.save(); ctx.translate(0, 232);
+  ctx.beginPath();
+  ctx.ellipse(0, 6, 16, 5, 0, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(80, 70, 55, 0.2)';
+  ctx.fill();
   // Small mounting flange where pole meets ground
   ctx.beginPath();
   ctx.roundRect(-10, -4, 20, 8, 2);

@@ -176,7 +176,7 @@ export function drawJayhunTrap(
   if (t > 0.3) {
     ctx.globalAlpha = subT(t, 0.3, 0.45);
     ctx.fillStyle = '#fff9c4'; // Light sticky plate
-    ctx.fillRect(trapX - 25, trapY + 5, 50, 25);
+    ctx.fillRect(trapX - 25, trapY + 2, 50, 25);
     ctx.globalAlpha = 1;
   }
 

@@ -18,34 +18,30 @@ export class CottonField {
     ctx.fillStyle = grd;
     ctx.fillRect(0, horizon, w, h - horizon);
 
-    // Cotton rows — density adapts to screen width
-    // Mobile: fewer rows & plants; tablet: moderate; desktop: full density
+    // Dense cotton coverage across the full field (no row/irrigation channels)
+    // Mobile/tablet keep a reduced but still full-coverage density.
     const isMobile = w <= 480;
     const isTablet = w > 480 && w <= 768;
-    const rows = isMobile ? 10 : isTablet ? 13 : 16;
+    const rows = isMobile ? 16 : isTablet ? 22 : 28;
     const deviceSeed = Math.floor(w / 100);          // different seed per device tier
 
     for (let r = 0; r < rows; r++) {
-      const prog = r / rows;
-      const y = horizon + Math.pow(prog, 1.4) * (h - horizon);
+      const prog = (r + 0.5) / rows;
+      // Keep perspective, but spread far rows a bit more so the horizon is not sparse.
+      const y = horizon + Math.pow(prog, 1.15) * (h - horizon);
       const scale = 0.3 + 0.7 * prog;
       const alpha = 0.4 + 0.6 * prog;
-      const rowW = w * (0.6 + 2 * prog);
-      const rowX = w / 2;
-      const baseCount = isMobile ? (6 + r * 1) : isTablet ? (10 + r * 2) : (14 + r * 3);
-      const count = baseCount;
+      const rowW = w * (1.08 + 0.12 * prog);
+      const rowX = w * 0.5;
+      const densityBoostBack = 1.65 - 0.65 * prog;
+      const baseCount = isMobile ? 22 : isTablet ? 30 : 38;
+      const count = Math.floor(baseCount * densityBoostBack);
       const spacing = rowW / count;
 
-      // Dirt row line
-      ctx.beginPath();
-      ctx.moveTo(rowX - rowW / 2, y + 4 * scale);
-      ctx.lineTo(rowX + rowW / 2, y + 4 * scale);
-      ctx.strokeStyle = `rgba(170, 155, 130, ${0.15 + 0.25 * prog})`;
-      ctx.lineWidth = 2 * scale;
-      ctx.stroke();
-
       for (let p = 0; p < count; p++) {
-        const px = rowX - rowW / 2 + p * spacing + (r % 2) * spacing * 0.5;
+        const pxBase = rowX - rowW / 2 + p * spacing;
+        const jitter = Math.sin((r + 1) * 17.13 + (p + 1) * 9.27 + deviceSeed) * spacing * 0.45;
+        const px = pxBase + jitter;
         const seed = r * 99 + p * 13 + deviceSeed * 7;
         const wind = Math.sin(now + seed) * 3 * scale * growT;
         const maxStemH = 32 * scale;

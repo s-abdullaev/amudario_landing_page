@@ -119,11 +119,11 @@ export default {
       ],
     },
     howItWorks: {
-      title: 'From <span class="gradient-text">field</span> to <span class="gradient-text">forecast</span>',
+      title: 'From <span class="gradient-text">field</span> to <span class="gradient-text">decisions</span>',
       steps: [
         { title: 'Sensor Data Collection', desc: 'Weather parameters are measured by sensors and transmitted to the server via mobile networks.' },
         { title: 'Satellite Data Fusion', desc: 'Ground sensor data combines with satellite imagery for comprehensive environmental analysis.' },
-        { title: 'AI Processing', desc: 'Machine learning models generate predictions for weather, disease, and pest outbreaks.' },
+        { title: 'AI Predictions', desc: 'Machine learning models generate predictions for weather, disease, and pest outbreaks.' },
         { title: 'Farmer Dashboard', desc: 'Results displayed on an intuitive dashboard for real-time decision making.' },
       ],
     },
