@@ -2,24 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/"
-  to = "/ru/"
-  status = 302
-  conditions = {Language = ["ru"]}
-
-[[redirects]]
-  from = "/"
-  to = "/en/"
-  status = 302
-  conditions = {Language = ["en"]}
-
-[[redirects]]
-  from = "/"
-  to = "/uz/"
-  status = 302
-  conditions = {Language = ["uz"]}
-
+# Single server redirect: `/` → English (no Accept-Language routing on `/`).
 [[redirects]]
   from = "/"
   to = "/en/"

@@ -5,7 +5,7 @@ export default defineConfig({
   site: 'https://amudar.io',
   integrations: [sitemap({
     i18n: {
-      defaultLocale: 'uz',
+      defaultLocale: 'en',
       locales: {
         en: 'en-US',
         uz: 'uz-UZ',
@@ -14,7 +14,7 @@ export default defineConfig({
     },
   })],
   i18n: {
-    defaultLocale: 'uz',
+    defaultLocale: 'en',
     locales: ['en', 'uz', 'ru'],
     routing: {
       prefixDefaultLocale: true,

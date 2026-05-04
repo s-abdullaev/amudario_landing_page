@@ -6,8 +6,8 @@
 
 import { test, expect } from '@playwright/test';
 
-const HOMEPAGE = '/uz/';
-const PRODUCT_PAGE = '/uz/oxus-ws';
+const HOMEPAGE = '/en/';
+const PRODUCT_PAGE = '/en/oxus-ws';
 
 const viewportNames: Record<string, string> = {
   desktop: '1280×720',

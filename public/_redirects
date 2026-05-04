@@ -1,0 +1,2 @@
+# Force HTTP redirect for `/` so hosts never serve Astro’s HTML fallback page.
+/  /en/  301!
