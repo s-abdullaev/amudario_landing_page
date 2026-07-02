@@ -27,6 +27,7 @@ export default {
     ourTeam: 'Бизнинг жамоа',
     ourPartners: 'Бизнинг ҳамкорлар',
     inThePress: 'Матбуотда',
+    video: 'Видео',
     getStarted: 'Бошлаш',
     theChallenge: 'Муаммо',
     features: 'Хусусиятлар',
@@ -155,13 +156,19 @@ export default {
     press: {
       title: '<span class="gradient-text">ОАВ</span>да эътироф қилинган',
       articles: [
-        { source: 'Spot.uz', text: 'Тошкент вилояти фермалари IoT жорий қилишни бошлади' },
         { source: 'UNDP', text: 'UNDP замонавий экологик зараркунандаларга қарши курашни тарғиб қилади' },
-        { source: 'Spot.uz', text: 'Аниқ деҳқончилик Ўзбекистонда фермерликни ўзгартирмоқда' },
+        { source: 'Spot.uz', text: 'Тошкент вилояти фермалари IoT жорий қилишни бошлади' },
         { source: 'Gazeta.uz', text: 'Феромон тузоқлар фермерларга зараркунандаларга қарши курашда ёрдам беради' },
-        { source: 'Inha.uz', text: 'Amudario CGIAR тезлаштириш дастурида биринчи ўринни эгаллади' },
+        { source: 'UNDP', text: 'Фарғона водийси фермерлари аниқ агрометеорологик маълумотларга эга бўлди' },
+        { source: 'Spot.uz', text: 'Аниқ деҳқончилик Ўзбекистонда фермерликни ўзгартирмоқда' },
+        { source: 'Gazeta.uz', text: 'Ўзбекистонда ҳаво сифати мониторинги кенгаймоқда' },
+        { source: 'Podrobno.uz', text: 'Ўзбек фермерларида шахсий метеостанциялар пайдо бўлди' },
         { source: 'Inha.uz', text: 'Профессорлар ақлли агрометеорологик станцияларни тақдим этишди' },
+        { source: 'UzDaily.uz', text: 'AKFA университети метеорологик ва экологик мониторинг тизимини тақдим этди' },
       ],
+    },
+    video: {
+      title: 'Amudar.io <span class="gradient-text">амалда</span>',
     },
     contact: {
       title: 'Фермангизни <span class="gradient-text">ўзгартириш</span>га тайёрмисиз?',

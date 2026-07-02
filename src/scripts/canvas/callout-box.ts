@@ -7,6 +7,12 @@ export interface CalloutItem {
   color?: string;
 }
 
+/** Current page language for canvas-drawn text ('en' | 'uz' | 'ru'). */
+export function canvasLang(): 'en' | 'uz' | 'ru' {
+  const lang = (typeof document !== 'undefined' ? document.documentElement.lang || 'en' : 'en').slice(0, 2);
+  return lang === 'uz' || lang === 'ru' ? lang : 'en';
+}
+
 /** Dashed connector line from a device point to a panel edge, with a solid dot at the device. */
 export function drawConnector(
   ctx: CanvasRenderingContext2D,

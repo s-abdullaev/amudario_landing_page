@@ -1,6 +1,12 @@
 import { lerp, subT, easeInOut } from '../utils';
-import { drawConnector, drawGlassPanel, drawStat } from './callout-box';
+import { drawConnector, drawGlassPanel, drawStat, canvasLang } from './callout-box';
 import { drawStationMast } from './station-parts';
+
+const PANEL_LABELS: Record<string, Record<string, string>> = {
+  en: { title: 'AIR QUALITY INDEX', good: 'Good', moderate: 'Moderate', unhealthy: 'Unhealthy' },
+  uz: { title: 'ҲАВО СИФАТИ ИНДЕКСИ', good: 'Яхши', moderate: 'Ўртача', unhealthy: 'Зарарли' },
+  ru: { title: 'ИНДЕКС КАЧЕСТВА ВОЗДУХА', good: 'Хорошо', moderate: 'Умеренно', unhealthy: 'Вредно' },
+};
 
 /** Air-quality panel with a masked-face icon that colors with the AQI. */
 function drawAirPanel(
@@ -13,8 +19,9 @@ function drawAirPanel(
   const bx = Math.max(10, Math.min(w - W - 10, dx - W - 70));
   const by = Math.max(10, Math.min(h - H - 10, dy - H - 30));
 
+  const L = PANEL_LABELS[canvasLang()];
   const aqi = Math.round(valRatio * 87);
-  const [status, sColor] = aqi > 100 ? ['Unhealthy', '#FF6B6B'] : aqi > 50 ? ['Moderate', '#FFB347'] : ['Good', '#00E5A0'];
+  const [status, sColor] = aqi > 100 ? [L.unhealthy, '#FF6B6B'] : aqi > 50 ? [L.moderate, '#FFB347'] : [L.good, '#00E5A0'];
 
   ctx.save();
   ctx.globalAlpha = appear;
@@ -62,7 +69,7 @@ function drawAirPanel(
   // Header: AQI number + status
   ctx.textAlign = 'left';
   ctx.font = '400 10px Inter'; ctx.fillStyle = 'rgba(240,244,255,0.5)';
-  ctx.fillText('AIR QUALITY INDEX', bx + 76, by + 28);
+  ctx.fillText(L.title, bx + 76, by + 28);
   ctx.font = '700 26px Montserrat'; ctx.fillStyle = sColor;
   ctx.fillText(String(aqi), bx + 76, by + 56);
   const aw = ctx.measureText(String(aqi)).width;

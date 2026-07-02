@@ -27,6 +27,7 @@ export default {
     ourTeam: 'Our Team',
     ourPartners: 'Our Partners',
     inThePress: 'In the Press',
+    video: 'Watch',
     getStarted: 'Get Started',
     theChallenge: 'The Challenge',
     features: 'Features',
@@ -155,13 +156,19 @@ export default {
     press: {
       title: 'Recognized <span class="gradient-text">globally</span>',
       articles: [
+        { source: 'UNDP', text: 'UNDP promotes modern eco-friendly pest & disease management' },
         { source: 'Spot.uz', text: 'Farms in Tashkent region began implementing IoT' },
-        { source: 'UNDP', text: 'UNDP promotes modern eco-friendly pest management' },
-        { source: 'Spot.uz', text: 'Precision agriculture transforming farming in Uzbekistan' },
         { source: 'Gazeta.uz', text: 'Pheromone traps help farmers fight pests' },
-        { source: 'Inha.uz', text: 'Amudario wins first place in CGIAR Acceleration Program' },
+        { source: 'UNDP', text: 'Fergana Valley farmers gain access to precise agrometeorological data' },
+        { source: 'Spot.uz', text: 'Precision agriculture transforming farming in Uzbekistan' },
+        { source: 'Gazeta.uz', text: 'Air quality monitoring expands in Uzbekistan' },
+        { source: 'Podrobno.uz', text: 'Uzbek farmers get personal weather stations' },
         { source: 'Inha.uz', text: 'Professors present smart agrometeorological stations' },
+        { source: 'UzDaily.uz', text: 'AKFA University introduces meteorological & environmental monitoring system' },
       ],
+    },
+    video: {
+      title: 'See Amudar.io <span class="gradient-text">in action</span>',
     },
     contact: {
       title: 'Ready to transform <span class="gradient-text">your farm?</span>',

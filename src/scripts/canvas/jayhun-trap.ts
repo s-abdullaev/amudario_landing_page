@@ -1,6 +1,24 @@
 import { lerp, subT, easeInOut } from '../utils';
-import { drawConnector, drawGlassPanel, drawStat } from './callout-box';
+import { drawConnector, drawGlassPanel, drawStat, canvasLang } from './callout-box';
 import { WheatField } from './components/WheatField';
+
+const PANEL_LABELS: Record<string, Record<string, string>> = {
+  en: {
+    detected: '● PEST DETECTED', species: 'Grain Moth', count: 'Count', daily: 'Daily Rate', perDay: '/day',
+    conf: 'Confidence', risk: 'Risk Level', high: 'High', medium: 'Medium',
+    status: 'Trap Status', active: 'Active', battery: 'Battery',
+  },
+  uz: {
+    detected: '● ЗАРАРКУНАНДА АНИҚЛАНДИ', species: 'Ғалла куяси', count: 'Сони', daily: 'Кунлик суръат', perDay: '/кун',
+    conf: 'Ишончлилик', risk: 'Хавф даражаси', high: 'Юқори', medium: 'Ўртача',
+    status: 'Тузоқ ҳолати', active: 'Фаол', battery: 'Батарея',
+  },
+  ru: {
+    detected: '● ОБНАРУЖЕН ВРЕДИТЕЛЬ', species: 'Зерновая моль', count: 'Количество', daily: 'Суточный темп', perDay: '/день',
+    conf: 'Точность', risk: 'Уровень риска', high: 'Высокий', medium: 'Средний',
+    status: 'Статус ловушки', active: 'Активна', battery: 'Батарея',
+  },
+};
 
 /** Fancy pest-analysis panel with a blinking insect icon. */
 function drawJayhunPanel(
@@ -44,13 +62,14 @@ function drawJayhunPanel(
   ctx.restore();
 
   // Header
+  const L = PANEL_LABELS[canvasLang()];
   ctx.textAlign = 'left';
   ctx.globalAlpha = appear * (0.5 + 0.5 * blink);
   ctx.font = '600 10px Inter'; ctx.fillStyle = '#00E5A0';
-  ctx.fillText('● PEST DETECTED', bx + 72, by + 30);
+  ctx.fillText(L.detected, bx + 72, by + 30);
   ctx.globalAlpha = appear;
   ctx.font = '700 15px Montserrat'; ctx.fillStyle = '#f0f4ff';
-  ctx.fillText('Helicoverpa armigera', bx + 72, by + 50);
+  ctx.fillText(L.species, bx + 72, by + 50);
 
   ctx.strokeStyle = 'rgba(240,244,255,0.12)'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(bx + 14, by + 72); ctx.lineTo(bx + W - 14, by + 72); ctx.stroke();
@@ -58,12 +77,12 @@ function drawJayhunPanel(
   // Stats grid
   const count = Math.min(17, Math.floor(subT(t, 0.45, 0.8) * 18));
   const daily = lerp(0, 4.2, subT(t, 0.45, 0.8));
-  drawStat(ctx, bx + 16, by + 90, 'Count', String(count), undefined, '#4DA8FF');
-  drawStat(ctx, bx + 98, by + 90, 'Daily Rate', daily.toFixed(1), '/day');
-  drawStat(ctx, bx + 180, by + 90, 'Confidence', '87', '%', '#00E5A0');
-  drawStat(ctx, bx + 16, by + 126, 'Risk Level', count > 10 ? 'High' : 'Medium', undefined, count > 10 ? '#FF6B6B' : '#FFB347');
-  drawStat(ctx, bx + 98, by + 126, 'Trap Status', 'Active', undefined, '#00E5A0');
-  drawStat(ctx, bx + 180, by + 126, 'Battery', '94', '%');
+  drawStat(ctx, bx + 16, by + 90, L.count, String(count), undefined, '#4DA8FF');
+  drawStat(ctx, bx + 98, by + 90, L.daily, daily.toFixed(1), L.perDay);
+  drawStat(ctx, bx + 180, by + 90, L.conf, '87', '%', '#00E5A0');
+  drawStat(ctx, bx + 16, by + 126, L.risk, count > 10 ? L.high : L.medium, undefined, count > 10 ? '#FF6B6B' : '#FFB347');
+  drawStat(ctx, bx + 98, by + 126, L.status, L.active, undefined, '#00E5A0');
+  drawStat(ctx, bx + 180, by + 126, L.battery, '94', '%');
   ctx.restore();
 }
 

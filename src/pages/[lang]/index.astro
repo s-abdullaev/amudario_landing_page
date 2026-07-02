@@ -264,21 +264,43 @@ const teamObjectPositions = ['50% 18%', '50% 20%', '50% 16%'];
                 <div class="marquee-track">
                     {[...t.home.press.articles, ...t.home.press.articles].map((article, i) => {
                         const urls = [
-                            'https://spot.uz/ru/2017/10/30/smart-farm/',
-                            'http://www.uz.undp.org/content/uzbekistan/en/home/presscenter/articles/2019/02/13/undp-promotes-modern-eco-friendly-techniques-of-pest-and-disease.html',
-                            'https://www.spot.uz/ru/2019/03/15/meteo/',
+                            'https://www.undp.org/uzbekistan/news/undp-promotes-modern-eco-friendly-techniques-pest-and-diseases-management',
+                            'https://www.spot.uz/ru/2017/10/30/smart-farm',
                             'https://www.gazeta.uz/ru/2019/02/13/ferlov/',
-                            'https://inha.uz/general/amudario-research-llc-wins-first-place-in-cgiar-acceleration-program/',
-                            'https://inha.uz/professors/professors-of-inha-university-in-tashkent-presented-smart-agrometeorological-stations/',
+                            'https://www.undp.org/uzbekistan/news/now-farmers-fergana-valley-have-access-more-precise-agrometeorological-data',
+                            'https://www.spot.uz/ru/2019/03/15/meteo/',
+                            'https://www.gazeta.uz/en/2024/03/20/air-quality/',
+                            'https://podrobno.uz/cat/obchestvo/u-uzbekskikh-fermerov-poyavilis-personalnye-meteostantsii-/',
+                            'https://inha.uz/professors/professors-of-inha-university-in-tashkent-presented-smart-agrometeorological-stations',
+                            'https://www.uzdaily.uz/en/akfa-university-introduces-information-and-analytical-system-for-meteorological-and-environmental-monitoring/',
                         ];
                         return (
-                            <a href={urls[i % 6]} target="_blank" class="press-card">
+                            <a href={urls[i % urls.length]} target="_blank" class="press-card">
                                 <span class="press-source">{article.source}</span>
                                 <p>{article.text}</p>
                             </a>
                         );
                     })}
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">{t.sectionTags.video}</span>
+                <h2 class="section-title reveal" set:html={t.home.video.title} />
+            </div>
+            <div class="video-embed reveal-up">
+                <iframe
+                    src="https://www.youtube.com/embed/6WIOXekvRqA"
+                    title="Amudar.io"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
             </div>
         </div>
     </section>

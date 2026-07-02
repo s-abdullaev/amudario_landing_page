@@ -27,6 +27,7 @@ export default {
     ourTeam: 'Наша команда',
     ourPartners: 'Наши партнёры',
     inThePress: 'В прессе',
+    video: 'Видео',
     getStarted: 'Начать',
     theChallenge: 'Проблема',
     features: 'Возможности',
@@ -155,13 +156,19 @@ export default {
     press: {
       title: 'Признание <span class="gradient-text">в мире</span>',
       articles: [
-        { source: 'Spot.uz', text: 'Фермерские хозяйства Ташкентской области начали внедрять IoT' },
         { source: 'UNDP', text: 'ПРООН продвигает современные экологичные методы борьбы с вредителями' },
-        { source: 'Spot.uz', text: 'Точное земледелие преобразует фермерство в Узбекистане' },
+        { source: 'Spot.uz', text: 'Фермерские хозяйства Ташкентской области начали внедрять IoT' },
         { source: 'Gazeta.uz', text: 'Феромонные ловушки помогают фермерам бороться с вредителями' },
-        { source: 'Inha.uz', text: 'Amudario занял первое место в программе акселерации CGIAR' },
+        { source: 'UNDP', text: 'Фермеры Ферганской долины получили доступ к точным агрометеоданным' },
+        { source: 'Spot.uz', text: 'Точное земледелие преобразует фермерство в Узбекистане' },
+        { source: 'Gazeta.uz', text: 'В Узбекистане расширяется мониторинг качества воздуха' },
+        { source: 'Podrobno.uz', text: 'У узбекских фермеров появились персональные метеостанции' },
         { source: 'Inha.uz', text: 'Профессора представили умные агрометеорологические станции' },
+        { source: 'UzDaily.uz', text: 'Университет AKFA представил систему метео- и экомониторинга' },
       ],
+    },
+    video: {
+      title: 'Amudar.io <span class="gradient-text">в действии</span>',
     },
     contact: {
       title: 'Готовы преобразить <span class="gradient-text">ваше хозяйство?</span>',

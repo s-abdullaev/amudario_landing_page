@@ -1,5 +1,5 @@
 import { lerp, subT, easeInOut } from '../utils';
-import { drawConnector } from './callout-box';
+import { drawConnector, canvasLang } from './callout-box';
 import { drawStationMast } from './station-parts';
 import { CottonField } from './components/CottonField';
 
@@ -33,8 +33,7 @@ const LCD_LABELS: Record<string, Record<string, string>> = {
 };
 
 function lcdLabels(): Record<string, string> {
-  const lang = (typeof document !== 'undefined' ? document.documentElement.lang || 'en' : 'en').slice(0, 2);
-  return LCD_LABELS[lang] || LCD_LABELS.en;
+  return LCD_LABELS[canvasLang()];
 }
 
 /** LCD-style live readout panel, modeled after the real station display. */

@@ -1,5 +1,20 @@
 import { lerp, subT, easeInOut } from '../utils';
-import { drawConnector, drawGlassPanel, drawStat } from './callout-box';
+import { drawConnector, drawGlassPanel, drawStat, canvasLang } from './callout-box';
+
+const PANEL_LABELS: Record<string, Record<string, string>> = {
+  en: {
+    title: 'GREENHOUSE CLIMATE', outage: '⚡ POWER OUTAGE', backup: 'Backup heating: ON',
+    indoorT: 'Indoor Temp', humidity: 'Humidity', gas: 'Gas Usage', outside: 'Outside', grid: 'Grid Voltage',
+  },
+  uz: {
+    title: 'ИССИҚХОНА ИҚЛИМИ', outage: '⚡ ЭЛЕКТР УЗИЛИШИ', backup: 'Заҳира иситиш: ЁҚИҚ',
+    indoorT: 'Ички ҳарорат', humidity: 'Намлик', gas: 'Газ сарфи', outside: 'Ташқарида', grid: 'Тармоқ кучланиши',
+  },
+  ru: {
+    title: 'КЛИМАТ ТЕПЛИЦЫ', outage: '⚡ ОТКЛЮЧЕНИЕ СЕТИ', backup: 'Резервный обогрев: ВКЛ',
+    indoorT: 'Темп. внутри', humidity: 'Влажность', gas: 'Расход газа', outside: 'Снаружи', grid: 'Напряжение сети',
+  },
+};
 
 /** Greenhouse climate panel with a blinking power-outage warning. */
 function drawGozanPanel(
@@ -41,26 +56,27 @@ function drawGozanPanel(
   ctx.restore();
 
   // Header
+  const L = PANEL_LABELS[canvasLang()];
   ctx.textAlign = 'left';
   ctx.font = '400 10px Inter'; ctx.fillStyle = 'rgba(240,244,255,0.5)';
-  ctx.fillText('GREENHOUSE CLIMATE', bx + 76, by + 28);
+  ctx.fillText(L.title, bx + 76, by + 28);
   ctx.globalAlpha = appear * (0.55 + 0.45 * blink);
   ctx.font = '700 14px Montserrat'; ctx.fillStyle = '#FFB347';
-  ctx.fillText('⚡ POWER OUTAGE', bx + 76, by + 48);
+  ctx.fillText(L.outage, bx + 76, by + 48);
   ctx.globalAlpha = appear;
   ctx.font = '400 10px Inter'; ctx.fillStyle = '#00E5A0';
-  ctx.fillText('Backup heating: ON', bx + 76, by + 64);
+  ctx.fillText(L.backup, bx + 76, by + 64);
 
   ctx.strokeStyle = 'rgba(240,244,255,0.12)'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(bx + 14, by + 78); ctx.lineTo(bx + W - 14, by + 78); ctx.stroke();
 
   // Indoor climate grid
-  drawStat(ctx, bx + 16, by + 96, 'Indoor Temp', lerp(18, 26.3, envT).toFixed(1), '°C', '#FF6B6B');
-  drawStat(ctx, bx + 104, by + 96, 'Humidity', lerp(50, 74, envT).toFixed(0), '%', '#4DA8FF');
+  drawStat(ctx, bx + 16, by + 96, L.indoorT, lerp(18, 26.3, envT).toFixed(1), '°C', '#FF6B6B');
+  drawStat(ctx, bx + 104, by + 96, L.humidity, lerp(50, 74, envT).toFixed(0), '%', '#4DA8FF');
   drawStat(ctx, bx + 192, by + 96, 'CO₂', lerp(350, 520, envT).toFixed(0), 'ppm', '#00E5A0');
-  drawStat(ctx, bx + 16, by + 132, 'Gas Usage', lerp(1.0, 3.4, envT).toFixed(1), 'm³/h', '#FFB347');
-  drawStat(ctx, bx + 104, by + 132, 'Outside', '−6.5', '°C');
-  drawStat(ctx, bx + 192, by + 132, 'Grid Voltage', '182', 'V', '#FF6B6B');
+  drawStat(ctx, bx + 16, by + 132, L.gas, lerp(1.0, 3.4, envT).toFixed(1), 'm³/h', '#FFB347');
+  drawStat(ctx, bx + 104, by + 132, L.outside, '−6.5', '°C');
+  drawStat(ctx, bx + 192, by + 132, L.grid, '182', 'V', '#FF6B6B');
   ctx.restore();
 }
 
