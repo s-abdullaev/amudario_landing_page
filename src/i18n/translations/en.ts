@@ -51,7 +51,7 @@ export default {
       subtitle: 'AI-powered agrometeorological stations, pest detection, air quality monitoring, and greenhouse management systems — transforming farming in Uzbekistan and beyond.',
       statStations: 'Stations Installed',
       statPestModels: 'Pest Models',
-      statAgroIndicators: 'Agro Indicators',
+      statHectares: 'Hectares Covered',
       scrollToExplore: 'Scroll to explore',
     },
     solutions: {

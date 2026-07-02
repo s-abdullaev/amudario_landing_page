@@ -4,13 +4,24 @@
  */
 
 export function drawStationMast(ctx: CanvasRenderingContext2D): void {
-  // Pole
-  ctx.fillStyle = '#C0C0C0';
-  ctx.beginPath(); 
+  // Metallic pole with vertical highlight (matches the JayhunTrap post style)
+  const grad = ctx.createLinearGradient(-6, 0, 6, 0);
+  grad.addColorStop(0, '#9ba3a8');
+  grad.addColorStop(0.5, '#d5dadd');
+  grad.addColorStop(1, '#8d959a');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
   // Standard mast height and width
-  ctx.roundRect(-6, -150, 12, 350, 4); 
+  ctx.roundRect(-6, -150, 12, 350, 4);
   ctx.fill();
-  ctx.strokeStyle = '#808080'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.strokeStyle = '#8d959a'; ctx.lineWidth = 1; ctx.stroke();
+
+  // Ground shadow + square base plate
+  ctx.fillStyle = 'rgba(80, 90, 85, 0.22)';
+  ctx.beginPath(); ctx.ellipse(0, 204, 30, 7, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#b6bdc2';
+  ctx.beginPath(); ctx.roundRect(-24, 196, 48, 8, 2); ctx.fill();
+  ctx.strokeStyle = '#8d959a'; ctx.lineWidth = 1; ctx.stroke();
 }
 
 export function drawSolarPanel(ctx: CanvasRenderingContext2D): void {

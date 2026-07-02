@@ -55,12 +55,13 @@ export function initCounters(): void {
 }
 
 function runCounters(): void {
+  const fmt = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
   document.querySelectorAll<HTMLElement>('.stat-number[data-count]').forEach(el => {
     const target = +(el.dataset.count ?? 0);
     const start = performance.now();
     (function tick(now: number) {
       const p = Math.min((now - start) / 2000, 1);
-      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toString();
+      el.textContent = fmt.format(Math.round(target * (1 - Math.pow(1 - p, 3))));
       if (p < 1) requestAnimationFrame(tick);
     })(start);
   });

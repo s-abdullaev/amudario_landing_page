@@ -7,8 +7,9 @@ import { lerp, subT } from '../../utils';
 export class CottonField {
   public draw(ctx: CanvasRenderingContext2D, t: number, now: number, w: number, h: number): void {
     const horizon = h * 0.55;
-    const growT = Math.min(1, subT(t, 0.0, 0.45));
     const bloomT = subT(t, 0.2, 0.8);
+    // Flourish: field fills out until no bare land shows through
+    const flourish = subT(t, 0.45, 0.9);
 
     // Ground with tilled-row hint
     const grd = ctx.createLinearGradient(0, horizon, 0, h);
@@ -17,6 +18,15 @@ export class CottonField {
     grd.addColorStop(1, '#cec7b6');
     ctx.fillStyle = grd;
     ctx.fillRect(0, horizon, w, h - horizon);
+
+    // Green undergrowth blanket — bare soil disappears as the crop flourishes
+    if (flourish > 0.01) {
+      const veg = ctx.createLinearGradient(0, horizon, 0, h);
+      veg.addColorStop(0, `rgba(122, 152, 88, ${0.55 * flourish})`);
+      veg.addColorStop(1, `rgba(96, 132, 68, ${0.8 * flourish})`);
+      ctx.fillStyle = veg;
+      ctx.fillRect(0, horizon, w, h - horizon);
+    }
 
     // Dense cotton coverage across the full field (no row/irrigation channels)
     // Mobile/tablet keep a reduced but still full-coverage density.
@@ -27,6 +37,8 @@ export class CottonField {
 
     for (let r = 0; r < rows; r++) {
       const prog = (r + 0.5) / rows;
+      // Growth wave: front rows sprout first, sweeping toward the horizon
+      const growT = Math.min(1, subT(t, (1 - prog) * 0.12, 0.4 + (1 - prog) * 0.12));
       // Keep perspective, but spread far rows a bit more so the horizon is not sparse.
       const y = horizon + Math.pow(prog, 1.15) * (h - horizon);
       const scale = 0.3 + 0.7 * prog;
@@ -107,8 +119,8 @@ export class CottonField {
           }
         }
 
-        // ── Canopy (tall dome, grows with scroll) ──
-        const canR = 26 * scale * (0.1 + 0.9 * growT);
+        // ── Canopy (tall dome, grows with scroll; swells further as field flourishes) ──
+        const canR = 26 * scale * (0.1 + 0.9 * growT) * (1 + 0.35 * flourish);
         const canH = canR * 1.6;
         ctx.beginPath();
         ctx.moveTo(topX - canR, y);
@@ -117,7 +129,7 @@ export class CottonField {
           topX + canR * 0.85, y - canH,
           topX + canR, y
         );
-        ctx.fillStyle = `rgba(38, ${68 + r * 5}, 42, ${(0.25 + 0.35 * prog) * growT})`;
+        ctx.fillStyle = `rgba(38, ${68 + r * 5}, 42, ${(0.25 + 0.35 * prog) * growT * (1 + 0.5 * flourish)})`;
         ctx.fill();
 
         // ── Cotton bolls (at top of stem) ──

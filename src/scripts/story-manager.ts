@@ -13,6 +13,8 @@ interface StoryState {
   progressBar: HTMLElement | null;
   factsContainer: HTMLElement | null;
   draw: (ctx: CanvasRenderingContext2D, w: number, h: number, t: number) => void;
+  /** Smoothed scroll progress — eases toward the raw value for fluid motion */
+  smoothT: number;
 }
 
 const STORY_IDS: StoryId[] = ['explode', 'jayhun', 'airsense', 'gozan'];
@@ -65,30 +67,40 @@ export function initStories(): void {
     stories.set(id, {
       canvas, ctx, section, progressBar, factsContainer,
       draw: DRAW_MAP[id],
+      smoothT: getStoryT(section),
     });
   }
 }
 
-/** Called on scroll to update visible stories. */
+/** Called on scroll — cheap DOM-only updates; canvas drawing happens in animateStories(). */
 export function updateStoriesOnScroll(): void {
   stories.forEach(state => {
     const r = state.section.getBoundingClientRect();
     if (r.bottom < -innerHeight || r.top > innerHeight * 2) return;
     resizeCanvas(state.canvas);
-    const t = getStoryT(state.section);
-    updateProgress(state, t);
-    revealFacts(state, t);
-    state.draw(state.ctx, state.canvas.width, state.canvas.height, t);
+    updateProgress(state, getStoryT(state.section));
   });
 }
 
-/** Called on every animation frame for continuous animations. */
+let lastFrame = 0;
+
+/** Called on every animation frame — eases smoothT toward the raw scroll value and redraws. */
 export function animateStories(): void {
+  const nowMs = performance.now();
+  const dt = lastFrame ? Math.min((nowMs - lastFrame) / 1000, 0.1) : 1 / 60;
+  lastFrame = nowMs;
+  // Frame-rate-independent exponential smoothing: swift catch-up, silky settle
+  const k = 1 - Math.exp(-dt * 8);
+
   stories.forEach(state => {
     const r = state.section.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > innerHeight) return;
+    if (r.bottom < -innerHeight * 0.5 || r.top > innerHeight * 1.5) return;
     resizeCanvas(state.canvas);
-    const t = getStoryT(state.section);
+    const target = getStoryT(state.section);
+    state.smoothT += (target - state.smoothT) * k;
+    if (Math.abs(target - state.smoothT) < 0.0004) state.smoothT = target;
+    const t = state.smoothT;
+    updateProgress(state, t);
     revealFacts(state, t);
     state.draw(state.ctx, state.canvas.width, state.canvas.height, t);
   });

@@ -7,6 +7,70 @@ export interface CalloutItem {
   color?: string;
 }
 
+/** Dashed connector line from a device point to a panel edge, with a solid dot at the device. */
+export function drawConnector(
+  ctx: CanvasRenderingContext2D,
+  deviceX: number, deviceY: number,
+  targetX: number, targetY: number,
+  lineColor = 'rgba(77, 168, 255, 0.4)',
+  dotColor = '#4DA8FF'
+): void {
+  ctx.beginPath();
+  ctx.moveTo(deviceX, deviceY);
+  ctx.lineTo(targetX, targetY);
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 3]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath();
+  ctx.arc(deviceX, deviceY, 3, 0, Math.PI * 2);
+  ctx.fillStyle = dotColor;
+  ctx.fill();
+}
+
+/** Dark glass panel shell with drop shadow and accent border. */
+export function drawGlassPanel(
+  ctx: CanvasRenderingContext2D,
+  x: number, y: number, w: number, h: number,
+  accent = 'rgba(77, 168, 255, 0.3)'
+): void {
+  ctx.shadowColor = 'rgba(0,0,0,0.6)';
+  ctx.shadowBlur = 20;
+  ctx.shadowOffsetY = 8;
+  ctx.fillStyle = 'rgba(10, 20, 40, 0.62)';
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 12);
+  ctx.fill();
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.strokeStyle = accent;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+}
+
+/** Single labelled stat (label over value + optional unit). */
+export function drawStat(
+  ctx: CanvasRenderingContext2D,
+  x: number, y: number,
+  label: string, value: string, unit?: string, color = '#f0f4ff'
+): void {
+  ctx.textAlign = 'left';
+  ctx.font = '400 10px Inter';
+  ctx.fillStyle = 'rgba(240,244,255,0.5)';
+  ctx.fillText(label, x, y);
+  ctx.font = '700 15px Montserrat';
+  ctx.fillStyle = color;
+  ctx.fillText(value, x, y + 17);
+  if (unit) {
+    const tw = ctx.measureText(value).width;
+    ctx.font = '400 9px Inter';
+    ctx.fillStyle = 'rgba(240,244,255,0.35)';
+    ctx.fillText(unit, x + tw + 4, y + 17);
+  }
+}
+
 /**
  * Draws a stat callout box connected to a device with a dashed line.
  * @param cols — number of columns in the grid (default 2)

@@ -1,5 +1,68 @@
 import { lerp, subT, easeInOut } from '../utils';
-import { drawCalloutBox } from './callout-box';
+import { drawConnector, drawGlassPanel, drawStat } from './callout-box';
+
+/** Greenhouse climate panel with a blinking power-outage warning. */
+function drawGozanPanel(
+  ctx: CanvasRenderingContext2D,
+  dx: number, dy: number,
+  appear: number, envT: number, now: number,
+  w: number, h: number
+): void {
+  const W = 268, H = 168;
+  const bx = Math.max(10, Math.min(w - W - 10, dx - W - 60));
+  const by = Math.max(10, Math.min(h - H - 10, dy - H - 20));
+
+  ctx.save();
+  ctx.globalAlpha = appear;
+  drawConnector(ctx, dx, dy, bx + W, by + H * 0.6, 'rgba(255,179,71,0.4)', '#FFB347');
+  drawGlassPanel(ctx, bx, by, W, H, 'rgba(255,179,71,0.4)');
+
+  // Icon cell: blinking electricity-outage warning triangle
+  const ib = 50;
+  ctx.strokeStyle = 'rgba(255,179,71,0.5)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.roundRect(bx + 14, by + 14, ib, ib, 8); ctx.stroke();
+  const blink = 0.5 + 0.5 * Math.sin(now * 5);
+  ctx.save();
+  ctx.translate(bx + 14 + ib / 2, by + 14 + ib / 2 + 2);
+  // Triangle
+  ctx.beginPath();
+  ctx.moveTo(0, -16); ctx.lineTo(16, 12); ctx.lineTo(-16, 12);
+  ctx.closePath();
+  ctx.fillStyle = `rgba(255,179,71,${0.12 + 0.3 * blink})`;
+  ctx.fill();
+  ctx.strokeStyle = '#FFB347'; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+  // Lightning bolt
+  ctx.globalAlpha = appear * (0.55 + 0.45 * blink);
+  ctx.beginPath();
+  ctx.moveTo(3, -8); ctx.lineTo(-4, 1); ctx.lineTo(0, 1);
+  ctx.lineTo(-2, 8); ctx.lineTo(5, -1); ctx.lineTo(1, -1);
+  ctx.closePath();
+  ctx.fillStyle = '#FFB347'; ctx.fill();
+  ctx.restore();
+
+  // Header
+  ctx.textAlign = 'left';
+  ctx.font = '400 10px Inter'; ctx.fillStyle = 'rgba(240,244,255,0.5)';
+  ctx.fillText('GREENHOUSE CLIMATE', bx + 76, by + 28);
+  ctx.globalAlpha = appear * (0.55 + 0.45 * blink);
+  ctx.font = '700 14px Montserrat'; ctx.fillStyle = '#FFB347';
+  ctx.fillText('⚡ POWER OUTAGE', bx + 76, by + 48);
+  ctx.globalAlpha = appear;
+  ctx.font = '400 10px Inter'; ctx.fillStyle = '#00E5A0';
+  ctx.fillText('Backup heating: ON', bx + 76, by + 64);
+
+  ctx.strokeStyle = 'rgba(240,244,255,0.12)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(bx + 14, by + 78); ctx.lineTo(bx + W - 14, by + 78); ctx.stroke();
+
+  // Indoor climate grid
+  drawStat(ctx, bx + 16, by + 96, 'Indoor Temp', lerp(18, 26.3, envT).toFixed(1), '°C', '#FF6B6B');
+  drawStat(ctx, bx + 104, by + 96, 'Humidity', lerp(50, 74, envT).toFixed(0), '%', '#4DA8FF');
+  drawStat(ctx, bx + 192, by + 96, 'CO₂', lerp(350, 520, envT).toFixed(0), 'ppm', '#00E5A0');
+  drawStat(ctx, bx + 16, by + 132, 'Gas Usage', lerp(1.0, 3.4, envT).toFixed(1), 'm³/h', '#FFB347');
+  drawStat(ctx, bx + 104, by + 132, 'Outside', '−6.5', '°C');
+  drawStat(ctx, bx + 192, by + 132, 'Grid Voltage', '182', 'V', '#FF6B6B');
+  ctx.restore();
+}
 
 // Pre-generate snowflakes
 interface Snowflake {
@@ -8,6 +71,14 @@ interface Snowflake {
 }
 const SNOW_COUNT = 80;
 const snowflakes: Snowflake[] = [];
+
+// Pre-generated ground snow patches — drifts that build up as it keeps snowing
+const snowPatches = Array.from({ length: 12 }, (_, i) => ({
+  x: Math.sin(i * 12.9898) * 0.5 + 0.5,
+  y: 0.15 + (Math.sin(i * 78.233) * 0.5 + 0.5) * 0.75,
+  r: 22 + (Math.sin(i * 39.425) * 0.5 + 0.5) * 48,
+  delay: (i % 5) * 0.09,
+}));
 for (let i = 0; i < SNOW_COUNT; i++) {
   snowflakes.push({
     x: Math.random(),
@@ -62,6 +133,29 @@ export function drawGozanlink(
   ctx.fillStyle = groundGrad;
   ctx.fillRect(0, horizon, w, h - horizon);
 
+  // Snow patches accumulate on the ground as the storm continues
+  const accumT = subT(t, 0.15, 0.75);
+  if (accumT > 0.01) {
+    for (const sp of snowPatches) {
+      const a = Math.max(0, Math.min(1, accumT * 1.6 - sp.delay));
+      if (a <= 0) continue;
+      const px = sp.x * w;
+      const py = horizon + sp.y * (h - horizon);
+      const depth = 0.4 + sp.y * 0.8;
+      const R = sp.r * depth * (0.5 + 0.5 * a); // drift spreads as snow keeps falling
+      ctx.save();
+      ctx.translate(px, py);
+      ctx.scale(1, 0.3); // flatten into ground-plane drift
+      const g = ctx.createRadialGradient(0, 0, 1, 0, 0, R);
+      g.addColorStop(0, `rgba(255,255,255,${0.9 * a})`);
+      g.addColorStop(0.7, `rgba(246,250,255,${0.5 * a})`);
+      g.addColorStop(1, 'rgba(246,250,255,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+  }
+
   // Falling snowflakes
   for (const s of snowflakes) {
     const sy = ((s.y + now * s.speedY) % 1.1) * h;
@@ -79,6 +173,29 @@ export function drawGozanlink(
 
   ctx.save();
   ctx.translate(ghCX, ghCY); ctx.scale(zoom, zoom); ctx.translate(-ghCX, -ghCY);
+
+  // Chimney (Roof) — drawn first so the dome hides its base inside the greenhouse
+  ctx.fillStyle = '#546e7a';
+  ctx.beginPath();
+  ctx.moveTo(ghCX + 80, ghCY - 40);
+  ctx.lineTo(ghCX + 80, ghCY - 100);
+  ctx.lineTo(ghCX + 100, ghCY - 100);
+  ctx.lineTo(ghCX + 100, ghCY - 30);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = '#37474f'; ctx.lineWidth = 1; ctx.stroke();
+  // Chimney cap
+  ctx.fillStyle = '#37474f';
+  ctx.fillRect(ghCX + 76, ghCY - 105, 28, 6);
+  // Smoke puffs
+  if (t > 0.1) {
+     for (let s = 0; s < 3; s++) {
+       const smokeT = ((now * 0.4 + s * 0.35) % 1);
+       ctx.fillStyle = `rgba(210,210,210,${0.4 * (1-smokeT)})`;
+       const sx = ghCX + 90 + Math.sin(smokeT * 3 + s) * 6;
+       ctx.beginPath(); ctx.arc(sx, ghCY - 110 - smokeT * 40, 4 + smokeT * 12, 0, Math.PI*2); ctx.fill();
+     }
+  }
 
   // Greenhouse structure — opaque walls with green-tinted glass
   ctx.beginPath();
@@ -115,6 +232,7 @@ export function drawGozanlink(
   ctx.lineTo(ghCX - 10, ghCY + 90); ctx.closePath();
   ctx.fillStyle = 'rgba(255,255,255,0.15)'; ctx.fill();
 
+
   // Door (Front Center) — fades away as greenhouse zooms in
   const doorAlpha = 1 - easeInOut(subT(t, 0.1, 0.35));
   if (doorAlpha > 0.01) {
@@ -135,27 +253,38 @@ export function drawGozanlink(
     ctx.restore();
   }
 
-  // Chimney (Roof)
-  ctx.fillStyle = '#546e7a';
-  ctx.beginPath();
-  ctx.moveTo(ghCX + 80, ghCY - 40);
-  ctx.lineTo(ghCX + 80, ghCY - 100);
-  ctx.lineTo(ghCX + 100, ghCY - 100);
-  ctx.lineTo(ghCX + 100, ghCY - 30);
-  ctx.closePath();
-  ctx.fill();
-  ctx.strokeStyle = '#37474f'; ctx.lineWidth = 1; ctx.stroke();
-  // Chimney cap
-  ctx.fillStyle = '#37474f';
-  ctx.fillRect(ghCX + 76, ghCY - 105, 28, 6);
-  // Smoke puffs
-  if (t > 0.1) {
-     for (let s = 0; s < 3; s++) {
-       const smokeT = ((now * 0.4 + s * 0.35) % 1);
-       ctx.fillStyle = `rgba(210,210,210,${0.4 * (1-smokeT)})`;
-       const sx = ghCX + 90 + Math.sin(smokeT * 3 + s) * 6;
-       ctx.beginPath(); ctx.arc(sx, ghCY - 110 - smokeT * 40, 4 + smokeT * 12, 0, Math.PI*2); ctx.fill();
-     }
+  // Snow builds up along the greenhouse roof
+  if (accumT > 0.02) {
+    const th = 3 + accumT * 9; // snow depth grows with the storm
+    const x0 = ghCX - 140, y0 = ghCY - 20;
+    const cx = ghCX, cy = ghCY - 90;
+    const x1 = ghCX + 140, y1 = ghCY - 20;
+    const N = 26;
+    const qx = (u: number) => (1 - u) * (1 - u) * x0 + 2 * (1 - u) * u * cx + u * u * x1;
+    const qy = (u: number) => (1 - u) * (1 - u) * y0 + 2 * (1 - u) * u * cy + u * u * y1;
+
+    ctx.beginPath();
+    for (let i = 0; i <= N; i++) {
+      const u = i / N;
+      if (i === 0) ctx.moveTo(qx(u), qy(u)); else ctx.lineTo(qx(u), qy(u));
+    }
+    for (let i = N; i >= 0; i--) {
+      const u = i / N;
+      const taper = Math.sin(Math.PI * u); // deepest at the crown
+      const bump = Math.sin(u * 26) * 1.5 * accumT; // soft uneven drift edge
+      ctx.lineTo(qx(u), qy(u) - th * (0.3 + 0.7 * taper) - bump);
+    }
+    ctx.closePath();
+    ctx.fillStyle = `rgba(250, 252, 255, ${0.6 + 0.35 * accumT})`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(205, 218, 238, ${0.5 * accumT})`;
+    ctx.lineWidth = 1; ctx.stroke();
+
+    // Snow cap on the chimney
+    ctx.fillStyle = `rgba(250, 252, 255, ${0.9 * accumT})`;
+    ctx.beginPath();
+    ctx.roundRect(ghCX + 74, ghCY - 105 - 5 * accumT, 32, 4 + 5 * accumT, 3);
+    ctx.fill();
   }
 
   // Plants & tomatoes
@@ -173,14 +302,29 @@ export function drawGozanlink(
         ctx.beginPath(); ctx.ellipse(px - 5, ry - stemH + 3, 7, 3.5, -0.4, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.ellipse(px + 5, ry - stemH + 1, 6, 3, 0.4, 0, Math.PI * 2); ctx.fill();
 
-        if ((row + p) % 2 === 0 && tomatoT > 0) {
-          const tSize = 3 + tomatoT * 3;
-          const ripeness = Math.min(1, tomatoT * 1.5);
-          ctx.beginPath(); ctx.arc(px + 3, ry - stemH + 9, tSize, 0, Math.PI * 2);
-          ctx.fillStyle = `rgb(${Math.floor(lerp(50, 220, ripeness))},${Math.floor(lerp(120, 35, ripeness))},25)`;
-          ctx.fill();
-          ctx.beginPath(); ctx.arc(px + 1, ry - stemH + 7, tSize * 0.3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255,255,255,${ripeness * 0.25})`; ctx.fill();
+        // Tomatoes on ~2/3 of plants, ripening in a staggered wave across the greenhouse
+        const plantIdx = row * 7 + p;
+        if (plantIdx % 3 !== 2 && tomatoT > 0) {
+          const stagger = (plantIdx % 5) * 0.09; // each plant ripens at its own moment
+          const ripeness = Math.max(0, Math.min(1, tomatoT * 1.8 - stagger));
+          if (ripeness > 0) {
+            const tSize = 3 + ripeness * 3.5;
+            const tx2 = px + 3, ty2 = ry - stemH + 9;
+            // Warm glow around fully ripe tomatoes
+            if (ripeness > 0.75) {
+              const glowA = (ripeness - 0.75) * 1.2 * (0.7 + Math.sin(now * 2 + plantIdx) * 0.3);
+              const glow = ctx.createRadialGradient(tx2, ty2, 1, tx2, ty2, tSize * 2.6);
+              glow.addColorStop(0, `rgba(255, 90, 50, ${glowA * 0.5})`);
+              glow.addColorStop(1, 'rgba(255, 90, 50, 0)');
+              ctx.fillStyle = glow;
+              ctx.beginPath(); ctx.arc(tx2, ty2, tSize * 2.6, 0, Math.PI * 2); ctx.fill();
+            }
+            ctx.beginPath(); ctx.arc(tx2, ty2, tSize, 0, Math.PI * 2);
+            ctx.fillStyle = `rgb(${Math.floor(lerp(50, 226, ripeness))},${Math.floor(lerp(120, 40, ripeness))},25)`;
+            ctx.fill();
+            ctx.beginPath(); ctx.arc(px + 1, ry - stemH + 7, tSize * 0.3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${ripeness * 0.3})`; ctx.fill();
+          }
         }
       }
     }
@@ -192,10 +336,16 @@ export function drawGozanlink(
   const sensorY = ghCY + 30;
   ctx.save(); ctx.translate(sensorX, sensorY);
   ctx.fillStyle = '#E8E8E8';
-  ctx.beginPath(); ctx.roundRect(-12, -16, 24, 32, 4); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(-16, -20, 32, 40, 4); ctx.fill();
   ctx.strokeStyle = 'rgba(0,229,160,0.5)'; ctx.lineWidth = 1; ctx.stroke();
-  ctx.fillStyle = '#b3e5fc'; ctx.fillRect(-8, -12, 16, 12); // Light blue screen
-  ctx.beginPath(); ctx.arc(0, 10, 2.5, 0, Math.PI * 2);
+  ctx.fillStyle = '#b3e5fc'; ctx.fillRect(-11, -16, 22, 14); // Light blue screen
+  // Product label on the device face
+  ctx.fillStyle = '#1b5e20';
+  ctx.font = '700 5px Inter';
+  ctx.textAlign = 'center';
+  ctx.fillText('GozanLink', 0, 7);
+  ctx.textAlign = 'left';
+  ctx.beginPath(); ctx.arc(0, 14, 2.5, 0, Math.PI * 2);
   ctx.fillStyle = '#00E5A0'; ctx.globalAlpha = 0.5 + Math.sin(now * 4) * 0.5; ctx.fill();
   ctx.globalAlpha = 1;
   ctx.restore();
@@ -205,14 +355,9 @@ export function drawGozanlink(
   // Callout — originate from the sensor device (screen-space coords after zoom)
   if (t > 0.4) {
     const envT = subT(t, 0.4, 0.8);
+    const appear = easeInOut(subT(t, 0.4, 0.6));
     const deviceScreenX = ghCX + 90 * zoom;
     const deviceScreenY = ghCY + 30 * zoom;
-    drawCalloutBox(ctx, deviceScreenX, deviceScreenY - 40, 'GREENHOUSE CLIMATE', [
-      { label: 'Temperature', value: `${lerp(18, 26.3, envT).toFixed(1)}`, unit: '°C', color: '#FF6B6B' },
-      { label: 'Humidity', value: `${lerp(50, 74, envT).toFixed(0)}`, unit: '%', color: '#4DA8FF' },
-      { label: 'CO₂', value: `${lerp(350, 520, envT).toFixed(0)}`, unit: 'ppm', color: '#00E5A0' },
-      { label: 'Wind', value: `${lerp(0.5, 1.8, envT).toFixed(1)}`, unit: 'm/s', color: '#f0f4ff' },
-      { label: 'Gas Usage', value: `${lerp(1.0, 3.4, envT).toFixed(1)}`, unit: 'm³/h', color: '#FFB347' },
-    ], subT(t, 0.4, 0.6), 'left', 3);
+    if (appear > 0.01) drawGozanPanel(ctx, deviceScreenX, deviceScreenY - 20, appear, envT, now, w, h);
   }
 }

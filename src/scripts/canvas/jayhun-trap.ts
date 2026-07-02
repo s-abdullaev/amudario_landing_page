@@ -1,7 +1,71 @@
 import { lerp, subT, easeInOut } from '../utils';
-import { drawCalloutBox } from './callout-box';
-import { drawSolarPanel } from './station-parts';
+import { drawConnector, drawGlassPanel, drawStat } from './callout-box';
 import { WheatField } from './components/WheatField';
+
+/** Fancy pest-analysis panel with a blinking insect icon. */
+function drawJayhunPanel(
+  ctx: CanvasRenderingContext2D,
+  hx: number, hy: number,
+  appear: number, t: number, now: number,
+  w: number, h: number
+): void {
+  const W = 256, H = 152;
+  const bx = Math.max(10, Math.min(w - W - 10, hx - W - 80));
+  const by = Math.max(10, Math.min(h - H - 10, hy - H - 40));
+
+  ctx.save();
+  ctx.globalAlpha = appear;
+  drawConnector(ctx, hx - 54, hy + 4, bx + W, by + H * 0.6, 'rgba(0,229,160,0.4)', '#00E5A0');
+  drawGlassPanel(ctx, bx, by, W, H, 'rgba(0,229,160,0.35)');
+
+  // Icon cell with blinking moth
+  const ib = 46;
+  ctx.strokeStyle = 'rgba(0,229,160,0.5)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.roundRect(bx + 14, by + 14, ib, ib, 8); ctx.stroke();
+  const blink = 0.45 + 0.55 * (0.5 + Math.sin(now * 5) * 0.5);
+  ctx.save();
+  ctx.translate(bx + 14 + ib / 2, by + 14 + ib / 2);
+  ctx.globalAlpha = appear * blink;
+  const ig = ctx.createRadialGradient(0, 0, 2, 0, 0, 22);
+  ig.addColorStop(0, 'rgba(0,229,160,0.4)');
+  ig.addColorStop(1, 'rgba(0,229,160,0)');
+  ctx.fillStyle = ig;
+  ctx.beginPath(); ctx.arc(0, 0, 22, 0, Math.PI * 2); ctx.fill();
+  // Moth: body, wings, antennae
+  ctx.fillStyle = '#00E5A0';
+  ctx.beginPath(); ctx.ellipse(0, 2, 2.5, 8, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(-7, -1, 8, 4.5, -0.5, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(7, -1, 8, 4.5, 0.5, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#00E5A0'; ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(-1, -6); ctx.lineTo(-5, -12);
+  ctx.moveTo(1, -6); ctx.lineTo(5, -12);
+  ctx.stroke();
+  ctx.restore();
+
+  // Header
+  ctx.textAlign = 'left';
+  ctx.globalAlpha = appear * (0.5 + 0.5 * blink);
+  ctx.font = '600 10px Inter'; ctx.fillStyle = '#00E5A0';
+  ctx.fillText('● PEST DETECTED', bx + 72, by + 30);
+  ctx.globalAlpha = appear;
+  ctx.font = '700 15px Montserrat'; ctx.fillStyle = '#f0f4ff';
+  ctx.fillText('Helicoverpa armigera', bx + 72, by + 50);
+
+  ctx.strokeStyle = 'rgba(240,244,255,0.12)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(bx + 14, by + 72); ctx.lineTo(bx + W - 14, by + 72); ctx.stroke();
+
+  // Stats grid
+  const count = Math.min(17, Math.floor(subT(t, 0.45, 0.8) * 18));
+  const daily = lerp(0, 4.2, subT(t, 0.45, 0.8));
+  drawStat(ctx, bx + 16, by + 90, 'Count', String(count), undefined, '#4DA8FF');
+  drawStat(ctx, bx + 98, by + 90, 'Daily Rate', daily.toFixed(1), '/day');
+  drawStat(ctx, bx + 180, by + 90, 'Confidence', '87', '%', '#00E5A0');
+  drawStat(ctx, bx + 16, by + 126, 'Risk Level', count > 10 ? 'High' : 'Medium', undefined, count > 10 ? '#FF6B6B' : '#FFB347');
+  drawStat(ctx, bx + 98, by + 126, 'Trap Status', 'Active', undefined, '#00E5A0');
+  drawStat(ctx, bx + 180, by + 126, 'Battery', '94', '%');
+  ctx.restore();
+}
 
 const wheatField = new WheatField();
 
@@ -126,57 +190,121 @@ export function drawJayhunTrap(
   ctx.save();
   ctx.translate(trapX, trapY); ctx.scale(zoom, zoom); ctx.translate(-trapX, -trapY);
 
-  ctx.fillStyle = '#4a5a4a'; ctx.fillRect(trapX - 3, trapY, 6, h * 0.25); // Pole
+  // ── Trap station (modeled after the real TOPRAQ unit) ──
+  const poleBot = trapY + h * 0.25;
 
-  // Trap body - Lighter green/metallic (rectangular bottom)
-  ctx.beginPath();
-  ctx.moveTo(trapX - 50, trapY - 20); ctx.lineTo(trapX + 50, trapY - 20);
-  ctx.lineTo(trapX + 48, trapY + 30); ctx.lineTo(trapX - 48, trapY + 30);
-  ctx.closePath();
-  ctx.fillStyle = '#e8f5e9'; // Very light green
-  ctx.fill();
-  ctx.strokeStyle = '#2e7d32'; // Dark green outline
-  ctx.lineWidth = 1; ctx.stroke();
-
-  // Entry hole (triangular)
+  // Slanted solar panel behind the pole (drawn first so the pole passes in front)
   ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(trapX, trapY - 10);        // top vertex
-  ctx.lineTo(trapX - 14, trapY + 18);   // bottom-left
-  ctx.lineTo(trapX + 14, trapY + 18);   // bottom-right
-  ctx.closePath();
-  ctx.fillStyle = '#d7ccc8'; // Light greyish-brown/beige hole
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.translate(trapX, trapY + 44);
+  ctx.beginPath(); ctx.moveTo(0, -6); ctx.lineTo(0, 16); // vertical mount arm
+  ctx.strokeStyle = '#868e93'; ctx.lineWidth = 3; ctx.stroke();
+  ctx.translate(0, 38);
+  ctx.transform(1, 0, -0.1, 1, 0, 0); // slight skew — tilted toward the sun
+  const spw = 140, sph = 50;
+  ctx.beginPath(); ctx.roundRect(-spw / 2 - 3, -sph / 2 - 3, spw + 6, sph + 6, 3);
+  ctx.fillStyle = '#d9dcde'; ctx.fill();
+  ctx.strokeStyle = '#9aa1a6'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.fillStyle = '#24476b';
+  ctx.fillRect(-spw / 2, -sph / 2, spw, sph);
+  ctx.strokeStyle = 'rgba(255,255,255,0.45)'; ctx.lineWidth = 0.7;
+  for (let gx = -spw / 2 + 12; gx < spw / 2; gx += 12) {
+    ctx.beginPath(); ctx.moveTo(gx, -sph / 2); ctx.lineTo(gx, sph / 2); ctx.stroke();
+  }
+  for (let gy = -sph / 2 + 13; gy < sph / 2; gy += 13) {
+    ctx.beginPath(); ctx.moveTo(-spw / 2, gy); ctx.lineTo(spw / 2, gy); ctx.stroke();
+  }
+  const sheen = ctx.createLinearGradient(-spw / 2, -sph / 2, spw / 2, sph / 2);
+  sheen.addColorStop(0, 'rgba(255,255,255,0.28)');
+  sheen.addColorStop(0.5, 'rgba(255,255,255,0)');
+  ctx.fillStyle = sheen; ctx.fillRect(-spw / 2, -sph / 2, spw, sph);
   ctx.restore();
 
-  // Roof
+  // Metallic pole
+  const poleGrad = ctx.createLinearGradient(trapX - 4, 0, trapX + 4, 0);
+  poleGrad.addColorStop(0, '#9ba3a8');
+  poleGrad.addColorStop(0.5, '#d5dadd');
+  poleGrad.addColorStop(1, '#8d959a');
+  ctx.fillStyle = poleGrad;
+  ctx.fillRect(trapX - 4, trapY + 20, 8, poleBot - trapY - 20);
+
+  // Ground shadow + square base plate
+  ctx.fillStyle = 'rgba(80, 90, 85, 0.22)';
+  ctx.beginPath(); ctx.ellipse(trapX, poleBot + 4, 26, 6, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#b6bdc2';
+  ctx.beginPath(); ctx.roundRect(trapX - 20, poleBot - 2, 40, 6, 2); ctx.fill();
+  ctx.strokeStyle = '#8d959a'; ctx.lineWidth = 1; ctx.stroke();
+
+  // Mounting bracket under housing
+  ctx.fillStyle = '#aeb6bb';
+  ctx.beginPath(); ctx.roundRect(trapX - 10, trapY + 26, 20, 12, 2); ctx.fill();
+  ctx.strokeStyle = '#868e93'; ctx.lineWidth = 1; ctx.stroke();
+
+  // Whip antenna
   ctx.beginPath();
-  ctx.moveTo(trapX - 60, trapY - 20); ctx.lineTo(trapX, trapY - 50); ctx.lineTo(trapX + 60, trapY - 20);
+  ctx.moveTo(trapX + 30, trapY - 32);
+  ctx.lineTo(trapX + 30, trapY - 92);
+  ctx.strokeStyle = '#4a4f52'; ctx.lineWidth = 1.5; ctx.stroke();
+  for (let a = 0; a < 4; a++) {
+    ctx.beginPath();
+    ctx.moveTo(trapX + 28.5, trapY - 44 - a * 10);
+    ctx.lineTo(trapX + 31.5, trapY - 44 - a * 10);
+    ctx.strokeStyle = '#6b7075'; ctx.lineWidth = 1; ctx.stroke();
+  }
+  ctx.beginPath(); ctx.arc(trapX + 30, trapY - 94, 2, 0, Math.PI * 2);
+  ctx.fillStyle = '#4a4f52'; ctx.fill();
+
+  // Trap housing — cream octagonal box with chamfered corners
+  const hw = 52, hh = 38, chf = 14;
+  const hx = trapX, hy = trapY - 2;
+  ctx.beginPath();
+  ctx.moveTo(hx - hw + chf, hy - hh);
+  ctx.lineTo(hx + hw - chf, hy - hh);
+  ctx.lineTo(hx + hw, hy - hh + chf);
+  ctx.lineTo(hx + hw, hy + hh - chf);
+  ctx.lineTo(hx + hw - chf, hy + hh);
+  ctx.lineTo(hx - hw + chf, hy + hh);
+  ctx.lineTo(hx - hw, hy + hh - chf);
+  ctx.lineTo(hx - hw, hy - hh + chf);
   ctx.closePath();
-  ctx.fillStyle = '#c8e6c9'; // Light green roof
-  ctx.fill();
-  ctx.strokeStyle = '#2e7d32'; ctx.stroke();
+  const bodyGrad = ctx.createLinearGradient(hx - hw, hy - hh, hx + hw, hy + hh);
+  bodyGrad.addColorStop(0, '#f7f4ec');
+  bodyGrad.addColorStop(0.6, '#efeadd');
+  bodyGrad.addColorStop(1, '#ddd6c4');
+  ctx.fillStyle = bodyGrad; ctx.fill();
+  ctx.strokeStyle = '#b9b29c'; ctx.lineWidth = 1.5; ctx.stroke();
 
-  // Solar panel attached to the middle of the mast
-  ctx.save();
-  ctx.translate(trapX, trapY + 40);
-  ctx.scale(0.85, 0.85);
-  drawSolarPanel(ctx);
-  ctx.restore();
+  // Facet seams
+  ctx.beginPath();
+  ctx.moveTo(hx - hw + chf, hy - hh); ctx.lineTo(hx - hw + chf, hy + hh);
+  ctx.moveTo(hx + hw - chf, hy - hh); ctx.lineTo(hx + hw - chf, hy + hh);
+  ctx.strokeStyle = 'rgba(160, 150, 120, 0.35)'; ctx.lineWidth = 1; ctx.stroke();
 
-  // Glow (Yellow attractant)
-  const glowR = 40 + Math.sin(now * 2) * 8;
-  const glowGrad = ctx.createRadialGradient(trapX, trapY, 5, trapX, trapY, glowR);
-  glowGrad.addColorStop(0, 'rgba(255,193,7,0.4)'); // Amber glow
+  // Brand mark
+  ctx.fillStyle = 'rgba(70, 120, 90, 0.75)';
+  ctx.font = '600 8px Inter';
+  ctx.textAlign = 'center';
+  ctx.fillText('JayhunTrap', hx, hy - 16);
+  ctx.textAlign = 'left';
+
+  // Dark entry aperture — moths fly in here
+  ctx.beginPath();
+  ctx.roundRect(hx - 22, hy + 6, 44, 26, 5);
+  ctx.fillStyle = '#3d3a32'; ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = 1; ctx.stroke();
+
+  // Glow (pheromone attractant) — emanates from the aperture
+  const glowR = 38 + Math.sin(now * 2) * 8;
+  const glowGrad = ctx.createRadialGradient(hx, hy + 18, 4, hx, hy + 18, glowR);
+  glowGrad.addColorStop(0, 'rgba(255,193,7,0.4)');
   glowGrad.addColorStop(1, 'rgba(255,193,7,0)');
   ctx.fillStyle = glowGrad;
-  ctx.beginPath(); ctx.arc(trapX, trapY, glowR, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(hx, hy + 18, glowR, 0, Math.PI * 2); ctx.fill();
 
+  // Sticky plate slides in at the aperture floor
   if (t > 0.3) {
     ctx.globalAlpha = subT(t, 0.3, 0.45);
-    ctx.fillStyle = '#fff9c4'; // Light sticky plate
-    ctx.fillRect(trapX - 25, trapY + 2, 50, 25);
+    ctx.fillStyle = '#fff9c4';
+    ctx.fillRect(hx - 20, hy + 26, 40, 5);
     ctx.globalAlpha = 1;
   }
 
@@ -250,13 +378,7 @@ export function drawJayhunTrap(
 
   // Callout
   if (t > 0.45) {
-    const count = Math.min(17, Math.floor(subT(t, 0.45, 0.8) * 18));
-    const dailyRate = lerp(0, 4.2, subT(t, 0.45, 0.8));
-    drawCalloutBox(ctx, trapX, trapY + 10, 'PEST ANALYSIS', [
-      { label: 'Species', value: 'Helicoverpa', color: '#00E5A0' },
-      { label: 'Count', value: count.toString(), color: '#4DA8FF' },
-      { label: 'Daily Rate', value: dailyRate.toFixed(1) + ' /day', color: '#f0f4ff' },
-      { label: 'Risk', value: count > 10 ? 'High' : 'Medium', color: count > 10 ? '#FF6B6B' : '#FFB347' },
-    ], subT(t, 0.45, 0.65), 'left');
+    const appear = easeInOut(subT(t, 0.45, 0.65));
+    if (appear > 0.01) drawJayhunPanel(ctx, trapX, trapY, appear, t, now, w, h);
   }
 }
