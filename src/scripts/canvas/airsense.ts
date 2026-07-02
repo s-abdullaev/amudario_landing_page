@@ -252,11 +252,13 @@ export function drawAirsense(
 
   // Airsense station
   
-  // Scale similar to OXUS for consistent size
+  // Scale similar to OXUS for consistent size; zooms toward the camera on scroll
   const sc = Math.min(w, h) / 600;
-  ctx.save(); 
-  ctx.translate(stationX, stationY - 50); // Adjust Y to plant pole firmly
-  ctx.scale(sc, sc);
+  const zoom = 1 + easeInOut(subT(t, 0.25, 0.6)) * 0.55;
+  ctx.save();
+  // Shift down as it zooms so the mast top stays inside the frame
+  ctx.translate(stationX, stationY - 50 + (zoom - 1) * 200);
+  ctx.scale(sc * zoom, sc * zoom);
 
   // Slanted solar panel on a T-shaped rack, behind the pole (drawn first)
   ctx.save(); ctx.translate(0, -20);
