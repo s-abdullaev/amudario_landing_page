@@ -259,17 +259,17 @@ ul{list-style:none}
 
 /* ===== PARTNERS ===== */
 .partners{max-width:var(--maxw);margin:0 auto;padding:clamp(4rem,9vw,7rem) clamp(1rem,4vw,2.5rem)}
-.partners__title{text-align:center;font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:500;color:var(--ink-soft);margin-bottom:3rem}
+.partners__title{text-align:center;font-size:clamp(1.1rem,2vw,1.4rem);font-weight:500;color:var(--ink-soft);margin-bottom:3rem}
 .partners__grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  display:grid;grid-template-columns:repeat(8,1fr);gap:1px;
   background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
 }
 .partners__grid a{display:block;background:var(--white)}
 .partners__grid img{
-  background:var(--white);aspect-ratio:2/1;object-fit:contain;padding:1.8rem;width:100%;height:100%;
-  filter:grayscale(1);opacity:.72;transition:filter .3s,opacity .3s,transform .3s var(--ease);
+  background:var(--white);aspect-ratio:3/2;object-fit:contain;padding:1.3rem;width:100%;height:100%;
+  transition:transform .3s var(--ease);
 }
-.partners__grid a:hover img{filter:grayscale(0);opacity:1;transform:scale(1.04)}
+.partners__grid a:hover img{transform:scale(1.06)}
 
 /* ===== CTA ===== */
 .cta{padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,2.5rem)}
@@ -327,7 +327,7 @@ ul{list-style:none}
   .nav__links{display:none}
 }
 @media(max-width:900px){
-  .partners__grid{grid-template-columns:repeat(3,1fr)}
+  .partners__grid{grid-template-columns:repeat(4,1fr)}
   .stats__grid{grid-template-columns:repeat(2,1fr)}
   .intro{grid-template-columns:1fr}
   .solutions__grid{grid-template-columns:1fr}
