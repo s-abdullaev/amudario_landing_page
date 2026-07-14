@@ -1,14 +1,22 @@
 ---
 // Amudario corporate landing — Astro
 const partners = [
-  ["undp.jpg", "UNDP"], ["cgiar.png", "CGIAR"], ["icarda.png", "ICARDA"], ["ifad.jpg", "IFAD"],
-  ["iwmi.png", "IWMI"], ["ifas.png", "IFAS"], ["inha-university.jpg", "Inha University"],
-  ["new-uzbekistan-university.png", "New Uzbekistan University"],
-  ["national-research-center.png", "National Research Center"],
-  ["fanlar-akademiyasi.png", "Academy of Sciences"], ["uzhydromet.jpg", "Uzhydromet"],
-  ["karantin-inspeksiya.jpg", "Quarantine Inspection"], ["chamber-of-commerce.jpg", "Chamber of Commerce"],
-  ["tashkent-city.jpg", "Tashkent City"], ["suvchilar-maktabi.png", "Suvchilar Maktabi"],
-  ["samarkand-marathon.png", "Samarkand Marathon"]
+  ["undp.jpg", "UNDP", "https://www.undp.org"],
+  ["cgiar.png", "CGIAR", "https://www.cgiar.org"],
+  ["icarda.png", "ICARDA", "https://www.icarda.org"],
+  ["ifad.jpg", "IFAD", "https://www.ifad.org"],
+  ["iwmi.png", "IWMI", "https://www.iwmi.cgiar.org"],
+  ["ifas.png", "IFAS", "https://ifas.uz"],
+  ["inha-university.jpg", "Inha University in Tashkent", "https://inha.uz"],
+  ["new-uzbekistan-university.png", "New Uzbekistan University", "https://newuu.uz"],
+  ["national-research-center.png", "TIIAME National Research University", "https://tiiame.uz"],
+  ["fanlar-akademiyasi.png", "Academy of Sciences of Uzbekistan", "https://academy.uz"],
+  ["uzhydromet.jpg", "Uzhydromet", "https://hydromet.uz"],
+  ["karantin-inspeksiya.jpg", "Plant Quarantine and Protection Agency", "https://karantin.uz"],
+  ["chamber-of-commerce.jpg", "Chamber of Commerce and Industry", "https://chamber.uz"],
+  ["tashkent-city.jpg", "Tashkent City", "https://tashkent.uz"],
+  ["suvchilar-maktabi.png", "Suvchilar Maktabi", "https://suvchimaktabi.uz"],
+  ["samarkand-marathon.png", "Samarkand Marathon", "https://samarkandmarathon.uz"]
 ];
 
 const products = [
@@ -219,7 +227,11 @@ const products = [
     <section class="partners" id="partners">
       <h2 class="partners__title" data-i18n="partners.title">Trusted by leading institutions</h2>
       <div class="partners__grid" data-reveal>
-        {partners.map(([file, name]) => <img src={`/assets/partners/${file}`} alt={name} loading="lazy" />)}
+        {partners.map(([file, name, url]) => (
+          <a href={url} target="_blank" rel="noopener" title={name} aria-label={name}>
+            <img src={`/assets/partners/${file}`} alt={name} loading="lazy" />
+          </a>
+        ))}
       </div>
     </section>
 
