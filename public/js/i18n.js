@@ -89,7 +89,7 @@ const I18N = {
     "cta.title": "Join the agricultural revolution",
     "cta.body": "Bring precision agriculture to your fields. Talk to our team about a pilot.",
     "cta.placeholder": "Your email address",
-    "cta.button": "Request a demo",
+    "cta.button": "Contact us",
 
     "footer.tagline": "Smart solutions for smart agriculture.",
     "footer.products": "Products",
@@ -190,7 +190,7 @@ const I18N = {
     "cta.title": "Присоединяйтесь к аграрной революции",
     "cta.body": "Начните использовать технологии точного земледелия на своих полях. Обсудите запуск пилотного проекта с нашей командой.",
     "cta.placeholder": "Электронная почта",
-    "cta.button": "Запросить демонстрацию",
+    "cta.button": "Связаться с нами",
 
     "footer.tagline": "Умные решения для умного сельского хозяйства.",
     "footer.products": "Продукты",
@@ -269,29 +269,29 @@ const I18N = {
 
     "sol.eyebrow": "Platforma",
     "sol.title": "Butun xo‘jalik uchun yagona tizim",
-    "sol.body": "Har bir qurilma yagona boshqaruv paneliga ma’lumot uzatadi — ob-havo, zararkunanda, havo va issiqxona iqlimi birga ishlaydi.",
+    "sol.body": "Hamma qurilmalar yagona boshqaruv paneliga ma’lumotlarni uzatadi — ob-havo, zararkunandalar, havo sifati va issiqxona iqlimi alohida emas, balki yaxlit tizim bo‘lib ishlaydi.",
     "sol.c1t": "Real vaqtli monitoring",
-    "sol.c1b": "Har bir sensordan jonli dala ma’lumoti, istalgan ekranda.",
-    "sol.c2t": "SI bashorat",
-    "sol.c2b": "Kasallik va zararkunanda modellari avjdan oldin ogohlantiradi.",
+    "sol.c1b": "Har bir datchikdan olingan real vaqtdagi dala ma’lumotlari istalgan ekranda.",
+    "sol.c2t": "SI bashoratlari",
+    "sol.c2b": "Kasallik va zararkunandalar modellari xavf avj olishidan oldin sizni ogohlantiradi.",
     "sol.c3t": "Avtomatik javob",
-    "sol.c3b": "Chegaralar oshganda ogohlantirish va boshqaruv ishga tushadi.",
+    "sol.c3b": "Belgilangan me’yordan oshganda ogohlantirishlar va avtomatik boshqaruv tizimi ishga tushadi.",
 
     "team.eyebrow": "Asoschilar",
-    "team.title": "Amaliyotchilar va muhandislar tomonidan",
+    "team.title": "Tajribali mutaxassislar va muhandislar tomonidan yaratilgan",
     "team.r1": "Biznes hammuassisi",
-    "team.b1": "Xaridlar va loyiha boshqaruvida 16 yil. Raqamli transformatsiya bo‘yicha MBA.",
+    "team.b1": "Xaridlar va loyihalarni boshqarish sohasida 16 yillik tajriba. Raqamli transformatsiya bo‘yicha MBA darajasi.",
     "team.r2": "Texnik hammuassis — Mahsulot",
-    "team.b2": "Dasturiy injiniringda 20 yil. Kompyuter fanlari bo‘yicha PhD.",
+    "team.b2": "Dasturiy ta’minot muhandisligida 20 yillik tajriba. Kompyuter fanlari bo‘yicha falsafa doktori (PhD).",
     "team.r3": "Texnik hammuassis — Apparat",
-    "team.b3": "Tizim dizaynida 20 yil. Axborot-kommunikatsiya muhandisligi bo‘yicha PhD.",
+    "team.b3": "Tizim loyihalash bo‘yicha 20 yillik tajriba. Axborot va kommunikatsiya muhandisligi bo‘yicha falsafa doktori (PhD).",
 
-    "partners.title": "Yetakchi tashkilotlar ishonchi",
+    "partners.title": "Yetakchi tashkilotlarning ishonchi",
 
     "cta.title": "Agrar inqilobga qo‘shiling",
-    "cta.body": "Dalalaringizga aniq dehqonchilikni olib keling. Jamoamiz bilan pilot loyihani muhokama qiling.",
-    "cta.placeholder": "Email manzilingiz",
-    "cta.button": "Demo so‘rash",
+    "cta.body": "Dalalaringizda aniq dehqonchilik tizimini joriy qiling. Jamoamiz bilan sinov (pilot) loyihasini muhokama qiling.",
+    "cta.placeholder": "Elektron pochta manzilingiz",
+    "cta.button": "Bog‘lanish",
 
     "footer.tagline": "Aqlli qishloq xo‘jaligi uchun aqlli yechimlar.",
     "footer.products": "Mahsulotlar",
@@ -358,25 +358,25 @@ Object.assign(I18N.ru, {
 Object.assign(I18N.uz, {
   "hiw.eyebrow": "Qanday ishlaydi",
   "hiw.title": "Daladan qarorlargacha",
-  "hiw.s1t": "Sensor ma'lumotlarini yig'ish",
-  "hiw.s1b": "Dala sensorlari ob-havo va tuproq ko'rsatkichlarini o'lchab, mobil tarmoq orqali bulutga uzatadi.",
-  "hiw.s2t": "Sun'iy yo'ldosh ma'lumotlari",
-  "hiw.s2b": "Yerdagi ko'rsatkichlar sun'iy yo'ldosh tasvirlari bilan birlashtirilib, to'liq manzara hosil qilinadi.",
+  "hiw.s1t": "Sensorlar yordamida ma’lumotlarni yig‘ish",
+  "hiw.s1b": "Dala datchiklari ob-havo va tuproq parametrlarini o‘lchab, mobil tarmoqlar orqali bulutli serverga uzatadi.",
+  "hiw.s2t": "Sun’iy yo‘ldosh ma’lumotlari integratsiyasi",
+  "hiw.s2b": "Yerdagi datchik ko‘rsatkichlari sun’iy yo‘ldosh tasvirlari bilan birlashtirilib, ekologiyaning to‘liq manzarasi yaratiladi.",
   "hiw.s3t": "SI bashoratlari",
-  "hiw.s3b": "Mashinaviy o'rganish modellari ob-havo, kasallik va zararkunanda avjlarini oldindan bashorat qiladi.",
-  "hiw.s4t": "Fermer paneli",
-  "hiw.s4b": "Real vaqtli tushunarli panellar bashoratlarni ishonchli kundalik qarorlarga aylantiradi.",
+  "hiw.s3b": "Mashinali o‘rganish modellari ob-havo, ekin kasalliklari va zararkunandalar faolligini oldindan xabar qiladi.",
+  "hiw.s4t": "Fermer boshqaruv paneli",
+  "hiw.s4b": "Real vaqtdagi qulay boshqaruv panellari olingan ma’lumotlarni oqilona kundalik qarorlarga aylantiradi.",
   "press.eyebrow": "Matbuotda",
-  "press.title": "Dunyoda e'tirof etilgan",
-  "press.p1": "BMTTD zamonaviy ekologik zararkunanda nazoratini yoritdi",
-  "press.p2": "Toshkent viloyati fermalari IoT joriy eta boshladi",
-  "press.p3": "Feromon tuzoqlar fermerlarga zararkunandaga qarshi yordam beradi",
-  "press.p4": "Farg'ona vodiysi fermerlari aniq agrometeoma'lumot oldi",
-  "press.p5": "Aniq dehqonchilik O'zbekiston qishloq xo'jaligini o'zgartirmoqda",
-  "press.p6": "Havo sifati monitoringi O'zbekistonda kengaymoqda",
-  "press.p7": "O'zbek fermerlari shaxsiy meteostansiyalarga ega bo'lmoqda",
-  "press.p8": "Professorlar aqlli agrometeostansiyalarni taqdim etdi",
-  "press.p9": "AKFA universiteti ekologik monitoring tizimini joriy etdi",
+  "press.title": "Xalqaro miqyosdagi e’tirof",
+  "press.p1": "BMTTD barqaror ekologik zararkunandalar nazorati bo‘yicha loyihalarimizni yoritdi",
+  "press.p2": "Toshkent viloyatidagi fermer xo‘jaliklari IoT texnologiyalarini joriy eta boshladi",
+  "press.p3": "Feromon tuzoqlari fermerlarga zararkunandalarga samarali qarshi kurashishda yordam bermoqda",
+  "press.p4": "Farg‘ona vodiysi fermerlari aniq agrometeorologik ma’lumotlarga ega bo‘ldi",
+  "press.p5": "Aniq dehqonchilik O‘zbekiston qishloq xo‘jaligini tubdan o‘zgartirmoqda",
+  "press.p6": "Havo sifati monitoringi tizimi O‘zbekiston bo‘ylab kengaymoqda",
+  "press.p7": "O‘zbekistonlik fermerlar xususiy meteostansiyalarga ega bo‘lmoqda",
+  "press.p8": "Olimlar aqlli agrometeorologik stansiyalarni taqdim etishdi",
+  "press.p9": "AKFA Universiteti ekologik monitoring tizimini joriy qildi",
   "video.eyebrow": "Video",
   "video.title": "Amudario amalda"
 });
@@ -400,7 +400,7 @@ Object.assign(I18N.ru, {
   "spec.l1": "Температура воздуха", "spec.l2": "Влажность воздуха", "spec.l3": "Направление ветра",
   "spec.l4": "Скорость ветра", "spec.l5": "Осадки", "spec.l6": "Влажность почвы",
   "spec.l7": "Температура почвы", "spec.l8": "Электропроводность почвы",
-  "spec.l9": "GPS", "spec.l10": "Модуль связи GSM", "spec.l11": "Солнечные панели или батарея"
+  "spec.l9": "GPS", "spec.l10": "Модуль связи GSM", "spec.l11": "Солнечные панели или аккумулятор"
 });
 Object.assign(I18N.uz, {
   "spec.eyebrow": "Xususiyatlar",
@@ -440,7 +440,7 @@ Object.assign(I18N.ru, {
   "gspec.l5": "Температура почвы", "gspec.l6": "Влажность почвы", "gspec.l7": "Электропроводность почвы",
   "aspec.l1": "Температура воздуха", "aspec.l2": "Влажность воздуха", "aspec.l3": "Атмосферное давление",
   "aspec.l4": "Осадки", "aspec.l5": "Скорость ветра", "aspec.l6": "Направление ветра",
-  "aspec.l7": "Диоксид азота NO₂", "aspec.l8": "Оксид углерода CO", "aspec.l9": "Аммиак NH₃",
+  "aspec.l7": "Диоксид азота NO₂", "aspec.l8": "Монооксид углерода CO", "aspec.l9": "Аммиак NH₃",
   "aspec.l10": "Диоксид серы SO₂", "aspec.l11": "Сероводород H₂S", "aspec.l12": "Озон O₃",
   "aspec.l13": "Концентрация пыли PM1.0 / PM2.5 / PM10"
 });
@@ -448,8 +448,8 @@ Object.assign(I18N.uz, {
   "jspec.l1": "Xotira hajmi", "jspec.l2": "Aloqa turi", "jspec.l3": "Geolokatsiya",
   "jspec.l4": "O‘lchamlari", "jspec.l5": "Og‘irligi", "jspec.l6": "Foto yuborish oralig‘i",
   "jspec.l7": "Batareya", "jspec.l8": "Kamera",
-  "jspec.note": "Quyosh energiyasidan avtonom quvvatlanadi",
-  "jspec.v6": "Kuniga 3 marta", "gspec.v4": "1 – yoqiq, 0 – o‘chiq",
+  "jspec.note": "Quyosh energiyasi bilan avtonom ishlaydi",
+  "jspec.v6": "Kuniga 3 marta", "gspec.v4": "1 – yoqilgan, 0 – o‘chirilgan",
   "gspec.l1": "Havo harorati", "gspec.l2": "Havo namligi",
   "gspec.l3": "Qozon harorati (1–3)", "gspec.l4": "Nasos boshqaruvi (1, 2)",
   "gspec.l5": "Tuproq harorati", "gspec.l6": "Tuproq namligi", "gspec.l7": "Tuproq elektr o‘tkazuvchanligi",
@@ -457,7 +457,7 @@ Object.assign(I18N.uz, {
   "aspec.l4": "Yog‘in", "aspec.l5": "Shamol tezligi", "aspec.l6": "Shamol yo‘nalishi",
   "aspec.l7": "Azot dioksidi NO₂", "aspec.l8": "Uglerod oksidi CO", "aspec.l9": "Ammiak NH₃",
   "aspec.l10": "Oltingugurt dioksidi SO₂", "aspec.l11": "Vodorod sulfidi H₂S", "aspec.l12": "Ozon O₃",
-  "aspec.l13": "Chang kontsentratsiyasi PM1.0 / PM2.5 / PM10"
+  "aspec.l13": "Chang zarrachalari konsentratsiyasi PM1.0 / PM2.5 / PM10"
 });
 
 // common keys shared across pages
