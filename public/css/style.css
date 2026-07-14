@@ -110,6 +110,9 @@ ul{list-style:none}
 }
 
 /* ===== HERO ===== */
+/* mirror the hero video so the station sits on the opposite side */
+.hero .scrub__video{transform:scaleX(-1)}
+
 /* station is center-frame → heading floats in the open sky left of it,
    subtitle + CTA sit lower right */
 .hero__heading{
