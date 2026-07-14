@@ -377,32 +377,31 @@ ul{list-style:none}
 /* ===== PRESS (marquee) ===== */
 .press__inner{max-width:none;margin:0 auto;padding:clamp(4rem,9vw,7rem) 0}
 .press__inner .solutions__head{max-width:var(--maxw);margin-left:auto;margin-right:auto;padding:0 clamp(1rem,4vw,2.5rem)}
-.press__marquee{
-  overflow:hidden;margin-top:2.6rem;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+/* Pinterest-style clickable masonry */
+.press__masonry{
+  columns:3;column-gap:1.2rem;margin-top:2.6rem;
+  max-width:var(--maxw);margin-left:auto;margin-right:auto;
+  padding:0 clamp(1rem,4vw,2.5rem);
 }
-.press__track{
-  display:flex;width:max-content;
-  animation:press-scroll 46s linear infinite;
-}
-.press__marquee:hover .press__track{animation-play-state:paused}
-.press__set{display:flex;gap:1.2rem;padding-right:1.2rem}
 .press__card{
-  width:330px;flex:none;
+  position:relative;display:block;break-inside:avoid;margin-bottom:1.2rem;
   background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
-  padding:1.6rem;display:flex;flex-direction:column;gap:.85rem;
+  padding:1.6rem 1.6rem 1.4rem;color:var(--ink);
+  transition:transform .3s var(--ease),box-shadow .3s;
 }
+.press__card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(22,23,15,.45)}
 .press__source{
-  font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--green);
+  display:block;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green);margin-bottom:.8rem;
 }
 .press__card p{line-height:1.55;font-size:.98rem}
-@keyframes press-scroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
+.press__arrow{
+  display:block;margin-top:.9rem;color:var(--green);font-size:1.05rem;
+  transition:transform .3s var(--ease);
 }
-@media(prefers-reduced-motion:reduce){.press__track{animation:none}}
+.press__card:hover .press__arrow{transform:translateX(5px)}
+@media(max-width:900px){.press__masonry{columns:2}}
+@media(max-width:560px){.press__masonry{columns:1}}
 
 /* ===== PROMO VIDEO ===== */
 .promo{max-width:var(--maxw);margin:0 auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,2.5rem) clamp(4rem,8vw,6rem)}

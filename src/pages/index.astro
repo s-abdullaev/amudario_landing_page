@@ -242,23 +242,24 @@ const products = [
           <span class="eyebrow" data-i18n="press.eyebrow">In the press</span>
           <h2 class="solutions__title" data-i18n="press.title">Recognized globally</h2>
         </div>
-        <div class="press__marquee" data-reveal>
-          <div class="press__track">
-            {[0, 1].map((copy) => (
-              <div class="press__set" aria-hidden={copy === 1 ? "true" : undefined}>
-                {[
-                  ["UNDP", "p1"], ["Spot.uz", "p2"], ["Gazeta.uz", "p3"],
-                  ["UNDP", "p4"], ["Spot.uz", "p5"], ["Gazeta.uz", "p6"],
-                  ["Podrobno.uz", "p7"], ["Inha.uz", "p8"], ["UzDaily.uz", "p9"]
-                ].map(([source, key]) => (
-                  <article class="press__card">
-                    <span class="press__source">{source}</span>
-                    <p data-i18n={`press.${key}`}></p>
-                  </article>
-                ))}
-              </div>
-            ))}
-          </div>
+        <div class="press__masonry" data-reveal>
+          {[
+            ["UNDP", "p1", "https://www.undp.org/uzbekistan/news/undp-promotes-modern-eco-friendly-techniques-pest-and-diseases-management"],
+            ["Spot.uz", "p2", "https://www.spot.uz/ru/2017/10/30/smart-farm"],
+            ["Gazeta.uz", "p3", "https://www.gazeta.uz/ru/2019/02/13/ferlov/"],
+            ["UNDP", "p4", "https://www.undp.org/uzbekistan/news/now-farmers-fergana-valley-have-access-more-precise-agrometeorological-data"],
+            ["Spot.uz", "p5", "https://www.spot.uz/ru/2019/03/15/meteo/"],
+            ["Gazeta.uz", "p6", "https://www.gazeta.uz/en/2024/03/20/air-quality/"],
+            ["Podrobno.uz", "p7", "https://podrobno.uz/cat/obchestvo/u-uzbekskikh-fermerov-poyavilis-personalnye-meteostantsii-/"],
+            ["Inha.uz", "p8", "https://inha.uz/professors/professors-of-inha-university-in-tashkent-presented-smart-agrometeorological-stations"],
+            ["UzDaily.uz", "p9", "https://www.uzdaily.uz/en/akfa-university-introduces-information-and-analytical-system-for-meteorological-and-environmental-monitoring/"]
+          ].map(([source, key, url]) => (
+            <a class="press__card" href={url} target="_blank" rel="noopener">
+              <span class="press__source">{source}</span>
+              <p data-i18n={`press.${key}`}></p>
+              <span class="press__arrow" aria-hidden="true">→</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
