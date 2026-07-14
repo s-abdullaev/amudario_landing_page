@@ -267,9 +267,9 @@ ul{list-style:none}
 .partners__grid a{display:block;background:var(--white);flex:0 0 calc((100% - 7px)/8)}
 .partners__grid img{
   background:var(--white);aspect-ratio:3/2;object-fit:contain;padding:1.3rem;width:100%;height:100%;
-  transition:transform .3s var(--ease);
+  filter:grayscale(1);opacity:.72;transition:filter .3s,opacity .3s;
 }
-.partners__grid a:hover img{transform:scale(1.06)}
+.partners__grid a:hover img{filter:grayscale(0);opacity:1}
 
 /* ===== CTA ===== */
 .cta{padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,2.5rem)}
