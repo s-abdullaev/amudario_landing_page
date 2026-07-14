@@ -75,14 +75,23 @@
     }
   }
 
+  const FRAME = 1 / 30; // quantize seeks to frame boundaries
+
   function tick() {
     for (const it of items) {
       if (!it.ready || !it.dur) continue;
       it.cur += (it.target - it.cur) * 0.14;
       if (Math.abs(it.target - it.cur) < 0.0005) it.cur = it.target;
-      const t = clamp(it.cur * (it.dur - 0.04), 0, it.dur - 0.04);
-      if (it.video.readyState >= 2 && Math.abs(it.video.currentTime - t) > 0.01) {
-        try { it.video.currentTime = t; } catch (e) {}
+      const v = it.video;
+      // never queue a new seek while the previous one is still decoding —
+      // stacked seeks are what makes scrubbing look jerky
+      if (v.readyState < 2 || v.seeking) continue;
+      const t = clamp(
+        Math.round((it.cur * (it.dur - 0.04)) / FRAME) * FRAME,
+        0, it.dur - 0.04
+      );
+      if (Math.abs(v.currentTime - t) >= FRAME / 2) {
+        try { v.currentTime = t; } catch (e) {}
       }
     }
     requestAnimationFrame(tick);
@@ -94,8 +103,29 @@
     const meta = () => { it.dur = v.duration || 0; it.ready = true; };
     if (v.readyState >= 1 && v.duration) meta();
     else v.addEventListener("loadedmetadata", meta, { once: true });
+    // stagger bandwidth: hero buffers immediately, product videos start
+    // downloading once their section comes within a few viewports (see onScroll)
+    if (it.isHero) {
+      it.upgraded = true;
+      v.preload = "auto";
+    } else {
+      v.preload = "metadata";
+    }
     v.load();
   });
+
+  function upgradePreload() {
+    const y = window.scrollY;
+    for (const it of items) {
+      if (it.upgraded) continue;
+      if (y + vh() * 3 > it.top) {
+        it.upgraded = true;
+        it.video.preload = "auto";
+        it.video.load();
+      }
+    }
+  }
+  window.addEventListener("scroll", upgradePreload, { passive: true });
 
   let resizeTimer;
   window.addEventListener("resize", () => {
@@ -106,7 +136,8 @@
 
   layout();
   onScroll();
-  window.addEventListener("load", () => { layout(); onScroll(); });
+  upgradePreload();
+  window.addEventListener("load", () => { layout(); onScroll(); upgradePreload(); });
   if (!prefersReduced) requestAnimationFrame(tick);
 
   /* ===== scroll reveals ===== */
