@@ -86,10 +86,19 @@
       // never queue a new seek while the previous one is still decoding —
       // stacked seeks are what makes scrubbing look jerky
       if (v.readyState < 2 || v.seeking) continue;
-      const t = clamp(
+      let t = clamp(
         Math.round((it.cur * (it.dur - 0.04)) / FRAME) * FRAME,
         0, it.dur - 0.04
       );
+      // never seek past the buffered edge — on slow connections a seek into
+      // unbuffered video hard-freezes the frame until the network catches up
+      const b = v.buffered;
+      if (b.length) {
+        const end = b.end(b.length - 1) - 0.08;
+        if (t > end) t = Math.max(0, Math.floor(end / FRAME) * FRAME);
+      } else {
+        continue;
+      }
       if (Math.abs(v.currentTime - t) >= FRAME / 2) {
         try { v.currentTime = t; } catch (e) {}
       }
@@ -118,7 +127,7 @@
     const y = window.scrollY;
     for (const it of items) {
       if (it.upgraded) continue;
-      if (y + vh() * 3 > it.top) {
+      if (y + vh() * 5 > it.top) {
         it.upgraded = true;
         it.video.preload = "auto";
         it.video.load();
