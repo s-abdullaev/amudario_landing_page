@@ -82,8 +82,8 @@ const products = [
     <section class="scrub hero" data-scrub data-len="2.2" id="hero">
       <div class="scrub__stage">
         <video class="scrub__video" data-scrub-video muted playsinline preload="auto"
-               poster="/assets/posters/hero-v2.jpg">
-          <source src="/assets/videos/hero-v2.mp4" type="video/mp4" />
+               poster="/assets/posters/hero-hd.jpg">
+          <source src="/assets/videos/hero-hd.mp4" type="video/mp4" />
         </video>
         <div class="scrub__scrim scrub__scrim--hero"></div>
 
@@ -139,8 +139,8 @@ const products = [
     {products.map((p) => (
       <section class="scrub product" data-scrub data-len={p.len}>
         <div class="scrub__stage">
-          <video class="scrub__video" data-scrub-video muted playsinline preload="metadata" poster={`/assets/posters/${p.video}.jpg`}>
-            <source src={`/assets/videos/${p.video}.mp4`} type="video/mp4" />
+          <video class="scrub__video" data-scrub-video muted playsinline preload="metadata" poster={`/assets/posters/${p.video}-hd.jpg`}>
+            <source src={`/assets/videos/${p.video}-hd.mp4`} type="video/mp4" />
           </video>
           <div class={`scrub__scrim scrub__scrim--${p.side}`}></div>
           <div class={`product__panel product__panel--${p.side}`}>
