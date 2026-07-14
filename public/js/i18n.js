@@ -11,7 +11,7 @@ const I18N = {
 
     "hero.badge": "Smart Solutions for Smart Agriculture",
     "hero.title1": "Grow Smarter.",
-    "hero.title2": "Farm the Future.",
+    "hero.title2": "Let's build the future together.",
     "hero.subtitle": "AI-powered agrometeorological stations, pest detection, air-quality monitoring and greenhouse management — transforming farming in Uzbekistan and beyond.",
     "hero.cta": "Explore our products",
     "hero.scroll": "Scroll to explore",
@@ -112,7 +112,7 @@ const I18N = {
 
     "hero.badge": "Умные решения для умного сельского хозяйства",
     "hero.title1": "Выращивайте с умом.",
-    "hero.title2": "Создавайте будущее земледелия.",
+    "hero.title2": "Создадим будущее вместе.",
     "hero.subtitle": "Агрометеостанции с ИИ, автоматическое распознавание вредителей, контроль качества воздуха и управление теплицами — трансформируем сельское хозяйство в Узбекистане и за его пределами.",
     "hero.cta": "Изучить продукцию",
     "hero.scroll": "Прокрутите вниз",
@@ -213,7 +213,7 @@ const I18N = {
 
     "hero.badge": "Aqlli qishloq xo‘jaligi uchun aqlli yechimlar",
     "hero.title1": "Aqlli dehqonchilik.",
-    "hero.title2": "Kelajak dehqonchiligini yarating.",
+    "hero.title2": "Kelajakni birga yaratamiz.",
     "hero.subtitle": "Sun’iy intellektga asoslangan agrometeorologik stansiyalar, zararkunandalarni aniqlash, havo sifati monitoringi va issiqxonalarni avtomatlashtirilgan boshqarish tizimlari — O‘zbekiston va butun mintaqada qishloq xo‘jaligini tubdan o‘zgartirmoqda.",
     "hero.cta": "Mahsulotlarni ko‘rish",
     "hero.scroll": "Batafsil ma’lumot uchun pastga suring",
@@ -237,7 +237,7 @@ const I18N = {
     "oxus.desc": "Aniq agroekologik va meteomonitoring uchun 30 dan ortiq sensor ko‘rsatkichlari (harorat, namlik, yog‘ingarchilik, shamol va tuproq holati), shuningdek, 20 dan ortiq ekin kasalliklari hamda 60 dan ortiq zararkunandalar xavfini oldindan bashorat qilish tizimi.",
     "oxus.f1": "30+ o‘lchanadigan parametr bitta uskunada",
     "oxus.f2": "20+ turdagi kasallik bashorati",
-    "oxus.f3": "Zararkunanda avj olishidan 60+ ogohlantirish",
+    "oxus.f3": "65+ zararkunanda avj olishidan ogohlantirish",
     "oxus.f4": "Quyosh paneli, 4G aloqa tizimi",
 
     "jayhun.tag": "Mahsulot 02",
