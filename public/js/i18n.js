@@ -11,7 +11,7 @@ const I18N = {
 
     "hero.badge": "Smart Solutions for Smart Agriculture",
     "hero.title1": "Grow Smarter.",
-    "hero.title2": "Let's build the future together.",
+    "hero.title2": "Build the future of farming.",
     "hero.subtitle": "AI-powered agrometeorological stations, pest detection, air-quality monitoring and greenhouse management — transforming farming in Uzbekistan and beyond.",
     "hero.cta": "Explore our products",
     "hero.scroll": "Scroll to explore",
@@ -112,7 +112,7 @@ const I18N = {
 
     "hero.badge": "Умные решения для умного сельского хозяйства",
     "hero.title1": "Выращивайте с умом.",
-    "hero.title2": "Создадим будущее вместе.",
+    "hero.title2": "Будущее сельского хозяйства.",
     "hero.subtitle": "Агрометеостанции с ИИ, автоматическое распознавание вредителей, контроль качества воздуха и управление теплицами — трансформируем сельское хозяйство в Узбекистане и за его пределами.",
     "hero.cta": "Изучить продукцию",
     "hero.scroll": "Прокрутите вниз",
@@ -216,7 +216,7 @@ const I18N = {
     "hero.title2": "Kelajakni birga yaratamiz.",
     "hero.subtitle": "Sun’iy intellektga asoslangan agrometeorologik stansiyalar, zararkunandalarni aniqlash, havo sifati monitoringi va issiqxonalarni avtomatlashtirilgan boshqarish tizimlari — O‘zbekiston va butun mintaqada qishloq xo‘jaligini tubdan o‘zgartirmoqda.",
     "hero.cta": "Mahsulotlarni ko‘rish",
-    "hero.scroll": "Batafsil ma’lumot uchun pastga suring",
+    "hero.scroll": "Pastga",
 
     "stats.title": "Dalada isbotlangan samaradorlik",
     "stats.v1": "300+", "stats.l1": "O‘rnatilgan stansiya",
