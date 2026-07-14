@@ -847,7 +847,7 @@ window.PRODUCTS_I18N = {
       targetPests: 'Maqsadli zararkunandalar',
     },
     cta: {
-      contactUs: 'Biz bilan bog‘lanish',
+      contactUs: 'Bog‘lanish',
       viewAllProducts: 'Barcha mahsulotlarni ko‘rish',
       exploreProducts: 'Mahsulotlarni ko‘rish',
       getInTouch: 'Bog‘lanish',

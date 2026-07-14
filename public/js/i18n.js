@@ -209,7 +209,7 @@ const I18N = {
     "nav.team": "Jamoa",
     "nav.partners": "Hamkorlar",
     "nav.contact": "Aloqa",
-    "nav.cta": "Biz bilan bog‘lanish",
+    "nav.cta": "Bog‘lanish",
 
     "hero.badge": "Aqlli qishloq xo‘jaligi uchun aqlli yechimlar",
     "hero.title1": "Aqlli dehqonchilik.",
