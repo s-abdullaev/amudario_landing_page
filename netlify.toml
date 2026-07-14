@@ -2,6 +2,82 @@
   command = "npm run build"
   publish = "dist"
 
+# Old language-prefixed product URLs -> new product pages
+[[redirects]]
+  from = "/en/oxus-ws"
+  to = "/products/oxus-ws"
+  status = 301
+[[redirects]]
+  from = "/ru/oxus-ws"
+  to = "/products/oxus-ws"
+  status = 301
+[[redirects]]
+  from = "/uz/oxus-ws"
+  to = "/products/oxus-ws"
+  status = 301
+[[redirects]]
+  from = "/en/jayhun-trap"
+  to = "/products/jayhun-trap"
+  status = 301
+[[redirects]]
+  from = "/ru/jayhun-trap"
+  to = "/products/jayhun-trap"
+  status = 301
+[[redirects]]
+  from = "/uz/jayhun-trap"
+  to = "/products/jayhun-trap"
+  status = 301
+[[redirects]]
+  from = "/en/gozanlink"
+  to = "/products/gozanlink"
+  status = 301
+[[redirects]]
+  from = "/ru/gozanlink"
+  to = "/products/gozanlink"
+  status = 301
+[[redirects]]
+  from = "/uz/gozanlink"
+  to = "/products/gozanlink"
+  status = 301
+[[redirects]]
+  from = "/en/oxus-airsense"
+  to = "/products/oxus-airsense"
+  status = 301
+[[redirects]]
+  from = "/ru/oxus-airsense"
+  to = "/products/oxus-airsense"
+  status = 301
+[[redirects]]
+  from = "/uz/oxus-airsense"
+  to = "/products/oxus-airsense"
+  status = 301
+
+# Old language roots (and anything else under them) -> home
+[[redirects]]
+  from = "/en"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/ru"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/uz"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/en/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/ru/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/uz/*"
+  to = "/"
+  status = 301
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
