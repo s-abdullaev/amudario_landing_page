@@ -1,0 +1,326 @@
+---
+// Amudario corporate landing — Astro
+const partners = [
+  ["undp.jpg", "UNDP"], ["cgiar.png", "CGIAR"], ["icarda.png", "ICARDA"], ["ifad.jpg", "IFAD"],
+  ["iwmi.png", "IWMI"], ["ifas.png", "IFAS"], ["inha-university.jpg", "Inha University"],
+  ["new-uzbekistan-university.png", "New Uzbekistan University"],
+  ["national-research-center.png", "National Research Center"],
+  ["fanlar-akademiyasi.png", "Academy of Sciences"], ["uzhydromet.jpg", "Uzhydromet"],
+  ["karantin-inspeksiya.jpg", "Quarantine Inspection"], ["chamber-of-commerce.jpg", "Chamber of Commerce"],
+  ["tashkent-city.jpg", "Tashkent City"], ["suvchilar-maktabi.png", "Suvchilar Maktabi"],
+  ["samarkand-marathon.png", "Samarkand Marathon"]
+];
+
+const products = [
+  {
+    key: "oxus", video: "oxusws", side: "right", len: "3",
+    href: "/products/oxus-ws", feats: ["f1", "f2", "f3", "f4"]
+  },
+  {
+    key: "jayhun", video: "jayhuntrap", side: "left", len: "3",
+    href: "/products/jayhun-trap", feats: ["f1", "f2", "f3", "f4"]
+  },
+  {
+    key: "gozan", video: "gozanlink", side: "right", len: "3.6",
+    href: "/products/gozanlink", feats: ["f1", "f2", "f3", "f4"]
+  },
+  {
+    key: "air", video: "airsense", side: "left", len: "3",
+    href: "/products/oxus-airsense", feats: ["f1", "f2", "f3", "f4"]
+  }
+];
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amudario — Smart Solutions for Smart Agriculture</title>
+  <meta name="description" content="AI-powered agrometeorological stations, pest detection, air-quality monitoring and greenhouse management by Amudario Research LLC." />
+  <link rel="icon" href="/assets/logo/FaviconTransparent.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top" aria-label="Amudario home">
+      <img src="/assets/logo/amudar-logo.png" alt="Amudario" />
+    </a>
+    <nav class="nav__links">
+      <a href="#products" data-i18n="nav.products">Products</a>
+      <a href="#solutions" data-i18n="nav.solutions">Solutions</a>
+      <a href="#team" data-i18n="nav.team">Team</a>
+      <a href="#partners" data-i18n="nav.partners">Partners</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="nav__right">
+      <div class="langs">
+        <button data-lang-btn="uz">UZ</button>
+        <button data-lang-btn="ru">RU</button>
+        <button data-lang-btn="en">EN</button>
+      </div>
+      <a href="#contact" class="btn btn--dark nav__cta" data-i18n="nav.cta">Request a demo</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== HERO (scrub) =====
+         Station stays center-frame; text block sits in the clear sky on the right. -->
+    <section class="scrub hero" data-scrub data-len="2.2" id="hero">
+      <div class="scrub__stage">
+        <video class="scrub__video" data-scrub-video muted playsinline preload="auto"
+               poster="/assets/posters/hero.jpg">
+          <source src="/assets/videos/hero.mp4" type="video/mp4" />
+        </video>
+        <div class="scrub__scrim scrub__scrim--hero"></div>
+
+        <!-- everything in the open sky left of the station: badge, title, CTA, subtitle -->
+        <div class="hero__heading" data-hero-fade data-fade-base="-50%">
+          <span class="badge" data-i18n="hero.badge">Smart Solutions for Smart Agriculture</span>
+          <h1 class="hero__title">
+            <span data-i18n="hero.title1">Grow Smarter.</span><br />
+            <span class="hero__title-accent" data-i18n="hero.title2">Farm the Future.</span>
+          </h1>
+          <a href="#products" class="btn btn--light hero__cta" data-i18n="hero.cta">Explore our products</a>
+          <p class="hero__sub" data-i18n="hero.subtitle">AI-powered agrometeorological stations, pest detection, air-quality monitoring and greenhouse management — transforming farming in Uzbekistan and beyond.</p>
+        </div>
+
+        <div class="hero__scroll">
+          <span data-i18n="hero.scroll">Scroll to explore</span>
+          <span class="hero__scroll-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <section class="stats">
+      <h2 class="stats__title" data-i18n="stats.title">Field-proven at scale</h2>
+      <div class="stats__grid">
+        {["1", "2", "3", "4"].map((n, i) => (
+          <div class="stat" data-reveal style={`--rd:${i * 90}ms`}>
+            <span class="stat__value" data-count data-i18n={`stats.v${n}`}></span>
+            <span class="stat__label" data-i18n={`stats.l${n}`}></span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== INTRO ===== -->
+    <section class="intro">
+      <div class="intro__left">
+        <span class="eyebrow" data-i18n="intro.eyebrow">The challenge</span>
+        <div class="intro__tags">
+          <span data-i18n="intro.tag1">Precision weather</span>
+          <span data-i18n="intro.tag2">Pest intelligence</span>
+          <span data-i18n="intro.tag3">Greenhouse control</span>
+        </div>
+      </div>
+      <div class="intro__right">
+        <h2 class="intro__title" data-reveal data-i18n="intro.title">Traditional, labor-intensive farming leaves yield and water on the table.</h2>
+        <p class="intro__body" data-reveal style="--rd:120ms" data-i18n="intro.body">Across Central Asia, growers still fight weather, pests and disease with guesswork.</p>
+      </div>
+    </section>
+
+    <!-- ===== PRODUCTS ===== -->
+    <div id="products"></div>
+    {products.map((p) => (
+      <section class="scrub product" data-scrub data-len={p.len}>
+        <div class="scrub__stage">
+          <video class="scrub__video" data-scrub-video muted playsinline preload="auto" poster={`/assets/posters/${p.video}.jpg`}>
+            <source src={`/assets/videos/${p.video}.mp4`} type="video/mp4" />
+          </video>
+          <div class={`scrub__scrim scrub__scrim--${p.side}`}></div>
+          <div class={`product__panel product__panel--${p.side}`}>
+            <h2 class="product__name" data-i18n={`${p.key}.name`}></h2>
+            <p class="product__tagline" data-i18n={`${p.key}.tagline`}></p>
+            <p class="product__desc" data-i18n={`${p.key}.desc`}></p>
+            <ul class="product__feats">
+              {p.feats.map((f) => <li data-i18n={`${p.key}.${f}`}></li>)}
+            </ul>
+            <a href={p.href} class="btn btn--light product__more" data-i18n="common.learnMore">Learn more</a>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- ===== SOLUTIONS ===== -->
+    <section class="solutions" id="solutions">
+      <div class="solutions__head">
+        <span class="eyebrow" data-i18n="sol.eyebrow">The platform</span>
+        <h2 class="solutions__title" data-i18n="sol.title">One connected system for the whole farm</h2>
+        <p class="solutions__body" data-i18n="sol.body">Every device streams into a single dashboard.</p>
+      </div>
+      <div class="solutions__grid">
+        {["1", "2", "3"].map((n, i) => (
+          <article class="scard" data-reveal data-tilt style={`--rd:${i * 110}ms`}>
+            <div class="scard__img"><img src={`/assets/solutions/solution-0${n}.jpg`} alt="" loading="lazy" /></div>
+            <div class="scard__num">{`0${n}`}</div>
+            <h3 data-i18n={`sol.c${n}t`}></h3>
+            <p data-i18n={`sol.c${n}b`}></p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="hiw" id="how-it-works">
+      <div class="hiw__inner">
+        <div class="solutions__head">
+          <span class="eyebrow" data-i18n="hiw.eyebrow">How it works</span>
+          <h2 class="solutions__title" data-i18n="hiw.title">From field to decisions</h2>
+        </div>
+        <div class="hiw__grid">
+          {["1", "2", "3", "4"].map((n, i) => (
+            <article class="hiw__step" data-reveal data-tilt style={`--rd:${i * 110}ms`}>
+              <div class="hiw__img"><img src={`/assets/how-it-works/step-0${n}.jpg`} alt="" loading="lazy" /></div>
+              <div class="hiw__num">{`0${n}`}</div>
+              <h3 data-i18n={`hiw.s${n}t`}></h3>
+              <p data-i18n={`hiw.s${n}b`}></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEAM ===== -->
+    <section class="team" id="team">
+      <div class="team__head">
+        <span class="eyebrow" data-i18n="team.eyebrow">The founders</span>
+        <h2 class="team__title" data-i18n="team.title">Built by operators and engineers</h2>
+      </div>
+      <div class="team__grid">
+        <article class="member" data-reveal data-tilt>
+          <div class="member__photo"><img src="/assets/team/shukhrat-kushbakov.jpg" alt="Shuhrat Kushbakov" loading="lazy" /></div>
+          <h3 class="member__name">Shuhrat Kushbakov</h3>
+          <p class="member__role" data-i18n="team.r1">Business Co-founder</p>
+          <p class="member__bio" data-i18n="team.b1"></p>
+        </article>
+        <article class="member" data-reveal data-tilt>
+          <div class="member__photo"><img src="/assets/team/sarvar-abdullaev.jpg" alt="Sarvar Abdullayev" loading="lazy" /></div>
+          <h3 class="member__name">Sarvar Abdullayev</h3>
+          <p class="member__role" data-i18n="team.r2">Technical Co-founder — Product</p>
+          <p class="member__bio" data-i18n="team.b2"></p>
+        </article>
+        <article class="member" data-reveal data-tilt>
+          <div class="member__photo"><img src="/assets/team/jasurbek-khodjaev.jpg" alt="Jasurbek Khodjayev" loading="lazy" /></div>
+          <h3 class="member__name">Jasurbek Khodjayev</h3>
+          <p class="member__role" data-i18n="team.r3">Technical Co-founder — Hardware</p>
+          <p class="member__bio" data-i18n="team.b3"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== PARTNERS ===== -->
+    <section class="partners" id="partners">
+      <h2 class="partners__title" data-i18n="partners.title">Trusted by leading institutions</h2>
+      <div class="partners__grid" data-reveal>
+        {partners.map(([file, name]) => <img src={`/assets/partners/${file}`} alt={name} loading="lazy" />)}
+      </div>
+    </section>
+
+    <!-- ===== PRESS / MEDIA COVERAGE ===== -->
+    <section class="press" id="press">
+      <div class="press__inner">
+        <div class="solutions__head">
+          <span class="eyebrow" data-i18n="press.eyebrow">In the press</span>
+          <h2 class="solutions__title" data-i18n="press.title">Recognized globally</h2>
+        </div>
+        <div class="press__marquee" data-reveal>
+          <div class="press__track">
+            {[0, 1].map((copy) => (
+              <div class="press__set" aria-hidden={copy === 1 ? "true" : undefined}>
+                {[
+                  ["UNDP", "p1"], ["Spot.uz", "p2"], ["Gazeta.uz", "p3"],
+                  ["UNDP", "p4"], ["Spot.uz", "p5"], ["Gazeta.uz", "p6"],
+                  ["Podrobno.uz", "p7"], ["Inha.uz", "p8"], ["UzDaily.uz", "p9"]
+                ].map(([source, key]) => (
+                  <article class="press__card">
+                    <span class="press__source">{source}</span>
+                    <p data-i18n={`press.${key}`}></p>
+                  </article>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROMO VIDEO ===== -->
+    <section class="promo" id="video">
+      <div class="solutions__head" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow" data-i18n="video.eyebrow">Watch</span>
+        <h2 class="solutions__title" data-i18n="video.title">See Amudario in action</h2>
+      </div>
+      <div class="promo__frame" data-reveal>
+        <iframe
+          src="https://www.youtube.com/embed/6WIOXekvRqA"
+          title="Amudario promo video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta" id="contact">
+      <div class="cta__inner cta__inner--photo">
+        <img class="cta__bg" src="/assets/cta/cta-field.jpg" alt="" loading="lazy" />
+        <h2 class="cta__title" data-i18n="cta.title">Join the agricultural revolution</h2>
+        <p class="cta__body" data-i18n="cta.body">Bring precision agriculture to your fields.</p>
+        <form class="cta__form" onsubmit="return false;">
+          <input type="email" data-i18n-attr="placeholder:cta.placeholder" placeholder="Your email address" aria-label="Email" />
+          <button class="btn btn--dark" type="submit" data-i18n="cta.button">Request a demo</button>
+        </form>
+        <div class="cta__contacts">
+          <a href="tel:+998909271177">+998 90 927 11 77</a>
+          <a href="mailto:info@amudar.io">info@amudar.io</a>
+          <a href="https://t.me/amudario" target="_blank" rel="noopener">t.me/amudario</a>
+          <a href="https://youtube.com/@AmudarIO" target="_blank" rel="noopener">@AmudarIO</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="/assets/logo/amudar-logo.png" alt="Amudario" class="footer__logo" />
+      <p data-i18n="footer.tagline">Smart solutions for smart agriculture.</p>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4 data-i18n="footer.products">Products</h4>
+        <a href="#products">OxusWS</a>
+        <a href="#products">JayhunTrap</a>
+        <a href="#products">GozanLink</a>
+        <a href="#products">AirSense</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.company">Company</h4>
+        <a href="#solutions" data-i18n="nav.solutions">Solutions</a>
+        <a href="#team" data-i18n="footer.team">Team</a>
+        <a href="#partners" data-i18n="footer.partners">Partners</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="tel:+998909271177">+998 90 927 11 77</a>
+        <a href="mailto:info@amudar.io">info@amudar.io</a>
+        <a href="https://t.me/amudario" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="footer.rights">© 2026 Amudario Research LLC. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script is:inline src="/js/i18n.js"></script>
+  <script is:inline src="/js/scrub.js"></script>
+</body>
+</html>

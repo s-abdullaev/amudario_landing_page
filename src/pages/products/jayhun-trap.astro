@@ -1,0 +1,238 @@
+---
+// JayhunTrap product detail page
+const P = "jayhunTrap"; // key into PRODUCTS_I18N
+const IMG = "/assets/products/jayhun-trap";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JayhunTrap — AI Pheromone Trap | Amudario</title>
+  <meta name="description" content="JayhunTrap is an AI-powered pheromone trap for automated pest detection, species classification, and counting with 95%+ accuracy." />
+  <link rel="icon" href="/assets/logo/FaviconTransparent.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="/" aria-label="Amudario home">
+      <img src="/assets/logo/amudar-logo.png" alt="Amudario" />
+    </a>
+    <nav class="nav__links">
+      <a href="/products/oxus-ws">OxusWS</a>
+      <a href="/products/jayhun-trap">JayhunTrap</a>
+      <a href="/products/gozanlink">GozanLink</a>
+      <a href="/products/oxus-airsense">AirSense</a>
+    </nav>
+    <div class="nav__right">
+      <div class="langs">
+        <button data-lang-btn="uz">UZ</button>
+        <button data-lang-btn="ru">RU</button>
+        <button data-lang-btn="en">EN</button>
+      </div>
+      <a href="/#contact" class="btn btn--dark nav__cta" data-i18n="nav.cta">Request a demo</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- hero -->
+    <section class="pp-hero">
+      <img class="pp-hero__bg" src={`${IMG}/banner.jpg`} alt="JayhunTrap in the field" />
+      <div class="pp-hero__content" data-reveal>
+        <span class="pp-hero__tag" data-i18n={`p:${P}.hero.tag`}>02 — Pheromone Trap</span>
+        <h1 class="pp-hero__title" data-i18n={`p:${P}.hero.title`}>JayhunTrap</h1>
+        <p class="pp-hero__tagline" data-i18n="jayhun.tagline"></p>
+        <p class="pp-hero__sub" data-i18n={`p:${P}.hero.subtitle`}>AI-powered smart pheromone trap for automated pest detection, species classification, and real-time counting with 95%+ accuracy.</p>
+      </div>
+    </section>
+
+    <!-- problems -->
+    <section class="pp-section">
+      <div class="pp-section__head">
+        <span class="eyebrow" data-i18n="p:sectionTags.theChallenge">The Challenge</span>
+        <h2 class="pp-title" data-i18n={`p:${P}.problems.title`}>Why farmers need pest intelligence</h2>
+        <p class="pp-sub" data-i18n={`p:${P}.problems.subtitle`}>Manual pest monitoring is slow, inaccurate, and leads to overuse of pesticides — damaging crops and the environment.</p>
+      </div>
+      <div class="pp-cards">
+        {["damaged-crop.jpg", "pest-population.jpg", "spoiled-cherries.jpg"].map((img, i) => (
+          <article class="pp-card" data-reveal style={`--rd:${i * 100}ms`}>
+            <img src={`${IMG}/problems/${img}`} alt="" loading="lazy" />
+            <h3 data-i18n={`p:${P}.problems.cards.${i}.title`}></h3>
+            <p data-i18n={`p:${P}.problems.cards.${i}.desc`}></p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- pheromones / target pests -->
+    <section class="pp-section--alt">
+      <div class="pp-section">
+        <div class="pp-section__head">
+          <span class="eyebrow" data-i18n="p:sectionTags.targetPests">Target Pests</span>
+          <h2 class="pp-title" data-i18n={`p:${P}.pheromones.title`}>Species-specific pheromone lures</h2>
+          <p class="pp-sub" data-i18n={`p:${P}.pheromones.subtitle`}>Our interchangeable pheromone cartridges attract and capture specific pest species for accurate identification.</p>
+        </div>
+        <div class="pp-cards pp-cards--6">
+          {["apple-codling-moth.jpg", "cherry-fruit-fly.jpg", "potato-tuber-moth.jpg", "plum-fruit-moth.jpg", "comstock-mealybug.webp", "mulberry-silk-moth.webp"].map((img, i) => (
+            <article class="pp-card" data-reveal style={`--rd:${(i % 3) * 100}ms`}>
+              <img src={`${IMG}/pheromones/${img}`} alt="" loading="lazy" />
+              <h3 data-i18n={`p:${P}.pheromones.cards.${i}.title`}></h3>
+              <p data-i18n={`p:${P}.pheromones.cards.${i}.desc`}></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- features -->
+    <section class="pp-section--alt">
+      <div class="pp-section">
+        <div class="pp-section__head">
+          <span class="eyebrow" data-i18n="p:sectionTags.features">Features</span>
+          <h2 class="pp-title" data-i18n={`p:${P}.features.title`}>Smart pest detection technology</h2>
+          <p class="pp-sub" data-i18n={`p:${P}.features.subtitle`}></p>
+        </div>
+        <div class="pp-cards pp-cards--6">
+          {["f1-ai-camera", "f2-cartridges", "f3-wireless", "f4-battery", "f5-accuracy", "f6-weatherproof"].map((img, i) => (
+            <article class="pp-card" data-reveal style={`--rd:${(i % 3) * 100}ms`}>
+              <img src={`${IMG}/features/${img}.jpg`} alt="" loading="lazy" />
+              <h3 data-i18n={`p:${P}.features.cards.${i}.title`}></h3>
+              <p data-i18n={`p:${P}.features.cards.${i}.desc`}></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- how it works -->
+    <section class="pp-section">
+      <div class="pp-split">
+        <div data-reveal>
+          <span class="eyebrow" data-i18n="p:sectionTags.howItWorks">How It Works</span>
+          <h3 style="margin-top:.7rem" data-i18n={`p:${P}.howItWorks.heading`}>Automated Pest Intelligence</h3>
+          <p data-i18n={`p:${P}.howItWorks.text`}></p>
+        </div>
+        <img src={`${IMG}/how-it-works-flat.jpg`} alt="How JayhunTrap works" loading="lazy" data-reveal style="--rd:120ms" />
+      </div>
+    </section>
+
+    <!-- dashboard -->
+    <section class="pp-section--alt">
+      <div class="pp-section">
+        <div class="pp-split">
+          <img src={`${IMG}/dashboard/live-dashboard.jpg`} alt="JayhunTrap live dashboard" loading="lazy" data-reveal />
+          <div data-reveal style="--rd:120ms">
+            <span class="eyebrow" data-i18n="p:sectionTags.dashboard">Dashboard</span>
+            <h3 style="margin-top:.7rem" data-i18n={`p:${P}.dashboard.heading`}>Real-Time Pest Monitoring</h3>
+            <p data-i18n={`p:${P}.dashboard.text`}></p>
+            <ul>
+              {[0, 1, 2, 3, 4, 5].map((i) => <li data-i18n={`p:${P}.dashboard.features.${i}`}></li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- hardware -->
+    <section class="pp-section">
+      <div class="pp-split">
+        <div data-reveal>
+          <span class="eyebrow" data-i18n="p:sectionTags.hardware">Hardware</span>
+          <h3 style="margin-top:.7rem" data-i18n={`p:${P}.hardware.heading`}>Robust Field-Ready Design</h3>
+          <p data-i18n={`p:${P}.hardware.text`}></p>
+        </div>
+        <div class="spec-table" data-reveal style="--rd:120ms">
+          <div class="spec-table__head">
+            <span data-i18n="spec.param">Parameter</span>
+            <span data-i18n="spec.range">Range</span>
+          </div>
+          {[
+            ["jspec.l1", "Memory space", "1 GB"],
+            ["jspec.l2", "Communication type", "GSM 3G"],
+            ["jspec.l3", "Geolocation type", "GPS"],
+            ["jspec.l4", "Dimensions", "20 × 15 × 17 cm"],
+            ["jspec.l5", "Mass", "0.93 kg"],
+            ["jspec.l6", "Photo sending interval", "3 times a day", "jspec.v6"],
+            ["jspec.l7", "Battery", "6 V"],
+            ["jspec.l8", "Camera", "5 megapixels"]
+          ].map(([key, label, value, vkey]) => (
+            <div class="spec-table__row">
+              <span data-i18n={key}>{label}</span>
+              <span class="spec-table__value" data-i18n={vkey || null}>{value}</span>
+            </div>
+          ))}
+          <div class="spec-table__note" data-i18n="jspec.note">Autonomously powered by solar energy</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- gallery -->
+    <section class="pp-section">
+      <div class="pp-section__head">
+        <span class="eyebrow" data-i18n="p:sectionTags.gallery">Gallery</span>
+        <h2 class="pp-title" data-i18n={`p:${P}.gallery.title`}>JayhunTrap in action</h2>
+      </div>
+      <div class="pp-gallery" data-reveal>
+        {["field-banner.jpg", "pheromone-trap.jpg", "trap-device.jpg", "team-01.jpg", "team-02.jpg"].map((img) => (
+          <img src={`${IMG}/gallery/${img}`} alt="JayhunTrap deployment" loading="lazy" />
+        ))}
+      </div>
+    </section>
+
+    <!-- cta -->
+    <section class="cta">
+      <div class="cta__inner">
+        <h2 class="cta__title" data-i18n={`p:${P}.cta.title`}>Protect your crops from pests</h2>
+        <p class="cta__body" data-i18n={`p:${P}.cta.text`}></p>
+        <div class="cta__contacts">
+          <a href="tel:+998909271177">+998 90 927 11 77</a>
+          <a href="mailto:info@amudar.io">info@amudar.io</a>
+          <a href="https://t.me/amudario" target="_blank" rel="noopener">t.me/amudario</a>
+        </div>
+        <div style="margin-top:2rem;position:relative">
+          <a href="/" class="btn btn--light" data-i18n="common.back">Back to home</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="/assets/logo/amudar-logo.png" alt="Amudario" class="footer__logo" />
+      <p data-i18n="footer.tagline">Smart solutions for smart agriculture.</p>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4 data-i18n="footer.products">Products</h4>
+        <a href="/products/oxus-ws">OxusWS</a>
+        <a href="/products/jayhun-trap">JayhunTrap</a>
+        <a href="/products/gozanlink">GozanLink</a>
+        <a href="/products/oxus-airsense">AirSense</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.company">Company</h4>
+        <a href="/#solutions" data-i18n="nav.solutions">Solutions</a>
+        <a href="/#team" data-i18n="footer.team">Team</a>
+        <a href="/#partners" data-i18n="footer.partners">Partners</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="tel:+998909271177">+998 90 927 11 77</a>
+        <a href="mailto:info@amudar.io">info@amudar.io</a>
+        <a href="https://t.me/amudario" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="footer.rights">© 2026 Amudario Research LLC. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script is:inline src="/js/products-i18n.js"></script>
+  <script is:inline src="/js/i18n.js"></script>
+  <script is:inline src="/js/scrub.js"></script>
+</body>
+</html>

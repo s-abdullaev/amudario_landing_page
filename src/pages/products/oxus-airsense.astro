@@ -1,0 +1,222 @@
+---
+// AirSense product detail page
+const P = "oxusAirsense"; // key into PRODUCTS_I18N
+const IMG = "/assets/products/oxus-airsense";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirSense — Air Quality Monitor | Amudario</title>
+  <meta name="description" content="AirSense is a smart air quality monitoring station with PM2.5, PM10, CO2, SO2, and VOC sensors for urban and agricultural environments." />
+  <link rel="icon" href="/assets/logo/FaviconTransparent.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="/" aria-label="Amudario home">
+      <img src="/assets/logo/amudar-logo.png" alt="Amudario" />
+    </a>
+    <nav class="nav__links">
+      <a href="/products/oxus-ws">OxusWS</a>
+      <a href="/products/jayhun-trap">JayhunTrap</a>
+      <a href="/products/gozanlink">GozanLink</a>
+      <a href="/products/oxus-airsense">AirSense</a>
+    </nav>
+    <div class="nav__right">
+      <div class="langs">
+        <button data-lang-btn="uz">UZ</button>
+        <button data-lang-btn="ru">RU</button>
+        <button data-lang-btn="en">EN</button>
+      </div>
+      <a href="/#contact" class="btn btn--dark nav__cta" data-i18n="nav.cta">Request a demo</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- hero -->
+    <section class="pp-hero">
+      <img class="pp-hero__bg" src={`${IMG}/banner.jpg`} alt="AirSense in the field" />
+      <div class="pp-hero__content" data-reveal>
+        <span class="pp-hero__tag" data-i18n={`p:${P}.hero.tag`}>03 — Air Quality</span>
+        <h1 class="pp-hero__title" data-i18n={`p:${P}.hero.title`}>AirSense</h1>
+        <p class="pp-hero__tagline" data-i18n="air.tagline"></p>
+        <p class="pp-hero__sub" data-i18n={`p:${P}.hero.subtitle`}>Smart air quality monitoring station with PM2.5, PM10, CO₂, SO₂, and VOC sensors — designed for urban, peri-urban, and agricultural zones.</p>
+      </div>
+    </section>
+
+    <!-- problems -->
+    <section class="pp-section">
+      <div class="pp-section__head">
+        <span class="eyebrow" data-i18n="p:sectionTags.theChallenge">The Challenge</span>
+        <h2 class="pp-title" data-i18n={`p:${P}.problems.title`}>Why we need air quality data</h2>
+        <p class="pp-sub" data-i18n={`p:${P}.problems.subtitle`}>Air pollution is an invisible threat to public health, agriculture, and the environment — monitoring is the first step to action.</p>
+      </div>
+      <div class="pp-cards">
+        {["air-quality.jpg", "traffic-exhaust.webp", "health-impact.jpg"].map((img, i) => (
+          <article class="pp-card" data-reveal style={`--rd:${i * 100}ms`}>
+            <img src={`${IMG}/problems/${img}`} alt="" loading="lazy" />
+            <h3 data-i18n={`p:${P}.problems.cards.${i}.title`}></h3>
+            <p data-i18n={`p:${P}.problems.cards.${i}.desc`}></p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- features -->
+    <section class="pp-section--alt">
+      <div class="pp-section">
+        <div class="pp-section__head">
+          <span class="eyebrow" data-i18n="p:sectionTags.features">Features</span>
+          <h2 class="pp-title" data-i18n={`p:${P}.features.title`}>Comprehensive air analysis</h2>
+          <p class="pp-sub" data-i18n={`p:${P}.features.subtitle`}></p>
+        </div>
+        <div class="pp-cards pp-cards--6">
+          {["f1-dust", "f2-gas", "f3-env", "f4-aqi", "f5-cloud", "f6-alerts"].map((img, i) => (
+            <article class="pp-card" data-reveal style={`--rd:${(i % 3) * 100}ms`}>
+              <img src={`${IMG}/features/${img}.jpg`} alt="" loading="lazy" />
+              <h3 data-i18n={`p:${P}.features.cards.${i}.title`}></h3>
+              <p data-i18n={`p:${P}.features.cards.${i}.desc`}></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- how it works -->
+    <section class="pp-section">
+      <div class="pp-split">
+        <div data-reveal>
+          <span class="eyebrow" data-i18n="p:sectionTags.howItWorks">How It Works</span>
+          <h3 style="margin-top:.7rem" data-i18n={`p:${P}.howItWorks.heading`}>Continuous Air Monitoring</h3>
+          <p data-i18n={`p:${P}.howItWorks.text`}></p>
+        </div>
+        <img src={`${IMG}/how-it-works-flat.jpg`} alt="How AirSense works" loading="lazy" data-reveal style="--rd:120ms" />
+      </div>
+    </section>
+
+    <!-- dashboard -->
+    <section class="pp-section--alt">
+      <div class="pp-section">
+        <div class="pp-split">
+          <img src={`${IMG}/dashboard/live-dashboard.jpg`} alt="AirSense live dashboard" loading="lazy" data-reveal />
+          <div data-reveal style="--rd:120ms">
+            <span class="eyebrow" data-i18n="p:sectionTags.dashboard">Dashboard</span>
+            <h3 style="margin-top:.7rem" data-i18n={`p:${P}.dashboard.heading`}>Comprehensive AQI Platform</h3>
+            <p data-i18n={`p:${P}.dashboard.text`}></p>
+            <ul>
+              {[0, 1, 2, 3, 4, 5].map((i) => <li data-i18n={`p:${P}.dashboard.features.${i}`}></li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- hardware -->
+    <section class="pp-section">
+      <div class="pp-split">
+        <div data-reveal>
+          <span class="eyebrow" data-i18n="p:sectionTags.hardware">Hardware</span>
+          <h3 style="margin-top:.7rem" data-i18n={`p:${P}.hardware.heading`}>Precision Air Quality Station</h3>
+          <p data-i18n={`p:${P}.hardware.text`}></p>
+        </div>
+        <div class="spec-table" data-reveal style="--rd:120ms">
+          <div class="spec-table__head">
+            <span data-i18n="spec.param">Parameter</span>
+            <span data-i18n="spec.range">Range</span>
+          </div>
+          {[
+            ["aspec.l1", "Air temperature", "-40°C ~ +80°C"],
+            ["aspec.l2", "Air humidity", "0% ~ 100%"],
+            ["aspec.l3", "Atmospheric pressure", "150 – 1100 hPa"],
+            ["aspec.l4", "Precipitation", "0 – 200 mm/h"],
+            ["aspec.l5", "Wind speed", "0 – 60 m/s"],
+            ["aspec.l6", "Wind direction", "0 – 359°"],
+            ["aspec.l7", "Nitrogen dioxide NO₂", "0 – 50 ppm"],
+            ["aspec.l8", "Carbon monoxide CO", "0 – 2000 ppm"],
+            ["aspec.l9", "Ammonia NH₃", "0 – 200 ppm"],
+            ["aspec.l10", "Sulfur dioxide SO₂", "0 – 1000 ppm"],
+            ["aspec.l11", "Hydrogen sulfide H₂S", "0 – 200 ppm"],
+            ["aspec.l12", "Ozone O₃", "0 – 50 ppm"],
+            ["aspec.l13", "Dust concentration PM1.0 / PM2.5 / PM10", "0.01 – 1500 µg/m³"]
+          ].map(([key, label, value]) => (
+            <div class="spec-table__row">
+              <span data-i18n={key}>{label}</span>
+              <span class="spec-table__value">{value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- gallery -->
+    <section class="pp-section">
+      <div class="pp-section__head">
+        <span class="eyebrow" data-i18n="p:sectionTags.gallery">Gallery</span>
+        <h2 class="pp-title" data-i18n={`p:${P}.gallery.title`}>AirSense deployments</h2>
+      </div>
+      <div class="pp-gallery" data-reveal>
+        {["device-overview.png", "installation-01.jpg", "installation-02.jpg", "installation-03.jpg", "installation-05.jpg"].map((img) => (
+          <img src={`${IMG}/gallery/${img}`} alt="AirSense deployment" loading="lazy" />
+        ))}
+      </div>
+    </section>
+
+    <!-- cta -->
+    <section class="cta">
+      <div class="cta__inner">
+        <h2 class="cta__title" data-i18n={`p:${P}.cta.title`}>Monitor the air you breathe</h2>
+        <p class="cta__body" data-i18n={`p:${P}.cta.text`}></p>
+        <div class="cta__contacts">
+          <a href="tel:+998909271177">+998 90 927 11 77</a>
+          <a href="mailto:info@amudar.io">info@amudar.io</a>
+          <a href="https://t.me/amudario" target="_blank" rel="noopener">t.me/amudario</a>
+        </div>
+        <div style="margin-top:2rem;position:relative">
+          <a href="/" class="btn btn--light" data-i18n="common.back">Back to home</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="/assets/logo/amudar-logo.png" alt="Amudario" class="footer__logo" />
+      <p data-i18n="footer.tagline">Smart solutions for smart agriculture.</p>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4 data-i18n="footer.products">Products</h4>
+        <a href="/products/oxus-ws">OxusWS</a>
+        <a href="/products/jayhun-trap">JayhunTrap</a>
+        <a href="/products/gozanlink">GozanLink</a>
+        <a href="/products/oxus-airsense">AirSense</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.company">Company</h4>
+        <a href="/#solutions" data-i18n="nav.solutions">Solutions</a>
+        <a href="/#team" data-i18n="footer.team">Team</a>
+        <a href="/#partners" data-i18n="footer.partners">Partners</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <a href="tel:+998909271177">+998 90 927 11 77</a>
+        <a href="mailto:info@amudar.io">info@amudar.io</a>
+        <a href="https://t.me/amudario" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="footer.rights">© 2026 Amudario Research LLC. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script is:inline src="/js/products-i18n.js"></script>
+  <script is:inline src="/js/i18n.js"></script>
+  <script is:inline src="/js/scrub.js"></script>
+</body>
+</html>
