@@ -19,7 +19,7 @@ const I18N = {
     "stats.title": "Field-proven at scale",
     "stats.v1": "300+", "stats.l1": "Stations installed",
     "stats.v2": "65+", "stats.l2": "AI pest & disease models",
-    "stats.v3": "250,000+", "stats.l3": "Hectares covered",
+    "stats.v3": "7,500+", "stats.l3": "Hectares covered",
     "stats.v4": "30+", "stats.l4": "Sensor parameters",
 
     "intro.eyebrow": "The challenge",
@@ -120,7 +120,7 @@ const I18N = {
     "stats.title": "Эффективность доказана на практике",
     "stats.v1": "300+", "stats.l1": "Установлено станций",
     "stats.v2": "65+", "stats.l2": "ИИ-моделей прогнозирования болезней и вредителей",
-    "stats.v3": "250 000+", "stats.l3": "Охвачено гектаров",
+    "stats.v3": "7 500+", "stats.l3": "Охвачено гектаров",
     "stats.v4": "30+", "stats.l4": "Измеряемых параметров",
 
     "intro.eyebrow": "Проблема",
@@ -221,7 +221,7 @@ const I18N = {
     "stats.title": "Dalada isbotlangan samaradorlik",
     "stats.v1": "300+", "stats.l1": "O‘rnatilgan stansiya",
     "stats.v2": "65+", "stats.l2": "Zararkunandalar va kasalliklarning SI modellari",
-    "stats.v3": "250 000+", "stats.l3": "Qamrab olingan gektarlar",
+    "stats.v3": "7 500+", "stats.l3": "Qamrab olingan gektarlar",
     "stats.v4": "30+", "stats.l4": "O‘lchanadigan parametrlar",
 
     "intro.eyebrow": "Muammo",
